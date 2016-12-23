@@ -1,0 +1,260 @@
+<template>
+  <div id="environment-question">
+    <h1>生活和环境因素</h1>
+    <div class="ul-wrap bottom-padding">
+      <ul>
+        <li v-for="item,index in items">
+          <p>{{index+1}}. {{item.question}}？</p>
+          <label >
+            <input type="radio" :name="prefix+index" value="0">
+            是
+          </label>
+          <label >
+            <input type="radio" :name="prefix+index" value="1">
+            否
+          </label>
+          <label >
+            <input type="radio" :name="prefix+index" value="2">
+            不确定
+          </label>
+        </li>
+      </ul>
+    </div>
+
+    <div class="function-area">
+       <div class="back-button confirm-button" @click="goBack">上一部分</div>
+       <div class="next-button button" @click="goNext">保存并提交</div>
+    </div>
+  </div>
+</template>
+
+<script>
+    export default {
+        data() {
+            return {
+              prefix: 'gene-question-',
+              items: [
+                {
+                  question: '您的身体定期暴露于有杀虫剂的环境中吗'
+                },
+                {
+                  question: '您的身体经常暴露于有机溶剂环境中吗'
+                },
+                {
+                  question: '您平时有摄入过咖啡因吗'
+                },
+                {
+                  question: '您有饮茶的习惯吗？饮茶的标准为每天饮茶量大于等于一杯'
+                },
+                {
+                  question: '您是否每周喝酒？喝酒的标准为每周饮酒量大于等于一次'
+                },
+                {
+                  question: '您有吸烟的习惯吗？吸烟的标准为连续或累积吸烟6个月或以上'
+                },
+                {
+                  question: '您的兄弟姐妹PD发病年龄是否有<50岁的？如有不理解的词汇，请询问您的主治医生后再答题'
+                },
+                {
+                  question: '您是否有其他一级亲属也患有PD？如有不理解的词汇，请询问您的主治医生后再答题'
+                },
+                {
+                  question: '您是否被确诊过身体基因突变？单个基因突变至少'
+                },
+                {
+                  question: '您的黑质(SN)高回声是否有异常？如有不理解的词汇，请询问您的主治医生后再答题'
+                },
+                {
+                  question: '您的PSG证实的RBD权威量表筛查是否有呈阳性？如有不理解的词汇，请询问您的主治医生后再答题'
+                },
+                {
+                  question: '您的特异性大于80%的RBD筛查问卷结果是否有呈阳性？如有不理解的词汇，请询问您的主治医生后再答题'
+                },
+                {
+                  question: '您的多巴胺能PET/SPECT有明显异常吗？如有不理解的词汇，请询问您的主治医生后再答题'
+                },
+                {
+                  question: '您是否有帕金森症状阈下值UPDRS>3？如果UPDRS>3，那么排除动作性震颤'
+                },
+                {
+                  question: '您是否有轻微运动症状？轻微运动症状判断标准：UPDRS III >3 或 MDS-UPDRS III >6，且除外体位性或运动性震颤'
+                },
+                {
+                  question: '您的定量运动检查是否异常？低于正常人群数值1个标准差及以下'
+                },
+                {
+                  question: '您的嗅觉是否有减退？嗅觉减退的依据为客观的检测结果'
+                },
+                {
+                  question: '您是否有便秘？便秘的判断：每周一次以上用药或排便次数<1次/2天'
+                },
+                {
+                  question: '您在白天是否经常过度嗜睡？白天是否过度嗜睡由主治医生判断'
+                },
+                {
+                  question: '您是否有体位性低血压？判断体位性低血压症状的依据（排除因过度降压治疗引起）：卧立位血压 收缩压变化>20mmHg,舒张压>10mmHg'
+                },
+                {
+                  question: '您是否有症状性低血压？如有不理解的词汇，请询问您的主治医生后再答题'
+                },
+                {
+                  question: '您是否有严重勃起功能障碍？严重性功能障碍症状，需要药物干预'
+                },
+                {
+                  question: '您是否有泌尿功能障碍？典型排尿功能异常症状，且排除女性病程10年以上的压力性尿失禁'
+                },
+                {
+                  question: '您是否有抑郁或者焦虑？需要主治医师的诊断来确定是否抑郁或焦虑'
+                },
+                {
+                  question: '您是否有过脑外伤？包括外伤后出现意识丧失'
+                },
+                {
+                  question: '您每天饮用奶制品吗？每天食用1杯及以上牛奶'
+                },
+                {
+                  question: '您的黑质超声高回声区域面积是否有过大？黑质回声区域面积大于0.20 cm2以上'
+                },
+                {
+                  question: '您是否有多巴胺能突触前功能显像的症状？判断标准：低于正常人群数值2个标准差及以下'
+                },
+                {
+                  question: '您在生活中是否接触过除草剂（百草枯、2,4-D等）？身体暴露在环境下3年以上职业接触过或者大于100次接触'
+                },
+                {
+                  question: '您在生活中是否接触过有机氯农药（DDT、六氯化苯、艾氏剂等）？身体暴露在环境下3年以上职业接触过或者大于100次接触'
+                },
+                {
+                  question: '您在生活中是否接触过甲氰菊酯？身体暴露在环境下3年以上职业接触过或者大于100次接触'
+                },
+                {
+                  question: '您在生活中是否接触过有机磷农药（毒死蜱、二嗪农、对硫磷等）？身体暴露在环境下3年以上职业接触过或者大于100次接触'
+                },
+                {
+                  question: '您在生活中是否接触过除虫菊素类（扑灭司林、溴氰菊酯等）？身体暴露在环境下3年以上职业接触过或者大于100次接触'
+                },
+                {
+                  question: '您在生活中是否接触过二硫代甲氨酸酯类农药（代森锰、代森锌等）？身体暴露在环境下3年以上职业接触过或者大于100次接触'
+                },
+                {
+                  question: '您在生活中是否接触过防腐剂？身体暴露在环境下3年以上职业接触过或者大于100次接触'
+                },
+                {
+                  question: '您在生活中是否接触过重金属（铁、铅、锰、汞等）？身体暴露在环境下3年以上职业接触过或者大于100次接触'
+                },
+                {
+                  question: '您在生活中是否接触过氰化物？身体暴露在环境下3年以上职业接触过或者大于100次接触'
+                },
+                {
+                  question: '您在生活中是否接触过化学稀释剂？身体暴露在环境下3年以上职业接触过或者大于100次接触'
+                },
+                {
+                  question: '您在生活中是否接触过有机溶剂（三氯乙烯、四氯化碳、TaClo等）？身体暴露在环境下3年以上职业接触过或者大于100次接触'
+                },
+                {
+                  question: '您在生活中是否接触过多氯联苯？身体暴露在环境下3年以上职业接触过或者大于100次接触'
+                },
+                {
+                  question: '您在生活环境是否有工业废气（CO, CS2）、毒物排放？身体暴露在环境下1年以上职业接触过或者大于100次接触'
+                },
+                {
+                  question: '您在生活中是否接触过化工产品？身体暴露在环境下3年以上职业接触过或者大于100次接触'
+                },
+                {
+                  question: '您在生活中是否接触过钢筋、水泥、合成树脂？常规在环境下3年以上职业接触过或者大于100次接触'
+                },
+                {
+                  question: '您的生活区周边是否有工厂？身体暴露在环境下3年以上密切接触'
+                },
+                {
+                  question: '您的居住环境是在乡村吗 ？身体暴露在环境下3年以上密切接触'
+                },
+                {
+                  question: '您生活中的饮用水来自井水吗 ？常规饮用3年以上密切接触'
+                },
+                {
+                  question: '您是否吸食过毒品？6月以内频繁吸食频繁吸食'
+                },
+                {
+                  question: '您有服用过抗精神病药物的药史吗？常规服用3年以上密切接触'
+                },
+                {
+                  question: '您有饮用咖啡的习惯吗？常规饮用3年以上每周小于3杯'
+                },
+                {
+                  question: '您有饮用咖啡的习惯吗？常规饮用3年以上每周大于3杯'
+                },
+                {
+                  question: '您是否有其他药物（利血平等药物）滥用史 ？规律服用3年以上规律服药'
+                },
+                {
+                  question: '您是否服用过雌激素类药物？规律服药3年以上规律服药'
+                },
+                {
+                  question: '您是否有钙拮抗剂用药史？规律服药3年以上规律服药'
+                },
+                {
+                  question: '您是否有他汀类用药史？规律服药3年以上规律服药'
+                },
+                {
+                  question: '您是否有非甾体抗炎药用药史？规律服药3年以上规律服药'
+                },
+                {
+                  question: '您经常进行体育锻炼吗？规律锻炼3年以上每周规律运动2次'
+                },
+                {
+                  question: '您居住的地区环境是否有雾霾？身体暴露在环境下3年以上密切接触'
+                },
+                {
+                  question: '您在生活中是否接触过鱼藤酮杀虫剂？身体暴露在环境下3年以上职业接触过或者大于100次接触'
+                },
+              ]
+            }
+        },
+        methods :{
+          goBack() {
+            $router.push("FamilyMember");
+          },
+          goNext() {
+            $router.push("FinishPage");
+          }
+        },
+    }
+</script>
+
+<style scoped>
+  #environment-question {
+    min-height: 100%;
+    position: relative;
+    word-break: break-all;
+  }
+  h1 {
+    font-size: .54rem;
+    text-align: center;
+    line-height: 1;
+    padding: .42rem 0;
+    color: #3c485a;
+  }
+  .ul-wrap {
+    background: #f3f3f3;
+    padding: .3rem;
+    min-height: 100%
+  }
+  ul {
+    background: #fff;
+    padding: 0 .15rem;
+    border-radius: 8px;
+  }
+  li p {
+    font-size: .48rem;
+    line-height: 1.48rem;
+    border-bottom: 1px solid #c5cbd3;
+    color: #3c485a;
+  }
+  li label {
+    display: block;
+    font-size: .42rem;
+    line-height: 1.34rem;
+    color: #5a7193;
+  }
+</style>
