@@ -1,0 +1,123 @@
+html {
+  font-size: 100px;
+}
+
+body, html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
+body {
+  font-family: PingFangSC-Regular,Helvetica,"Droid Sans",Arial,sans-serif;
+}
+
+ul, li {
+  list-style: none;
+}
+
+ul, li, p, h1, h2, h3, textarea, input {
+  margin: 0;
+  padding: 0;
+}
+
+a {
+  text-decoration: none;
+}
+
+.button {
+  background: #ff9c00;
+  margin: 0 auto;
+  width: 5.3rem;
+  height: 1.2rem;
+  text-align: center;
+  line-height: 1.2rem;
+  color: #fff;
+  letter-spacing: 2px;
+  font-size: .42rem;
+  border-radius: 2.5rem;
+  cursor: pointer;
+}
+
+.button:hover, .buton:active {
+  background: #f78000;
+}
+
+.confirm-button {
+  width: 6.5rem;
+  height: 1.5rem;
+  line-height: 1.5rem;
+  background: #5a7193;
+  font-size: .48rem;
+  margin: 0 auto;
+  color: #fff;
+  text-align: center;
+  border-radius: 5%;
+}
+
+.confirm-button:hover, .confirm-button:active {
+  background: #273348;
+}
+
+.confirm-button-1 {
+  background: #ff9c00;
+}
+
+.confirm-button-1:hover, .confirm-button-1:active {
+  background: #f78000;
+}
+
+#app {
+  height: 100%;
+}
+
+input, a, textarea {
+  outline: none;
+  border: none;
+}
+
+.split {
+  display: block;
+  height: .3rem;
+  box-shadow: 0 .2rem .1rem #f0f0f0;
+  margin-top: -.3rem;
+}
+
+textarea {
+  display: block;
+  border: none;
+  resize: none;
+}
+
+.function-area {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: .4rem .6rem;
+  font-size: .36rem;
+  background: #fff;
+}
+.function-area:after {
+  content: '';
+  display: block;
+  clear: both;
+}
+.back-button {
+  width: 48%;
+  float: left;
+  margin-right: 4%;
+  height: 1.5rem;
+  line-height: 1.5rem;
+}
+.next-button {
+  width: 48%;
+  float: left;
+  height: 1.5rem;
+  line-height: 1.5rem;
+  border-radius: 5%;
+}
+
+#app .bottom-padding {
+  padding-bottom: 2.6rem;
+}
