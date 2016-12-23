@@ -94,6 +94,7 @@
             var selectArea = new MobileSelectArea();
             selectArea.init({trigger:'#'+item.id,level:2,data:data.data,value:item.hiddenValue,position:"bottom",callback: function(a,b,c) {
               item.status = b;
+              item.default = '';
             }});
         });
 
@@ -103,6 +104,7 @@
             var selectDate = new MobileSelectDate();
             selectDate.init({trigger:'#'+item.id,min:'1900/01/01',max:self.getDate(),position:"bottom",callback:function(scroller,value){
               item.status = value;
+              item.default = '';
             }});
         });
       }
@@ -135,11 +137,13 @@
 
   li .label {
     display: block;
-    padding: .52rem 0;
+    /*padding: .52rem 0;*/
     vertical-align: middle;
     -webkit-box-flex: 1;
     line-height: 1;
     position: relative;
+    height: 1.46rem;
+    line-height: 1.46rem;
   }
   li span {
     color: red;
@@ -155,15 +159,17 @@
     width: 4rem;
     position: absolute;
     right: .7rem;
-    height: .42rem;
-    line-height: .42rem;
-    margin-top: -.05rem;
+    height: 100%;
+    font-size: .42rem;
+    line-height: 1.75;
+    /*margin-top: -.05rem;*/
     text-align: right;
+    /*border: 1px solid #ccc;*/
   }
   .label-radio {
     position: absolute;
     right: .7rem;
-    top: .42rem;
+    top: 0;
   }
 
   .label-radio label{

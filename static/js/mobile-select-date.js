@@ -79,12 +79,31 @@
             }
             this.data = json;
         },
+        setHidden: function() {
+          var ua = navigator.userAgent;
+          if(/iphone/i.test(ua)) {
+              $('body').css({
+                overflow: 'hidden',
+                position: 'fixed',
+              });
+          }
+        },
+        clearHidden: function() {
+          var ua = navigator.userAgent;
+          if(/iphone/i.test(ua)) {
+              $('body').css({
+                overflow: 'auto',
+                position: 'relative',
+              });
+          }
+        },
         bindEvent: function() {
             var _this = this;
             this.trigger.click(function(e) {
-
+              console.log(1)
                 var settings,buttons;
                 if( _this.settings.position == "bottom"){
+                    _this.setHidden();
                     settings ={
                         position:"bottom",
                         width:"100%",
@@ -229,17 +248,20 @@
             _this.f(childData);
         },
         submit: function() {
+          this.clearHidden();
             this.oldvalue = this.value.concat([]);
             this.oldtext = this.text.concat([]);
             if (this.trigger[0].nodeType == 1) {
                 //input
                 this.trigger.val(this.text.join(this.separator));
+                this.trigger.placeholder = '';
                 this.trigger.attr('data-value', this.value.join(','));
             }
             this.trigger.next(':hidden').val(this.value.join(','));
             this.settings.callback && this.settings.callback(this.scroller, this.text.join(this.separator));
         },
         cancel: function() {
+            this.clearHidden();
             this.value = this.oldvalue.concat([]);
             this.text = this.oldtext.concat([]);
         }

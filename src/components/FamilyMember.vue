@@ -30,11 +30,13 @@
 
 <script>
   import InfoType from './InfoType'
+  import util from '../../static/js/util.js'
   export default {
       data() {
           return {
             verifyCode: '',
             dialog: false,
+            key: 'FamilyMember',
             items: [
               {
                 logo: '../static/image/data_icon_born.png',
@@ -73,6 +75,7 @@
                 question: '电话1',
                 type: 1,
                 status: '',
+                validate: 'telephone',
                 id: 'tel',
                 default: '填写'
               },
@@ -91,6 +94,7 @@
                 notneed: true,
                 type: 1,
                 status: '',
+                validate: 'email',
                 id: 'email',
                 default: '填写'
               },
@@ -128,13 +132,24 @@
             ]
           }
       },
+      created() {
+        util.storeData.get(this.key, this.items);
+      },
       methods :{
         goBack() {
-          $router.push("SickStatus");
+          util.storeData.set(this.key, this.items);
+          $router.push("DrugStatus");
         },
         goNext() {
-          this.dialog = true;
-
+          var flag = util.checkForm(this.items);
+          if(!this.verifyCode) {
+            flag = false;
+            alert('请填写验证码');
+          }
+          if(flag) {
+            util.storeData.set(this.key, this.items);
+            this.dialog = true;
+          }
         },
         goNext1() {
           $router.push("GeneQUestion");

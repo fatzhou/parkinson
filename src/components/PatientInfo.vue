@@ -1,9 +1,9 @@
 <template>
   <div id="patient-info">
-    <h1>帕金森患者问卷</h1>
+    <h1><router-link class="h1link" to="Login">&lt;</router-link>帕金森患者问卷</h1>
     <div class="split"></div>
 
-    <InfoType :items="items.slice(0,5)"></InfoType>
+    <InfoType :items="items.slice(0,6)"></InfoType>
 
     <div class="split"></div>
 
@@ -19,9 +19,11 @@
 
 <script>
   import InfoType from './InfoType'
+  import util from '../../static/js/util.js'
   export default {
       data() {
           return {
+            key: 'PatientInfo',
             items: [
               {
                 logo: '../static/image/data_icon_name.png',
@@ -53,6 +55,7 @@
                 type: 1,
                 status: '',
                 id: 'tel',
+                validate: 'telephone',
                 default: '填写'
               },
               {
@@ -118,9 +121,17 @@
             ]
           }
       },
+      created() {
+        util.storeData.get(this.key, this.items);
+      },
       methods :{
         savePatientInfo: function() {
-          $router.push("SickStatus");
+          var flag = util.checkForm(this.items);
+
+          if(flag) {
+            util.storeData.set(this.key, this.items);
+            $router.push("SickStatus");
+          }
         }
       },
       components: {InfoType}
@@ -138,8 +149,17 @@
     line-height: 1;
     padding: .42rem 0;
     color: #3c485a;
+    position: relative;
   }
 
+  .h1link {
+    position: absolute;
+    left: .5rem;
+    font-size: .42rem;
+    transform: scaleY(2);
+    top: .42rem;
+    color: #5a7193;
+  }
   .confirm-wrap {
     padding: .6rem 0;
   }

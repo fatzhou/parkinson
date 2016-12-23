@@ -37,9 +37,11 @@
 </template>
 
 <script>
+import util from '../../static/js/util.js'
     export default {
         data() {
             return {
+              key: 'DrugStatus',
               items: [
                 {
                   drug: '美多芭',
@@ -98,12 +100,24 @@
               ]
             }
         },
+        created() {
+          util.storeData.get(this.key+'Amount', this.items, 'amount');
+          util.storeData.get(this.key+'Times', this.items, 'times');
+          util.storeData.get(this.key+'Years', this.items, 'years');
+        },
         methods :{
           goBack() {
+            this.saveData();
             $router.push("SickStatus");
           },
           goNext() {
+            this.saveData();
             $router.push("FamilyMember");
+          },
+          saveData() {
+            util.storeData.set(this.key+'Amount', this.items, 'amount');
+            util.storeData.set(this.key+'Times', this.items, 'times');
+            util.storeData.set(this.key+'Years', this.items, 'years');
           }
         }
     }

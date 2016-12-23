@@ -9,7 +9,7 @@
             <img :src="item.logo" alt="">
             <label :for="item.name">
               <span>{{item.desc}}</span>
-              <input :id="item.name" :name="item.name" required v-model.trim="item.value" >
+              <input :id="item.name" :name="item.name" v-model.trim="item.status" >
             </label>
           </li>
           <li>
@@ -22,29 +22,37 @@
 </template>
 
 <script>
-  // import md5 from '../../static/js/md5.js';
-  // console.log(md5('test'))
+  import util from '../../static/js/util.js'
     export default {
         data() {
             return {
+              url: 'http://211.149.193.19:8080/api/customers',
               items: [
-                { name: 'doctor-name', desc: '主治医生姓名：', value: '', logo: '../static/image/data_icon_name.png' },
-                { name: 'doctor-tel', desc: '医生手机号码：', value: '', logo: '../static/image/data_icon_phone.png' }
+                { name: 'doctor-name', desc: '主治医生姓名：', status: '', logo: '../static/image/data_icon_name.png' },
+                { name: 'doctor-tel', desc: '医生手机号码：', status: '', logo: '../static/image/data_icon_phone.png', validate: "telephone" }
               ]
             }
         },
+        created() {
+          util.storeData.get('Login', this.items);
+        },
         methods :{
             queryPatient () {
-                for(var i = 0, flag = true, items = this.items, len = items.length; i < len; i++) {
-                  if(!items[i].value) {
-                    alert('请填写' + items[i].desc.replace('：',''));
-                    flag = false;
-                    return false;
-                  }
-                }
-
+                var flag = util.checkForm(this.items);
                 if(flag) {
-                  $router.push("PatientInfo");
+                  var data = {
+                    name: this.items[0].status,
+                    mobile: this.items[1].status
+                  };
+
+                  this.$http.post(this.url, data)
+                  .then((response) => {
+                    util.storeData.set('Login', this.items);
+                    $router.push("PatientInfo");
+                  })
+                  .catch(function(response) {
+                    alert(response.msg);
+                  });
                 }
             }
         }
@@ -100,11 +108,12 @@
     display: inline-block;
     vertical-align: middle;
     width: .6rem;
+    margin-top: .37rem;
   }
 
   li label {
     font-size: .42rem;
-    padding: .56rem 0;
+    /*padding: .46rem 0;*/
     border-bottom: 1px solid #ccc;
     color: #5a7193;
     font-weight: bold;
@@ -115,10 +124,15 @@
     -webkit-box-flex: 1;
   }
   li label span {
-
+    line-height: 1.34rem;
+    height: 1.34rem;
   }
   li label input {
     -webkit-box-flex: 1;
+    display: block;
+    font-size: .42rem;
+    height: 1.34rem;
+    line-height: .42rem;
   }
   .button {
     margin-top: -2.6rem;

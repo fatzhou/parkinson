@@ -69,11 +69,13 @@ a {
 
 #app {
   height: 100%;
+  overflow: scroll;
 }
 
 input, a, textarea {
   outline: none;
   border: none;
+  box-sizing: border-box;
 }
 
 .split {

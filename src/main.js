@@ -7,7 +7,7 @@ Vue.use(VueResource)
 Vue.use(VueRouter)
 
 Vue.mixin({
-  beforeMount: function () {
+  mounted: function () {
     window.scrollTo(0,0);
   }
 })
