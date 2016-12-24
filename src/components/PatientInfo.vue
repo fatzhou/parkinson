@@ -19,6 +19,7 @@
 
 <script>
   import InfoType from './InfoType'
+<<<<<<< HEAD
   import util from '../../static/js/util.js'
   export default {
       data() {

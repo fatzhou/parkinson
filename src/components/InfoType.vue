@@ -137,13 +137,11 @@
 
   li .label {
     display: block;
-    /*padding: .52rem 0;*/
     vertical-align: middle;
     -webkit-box-flex: 1;
     line-height: 1;
     position: relative;
     height: 1.46rem;
-    line-height: 1.46rem;
   }
   li span {
     color: red;

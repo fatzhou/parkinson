@@ -22,6 +22,7 @@
 </template>
 
 <script>
+<<<<<<< HEAD
   import util from '../../static/js/util.js'
     export default {
         data() {
@@ -113,7 +114,6 @@
 
   li label {
     font-size: .42rem;
-    /*padding: .46rem 0;*/
     border-bottom: 1px solid #ccc;
     color: #5a7193;
     font-weight: bold;

@@ -79,24 +79,6 @@
             }
             return dtd;
         },
-        setHidden: function() {
-          var ua = navigator.userAgent;
-          if(/iphone/i.test(ua)) {
-              $('body').css({
-                overflow: 'hidden',
-                position: 'fixed',
-              });
-          }
-        },
-        clearHidden: function() {
-          var ua = navigator.userAgent;
-          if(/iphone/i.test(ua)) {
-              $('body').css({
-                overflow: 'auto',
-                position: 'relative',
-              });
-          }
-        },
         bindEvent: function() {
             var _this = this;
             this.trigger[_this.settings.eventName](function(e) {
@@ -106,7 +88,6 @@
                 };
                 var settings, buttons;
                 if (_this.settings.position == "bottom") {
-                  _this.setHidden();
                     settings = {
                         position: "bottom",
                         width: "100%",
@@ -252,7 +233,6 @@
             _this.f(childData);
         },
         submit: function() {
-            this.clearHidden();
             this.oldvalue = this.value.concat([]);
             this.oldtext = this.text.concat([]);
             if (this.trigger[0].nodeType == 1) {
@@ -264,7 +244,6 @@
             this.settings.callback && this.settings.callback.call(this, this.scroller, this.text.join(this.separator), this.value);
         },
         cancel: function() {
-           this.clearHidden();
             this.value = this.oldvalue.concat([]);
             this.text = this.oldtext.concat([]);
         }

@@ -29,6 +29,7 @@
 </template>
 
 <script>
+
 import util from '../../static/js/util.js'
     export default {
         data() {
@@ -215,6 +216,7 @@ import util from '../../static/js/util.js'
               ]
             }
         },
+
         created() {
           util.storeData.get(this.key, this.items);
         },
@@ -229,7 +231,6 @@ import util from '../../static/js/util.js'
               util.storeData.set(this.key, this.items);
               $router.push("DrugStatus");
             }
-
           }
         },
     }
