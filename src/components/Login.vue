@@ -22,7 +22,6 @@
 </template>
 
 <script>
-<<<<<<< HEAD
   import util from '../../static/js/util.js'
     export default {
         data() {

@@ -7,11 +7,7 @@ Vue.use(VueResource)
 Vue.use(VueRouter)
 
 Vue.mixin({
-<<<<<<< HEAD
-  mounted: function () {
-=======
   beforeMount: function () {
->>>>>>> 478299a61fa3aa7504db620b933e77a109f933c3
     window.scrollTo(0,0);
   }
 })

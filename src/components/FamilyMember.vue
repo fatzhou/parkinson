@@ -30,19 +30,14 @@
 
 <script>
   import InfoType from './InfoType'
-<<<<<<< HEAD
   import util from '../../static/js/util.js'
-=======
->>>>>>> 478299a61fa3aa7504db620b933e77a109f933c3
+
   export default {
       data() {
           return {
             verifyCode: '',
             dialog: false,
-<<<<<<< HEAD
             key: 'FamilyMember',
-=======
->>>>>>> 478299a61fa3aa7504db620b933e77a109f933c3
             items: [
               {
                 logo: '../static/image/data_icon_born.png',
@@ -81,10 +76,7 @@
                 question: '电话1',
                 type: 1,
                 status: '',
-<<<<<<< HEAD
                 validate: 'telephone',
-=======
->>>>>>> 478299a61fa3aa7504db620b933e77a109f933c3
                 id: 'tel',
                 default: '填写'
               },
@@ -103,10 +95,7 @@
                 notneed: true,
                 type: 1,
                 status: '',
-<<<<<<< HEAD
                 validate: 'email',
-=======
->>>>>>> 478299a61fa3aa7504db620b933e77a109f933c3
                 id: 'email',
                 default: '填写'
               },
@@ -147,7 +136,7 @@
       created() {
         util.storeData.get(this.key, this.items);
       },
-      methods :{
+      methods: {
         goBack() {
           util.storeData.set(this.key, this.items);
           $router.push("DrugStatus");
@@ -161,6 +150,7 @@
           if(flag) {
             util.storeData.set(this.key, this.items);
             this.dialog = true;
+          }
         },
         goNext1() {
           $router.push("GeneQUestion");
