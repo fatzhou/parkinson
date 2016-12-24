@@ -26,7 +26,7 @@
     export default {
         data() {
             return {
-              url: 'http://211.149.193.19:8080/api/customers',
+              url: 'http://120.27.25.118:8080/service_im/doctorConfirm',
               items: [
                 { name: 'doctor-name', desc: '主治医生姓名：', status: '', logo: '../static/image/data_icon_name.png' },
                 { name: 'doctor-tel', desc: '医生手机号码：', status: '', logo: '../static/image/data_icon_phone.png', validate: "telephone" }
@@ -47,11 +47,15 @@
 
                   this.$http.post(this.url, data)
                   .then((response) => {
-                    util.storeData.set('Login', this.items);
-                    $router.push("PatientInfo");
+                    if(response.code === 0) {
+                      util.storeData.set('Login', this.items);
+                      $router.push("PatientInfo");
+                    } else {
+                      alert(response.message);
+                    }
                   })
                   .catch(function(response) {
-                    alert(response.msg);
+                    alert('查询医生信息失败，请稍后再试');
                   });
                 }
             }
@@ -105,8 +109,8 @@
   }
 
   li img {
-    display: inline-block;
-    vertical-align: middle;
+    display: block;
+    height: .6rem;
     width: .6rem;
     margin-top: .37rem;
   }

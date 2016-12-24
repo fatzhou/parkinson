@@ -140,7 +140,9 @@
 
 <style scoped>
   #patient-info {
-    min-height: 100%;
+    height: 100%;
+    overflow: scroll;
+    -webkit-overflow-scrolling : touch;
     color: #5a7193;
   }
   h1 {

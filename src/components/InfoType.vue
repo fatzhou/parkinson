@@ -129,8 +129,9 @@
     position: relative;
   }
   li img {
-    display: inline-block;
+    display: block;
     width: .6rem;
+    height: .6rem;
     margin-top: .43rem;
     margin-right: .5rem;
   }
@@ -139,7 +140,7 @@
     display: block;
     vertical-align: middle;
     -webkit-box-flex: 1;
-    line-height: 1;
+    line-height: 1.46rem;
     position: relative;
     height: 1.46rem;
   }
@@ -181,6 +182,8 @@
     top: 1.48rem;
     height: 1px;
     width: 100%;
+    left: 0;
+    right: 0;
     display: block;
     background: #c5cbd3;
   }
