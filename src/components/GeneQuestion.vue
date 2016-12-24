@@ -6,15 +6,15 @@
         <li v-for="item,index in items">
           <p>{{index+1}}. {{item.question}}？</p>
           <label >
-            <input type="radio" :name="prefix+index" value="0">
+            <input type="radio" :name="prefix+index" value="0" v-model="item.status">
             是
           </label>
           <label >
-            <input type="radio" :name="prefix+index" value="1">
+            <input type="radio" :name="prefix+index" value="1" v-model="item.status">
             否
           </label>
           <label >
-            <input type="radio" :name="prefix+index" value="2">
+            <input type="radio" :name="prefix+index" value="2" v-model="item.status">
             不确定
           </label>
         </li>
@@ -29,113 +29,154 @@
 </template>
 
 <script>
+    import util from '../../static/js/util.js'
     export default {
         data() {
             return {
+              key: 'GeneQuestion',
               prefix: 'gene-question-',
               items: [
                 {
-                  question: '您的基因SNCA是否发生A53T,A30PE46KG50D突变'
+                  question: '您的基因SNCA是否发生A53T,A30PE46KG50D突变',
+                  status: ''
                 },
                 {
-                  question: '您的基因SNCA是否双倍复制'
+                  question: '您的基因SNCA是否双倍复制',
+                  status: ''
                 },
                 {
+                  status: '',
                   question: '您的基因SNCA是否为三倍复制'
                 },
                 {
+                  status: '',
                   question: '您的基因SNCA是否发生Rep1-CA repeat突变'
                 },
                 {
+                  status: '',
                   question: '您的基因SNCA是否发生rs894278, GG+TG突变'
                 },
                 {
+                  status: '',
                   question: '您的基因SNCA是否发生rs11931074, TT+TG突变'
                 },
                 {
+                  status: '',
                   question: '您的基因SNCA是否发生rs356219,  GG突变'
                 },
                 {
+                  status: '',
                   question: '您的基因SNCA是否发生rs356165, AA突变'
                 },
                 {
+                  status: '',
                   question: '您的基因Parkin是否为纯合子或复合型杂合子'
                 },
                 {
+                  status: '',
                   question: '您的基因PARKIN是否为杂合突变突变'
                 },
                 {
+                  status: '',
                   question: '您的基因PINK1是否为纯合子或复合型杂合子突变'
                 },
                 {
+                  status: '',
                   question: '您的基因PINK1是否为一种杂合子突变突变'
                 },
                 {
+                  status: '',
                   question: '您的基因DJ-1是否为纯合子或复合型杂合子突变'
                 },
                 {
+                  status: '',
                   question: '您的基因LRRK2是否为G2019S突变'
                 },
                 {
+                  status: '',
                   question: '您的基因LRRK2是否为G2385R, GA+AA突变'
                 },
                 {
+                  status: '',
                   question: '您的基因LRRK2是否发生R1628P, CG突变'
                 },
                 {
+                  status: '',
                   question: '您的基因LRRK2是否发生R1441CGH, Y1699C,I2020T突变'
                 },
                 {
+                  status: '',
                   question: '您的基因GBA是否出现外显子突变点'
                 },
                 {
+                  status: '',
                   question: '您的基因GBA是否发生L444P, TC突变'
                 },
                 {
+                  status: '',
                   question: '您的家族中是否有一人以上患病'
                 },
                 {
+                  status: '',
                   question: '您的基因MAPT是否发生rs356219, GG突变'
                 },
                 {
+                  status: '',
                   question: '您的基因MAPT是否发生rs356165, AA突变'
                 },
                 {
+                  status: '',
                   question: '您的基因MAPT是否发生rs242562, GG+GA突变'
                 },
                 {
+                  status: '',
                   question: '您的基因MAPT是否发生rs2435207, AA突变'
                 },
                 {
+                  status: '',
                   question: '您的基因BST1是否发生rs4273468, AG+GG突变'
                 },
                 {
+                  status: '',
                   question: '您的基因BST1是否发生rs469412, GG突变'
                 },
                 {
+                  status: '',
                   question: '您的基因PARK16是否发生rs823128, AG突变'
                 },
                 {
+                  status: '',
                   question: '您的基因PARK16是否发生rs947211, AA突变'
                 },
                 {
+                  status: '',
                   question: '您的基因PARK16是否发生rs823156, AG突变'
                 },
                 {
+                  status: '',
                   question: '您的基因PARK16是否发生rs823144, AA突变'
                 },
                 {
+                  status: '',
                   question: '您的基因GAK是否发生rs11248051CT +TT突变'
                 },
               ]
             }
         },
+        created() {
+          util.storeData.get(this.key, this.items);
+        },
         methods :{
           goBack() {
+            util.storeData.set(this.key, this.items);
             $router.push("FamilyMember");
           },
           goNext() {
-            $router.push("FinishPage");
+            var flag = util.checkForm(this.items);
+            if(flag) {
+              util.storeData.set(this.key, this.items);
+              $router.push("FinishPage");
+            }
           }
         },
     }

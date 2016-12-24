@@ -143,7 +143,7 @@
         },
         goNext() {
           var flag = util.checkForm(this.items);
-          if(!this.verifyCode) {
+          if(!this.verifyCode && flag) {
             flag = false;
             alert('请填写验证码');
           }
@@ -189,8 +189,11 @@
   }
   .verify-code input {
     float: left;
-    padding: .52rem 0;
+    /*padding: .52rem 0;*/
     line-height: 1;
+    font-size: .42rem;
+    line-height: 1.46rem;
+    height: 1.46rem;
   }
   .code-button {
     float: right;

@@ -82,7 +82,6 @@
         bindEvent: function() {
             var _this = this;
             this.trigger.click(function(e) {
-
                 var settings,buttons;
                 if( _this.settings.position == "bottom"){
                     settings ={

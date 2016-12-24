@@ -17,6 +17,7 @@
         },
         methods :{
           getResult: function() {
+
             $router.push("ResultShow");
           }
         },

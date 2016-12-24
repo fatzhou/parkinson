@@ -12,15 +12,16 @@
 </template>
 
 <script>
+    import util from '../../static/js/util.js'
     export default {
         data() {
             return {
             }
         },
+        mounted: function() {
+          util.storeData.clear();
+        },
         methods :{
-          getResult: function() {
-            $router.push("ResultShow");
-          }
         },
     }
 </script>

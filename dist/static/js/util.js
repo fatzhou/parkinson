@@ -33,10 +33,6 @@ var checkForm = function(data, attr) {
 
 var api = {
   'host': 'http://120.27.25.118:1080',
-  'sourcehost': function() {
-    var path = location.pathname;
-
-  }(),
   'Login': {
     url: '/service_im/doctorConfirm'
   }
@@ -67,6 +63,7 @@ var storeData = {
         items.forEach(function(item, index) {
           item[attr] = data[index];
         })
+        // console.log(items,attr)
       }
     }
   },

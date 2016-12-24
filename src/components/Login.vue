@@ -26,7 +26,7 @@
     export default {
         data() {
             return {
-              url: 'http://120.27.25.118:8080/service_im/doctorConfirm',
+              url: util.api.host + util.api.Login.url,
               items: [
                 { name: 'doctor-name', desc: '主治医生姓名：', status: '', logo: '../static/image/data_icon_name.png' },
                 { name: 'doctor-tel', desc: '医生手机号码：', status: '', logo: '../static/image/data_icon_phone.png', validate: "telephone" }
@@ -47,11 +47,13 @@
 
                   this.$http.post(this.url, data)
                   .then((response) => {
-                    if(response.code === 0) {
+                    var data = response.body;
+                    if(data.code === 0) {
                       util.storeData.set('Login', this.items);
                       $router.push("PatientInfo");
                     } else {
-                      alert(response.message);
+                      console.log(data.message)
+                      alert(data.message);
                     }
                   })
                   .catch(function(response) {
