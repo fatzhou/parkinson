@@ -1,0 +1,91 @@
+module.exports = [{
+    logo: '../static/image/data_icon_born.png',
+    question: '关系',
+    type: 6,
+    status: '',
+    id: 'relationship',
+    options: [
+        ['父亲/母亲', 1],
+        ['兄/弟/姐/妹', 2],
+        ['祖父母/外祖父母', 3],
+        ['其他人', 4]
+    ]
+}, {
+    logo: '../../static/image/data_icon_name.png',
+    question: '姓名',
+    type: 1,
+    status: '',
+    id: 'name',
+    default: '填写'
+}, {
+    logo: '../../static/image/data_icon_born.png',
+    question: '性别',
+    type: 3,
+    status: '',
+    id: "sex",
+    options: [
+        ['男', 1],
+        ['女', 2]
+    ]
+}, {
+    logo: '../../static/image/data_icon_born.png',
+    question: '出生年月',
+    type: 2,
+    status: '',
+    id: "birthday",
+    default: '选择'
+}, {
+    logo: '../../static/image/data_icon_name.png',
+    question: '电话1',
+    type: 1,
+    status: '',
+    validate: 'telephone',
+    id: 'tel',
+    default: '填写'
+}, {
+    logo: '../../static/image/data_icon_name.png',
+    question: '电话2',
+    notneed: true,
+    type: 1,
+    status: '',
+    validate: 'telephone',
+    id: 'tel2',
+    default: '选填号码'
+}, {
+    logo: '../static/image/data_icon_name.png',
+    question: '邮箱地址',
+    notneed: true,
+    type: 1,
+    status: '',
+    validate: 'email',
+    id: 'email',
+    default: '填写'
+}, {
+    logo: '../static/image/data_icon_born.png',
+    question: '籍贯',
+    notneed: true,
+    type: 4,
+    status: '',
+    id: 'native',
+    areaId: 'native-hidden-area',
+    hiddenValue: '',
+    default: '选择'
+}, {
+    logo: '../static/image/data_icon_born.png',
+    question: '居住地',
+    notneed: true,
+    type: 4,
+    status: '',
+    id: 'home',
+    areaId: 'home-hidden-area',
+    hiddenValue: '',
+    default: '选择'
+}, {
+    logo: '../static/image/data_icon_born.png',
+    question: '家族疾病史',
+    notneed: true,
+    type: 5,
+    status: '',
+    id: 'anamnesis',
+    placeholder: '请输入擅长及诊所介绍。请输入擅长及诊所介绍。请输入擅长及诊所介绍。请输入擅长及诊所介绍。请输入擅长及诊所介绍。'
+}, ]

@@ -6,7 +6,7 @@
 
     <div class="verify-code">
       <input type="text" v-model="verifyCode" placeholder="请输入验证码"/>
-      <div class="code-button">
+      <div class="code-button" @click="getVerifyCode">
         获取验证码
       </div>
     </div>
@@ -31,125 +31,108 @@
 <script>
   import InfoType from './InfoType'
   import util from '../../static/js/util.js'
+  import FamilyMember from '../../static/js/config/FamilyMember.js'
 
   export default {
       data() {
           return {
+            url: util.api.host + util.api.FamilyMember.url,
+            verifyCodeUrl: util.api.host + util.api.FamilyMember.verifyCodeUrl,
             verifyCode: '',
             dialog: false,
             key: 'FamilyMember',
-            items: [
-              {
-                logo: '../static/image/data_icon_born.png',
-                question: '关系',
-                type: 6,
-                status: '',
-                id: 'relationship',
-                options: [['父亲/母亲',1],['兄/弟/姐/妹',2],['祖父母/外祖父母',3],['其他人',4]]
-              },
-              {
-                logo: '../static/image/data_icon_name.png',
-                question: '姓名',
-                type: 1,
-                status: '',
-                id: 'name',
-                default: '填写'
-              },
-              {
-                logo: '../static/image/data_icon_born.png',
-                question: '性别',
-                type: 3,
-                status: '',
-                id: "sex",
-                options: [['男',3], ['女',4]]
-              },
-              {
-                logo: '../static/image/data_icon_born.png',
-                question: '出生年月',
-                type: 2,
-                status: '',
-                id: "birthday",
-                default: '选择'
-              },
-              {
-                logo: '../static/image/data_icon_name.png',
-                question: '电话1',
-                type: 1,
-                status: '',
-                validate: 'telephone',
-                id: 'tel',
-                default: '填写'
-              },
-              {
-                logo: '../static/image/data_icon_name.png',
-                question: '电话2',
-                notneed: true,
-                type: 1,
-                status: '',
-                id: 'tel2',
-                default: '选填号码'
-              },
-              {
-                logo: '../static/image/data_icon_name.png',
-                question: '邮箱地址',
-                notneed: true,
-                type: 1,
-                status: '',
-                validate: 'email',
-                id: 'email',
-                default: '填写'
-              },
-              {
-                logo: '../static/image/data_icon_born.png',
-                question: '籍贯',
-                notneed: true,
-                type: 4,
-                status: '',
-                id: 'native',
-                areaId: 'native-hidden-area',
-                hiddenValue: '',
-                default: '选择'
-              },
-              {
-                logo: '../static/image/data_icon_born.png',
-                question: '居住地',
-                notneed: true,
-                type: 4,
-                status: '',
-                id: 'home',
-                areaId: 'home-hidden-area',
-                hiddenValue: '',
-                default: '选择'
-              },
-              {
-                logo: '../static/image/data_icon_born.png',
-                question: '家族疾病史',
-                notneed: true,
-                type: 5,
-                status: '',
-                id: 'anamnesis',
-                placeholder: '请输入擅长及诊所介绍。请输入擅长及诊所介绍。请输入擅长及诊所介绍。请输入擅长及诊所介绍。请输入擅长及诊所介绍。'
-              },
-            ]
+            items: FamilyMember,
+            info: {
+              doctorMobile: '',
+              patientMobile: '',
+              familyMobile: ''
+            }
           }
       },
       created() {
+        util.storeData.get('info', this, 'info');
         util.storeData.get(this.key, this.items);
       },
       methods: {
+        getVerifyCode() {
+          var number = this.items[4].status;
+          if(!number) {
+            alert('请先填写手机号码');
+            $('li').get(4).scrollIntoView(true);
+            return false;
+          } else if(!util.validator.telephone(number)) {
+            alert('请填写正确的手机号码');
+            $('li').get(4).scrollIntoView(true);
+            return false;
+          }
+          var postData = {
+              "mobile": number,
+              "countryCode":"86"
+          };
+          this.$http.post(this.verifyCodeUrl, postData)
+          .then((response) => {
+          })
+          .catch(function(response) {
+            alert('您当前网络出现故障，请稍后再试');
+          });
+        },
         goBack() {
-          util.storeData.set(this.key, this.items);
+          this.saveData();
           $router.push("DrugStatus");
         },
         goNext() {
           var flag = util.checkForm(this.items);
-          if(!this.verifyCode && flag) {
+          if(flag && !this.verifyCode) {
+            $('.verify-code').get(0).scrollIntoView(true);
+            alert('请输入验证码');
             flag = false;
-            alert('请填写验证码');
           }
           if(flag) {
-            util.storeData.set(this.key, this.items);
-            this.dialog = true;
+            this.saveData();
+            var items = this.items;
+            var family = {
+                "mobile": this.info.familyMobile,
+                "relation": items[0].status,
+                "name": items[1].status,
+                "birthday": items[3].status,
+                "sex": parseInt(items[2].status),
+                "liveProvince":"广东",
+                "liveCity":"深圳市",
+                "smsCode": this.verifyCode
+            };
+            items[5].status && (family.mobile2 = items[5].status);
+            items[9].status && (family.history = items[9].status);
+            items[6].status && (family.email = items[6].status);
+            if(items[7].status) {
+              var home = items[7].status.split(' ') || [];
+              family.homeProvince = home[0];
+              family.homeCity = home[1];
+            }
+            if(items[8].status) {
+              var home = items[8].status.split(' ') || [];
+              family.liveProvince = home[0];
+              family.liveCity = home[1];
+            }
+            var postData = {
+              "doctorMobile": this.info.doctorMobile,
+              "patientMobile": this.info.familyMobile,
+              "family": family
+            };
+            console.log(postData)
+            this.$http.post(this.url, postData)
+            .then((response) => {
+              console.log(response)
+              var data = response.body;
+              if(data.code === 0) {
+                this.saveData();
+                this.dialog = true;
+              } else {
+                alert(data.message);
+              }
+            })
+            .catch(function(response) {
+              alert('您当前网络出现故障，请稍后再试');
+            });
           }
         },
         goNext1() {
@@ -157,6 +140,11 @@
         },
         goNext2() {
           $router.push("EnvironmentQuestion");
+        },
+        saveData() {
+            this.info.familyMobile = this.items[4].status;
+            util.storeData.set(this.key, this.items);
+            util.storeData.set('info', this, 'info');
         }
       },
       components: {InfoType}
@@ -192,15 +180,15 @@
     /*padding: .52rem 0;*/
     line-height: 1;
     font-size: .42rem;
-    line-height: 1.46rem;
     height: 1.46rem;
   }
   .code-button {
     float: right;
     color: #fff;
+    font-size: .42rem;
     border-radius: .5rem;
-    margin-top: .12rem;
-    padding: .4rem .3rem;
+    margin-top: .27rem;
+    padding: .25rem .3rem;
     background: #ff9c00;
   }
   .code-button:hover, .code-button:active {

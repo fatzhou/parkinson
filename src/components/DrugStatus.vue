@@ -38,69 +38,22 @@
 
 <script>
 import util from '../../static/js/util.js'
+import drugStatus from '../../static/js/config/DrugStatus.js'
     export default {
         data() {
             return {
+              url: util.api.host + util.api.DrugStatus.url,
               key: 'DrugStatus',
-              items: [
-                {
-                  drug: '美多芭',
-                  amount: '',
-                  times: '',
-                  years: ''
-                },
-                {
-                  drug: '息宁',
-                  amount: '',
-                  times: '',
-                  years: ''
-                },
-                {
-                  drug: '森福罗',
-                  amount: '',
-                  times: '',
-                  years: ''
-                },
-                {
-                  drug: '泰舒达',
-                  amount: '',
-                  times: '',
-                  years: ''
-                },
-                {
-                  drug: '金刚烷胺',
-                  amount: '',
-                  times: '',
-                  years: ''
-                },
-                {
-                  drug: '安坦',
-                  amount: '',
-                  times: '',
-                  years: ''
-                },
-                {
-                  drug: '咪哆比',
-                  amount: '',
-                  times: '',
-                  years: ''
-                },
-                {
-                  drug: '辅酶Q10',
-                  amount: '',
-                  times: '',
-                  years: ''
-                },
-                {
-                  drug: '其他',
-                  amount: '',
-                  times: '',
-                  years: ''
-                },
-              ]
+              items: drugStatus,
+              info: {
+                doctorMobile: '',
+                patientMobile: '',
+                familyMobile: ''
+              }
             }
         },
         created() {
+          util.storeData.get('info', this, 'info');
           util.storeData.get(this.key+'Amount', this.items, 'amount');
           util.storeData.get(this.key+'Times', this.items, 'times');
           util.storeData.get(this.key+'Years', this.items, 'years');
@@ -111,10 +64,40 @@ import util from '../../static/js/util.js'
             $router.push("SickStatus");
           },
           goNext() {
-            this.saveData();
-            $router.push("FamilyMember");
+              var flag = true;
+              if(flag) {
+                this.saveData();
+                var meds = this.items.map(function(item) {
+                  return {
+                    "dose": parseInt(item.amount) || 0,
+                    "time": parseInt(item.times) || 0,
+                    "year": parseInt(item.years) || 0
+                  };
+                });
+                var postData = {
+                  "patientMobile": this.info.patientMobile,
+                  "med": meds
+                };
+                console.log(postData)
+                this.$http.post(this.url, postData)
+                .then((response) => {
+                  console.log(response)
+                  var data = response.body;
+                  if(data.code === 0) {
+                    // this.saveData();
+                    $router.push("FamilyMember");
+                  } else {
+                    alert(data.message);
+                  }
+                })
+                .catch(function(response) {
+                  alert('您当前网络出现故障，请稍后再试');
+                });
+
+              }
           },
           saveData() {
+            // util.storeData.set('info', this, 'info');
             util.storeData.set(this.key+'Amount', this.items, 'amount');
             util.storeData.set(this.key+'Times', this.items, 'times');
             util.storeData.set(this.key+'Years', this.items, 'years');

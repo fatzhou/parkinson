@@ -23,14 +23,17 @@
 
 <script>
   import util from '../../static/js/util.js'
+  import loginConfig from '../../static/js/config/Login.js'
     export default {
         data() {
             return {
               url: util.api.host + util.api.Login.url,
-              items: [
-                { name: 'doctor-name', desc: '主治医生姓名：', status: '', logo: '../static/image/data_icon_name.png' },
-                { name: 'doctor-tel', desc: '医生手机号码：', status: '', logo: '../static/image/data_icon_phone.png', validate: "telephone" }
-              ]
+              items: loginConfig,
+              info: {
+                doctorMobile: '',
+                patientMobile: '',
+                familyMobile: ''
+              }
             }
         },
         created() {
@@ -49,14 +52,17 @@
                   .then((response) => {
                     var data = response.body;
                     if(data.code === 0) {
+                      this.info.doctorMobile = this.items[1].status;
                       util.storeData.set('Login', this.items);
+                      util.storeData.set('info', this, 'info');
                       $router.push("PatientInfo");
                     } else {
                       console.log(data.message)
                       alert(data.message);
                     }
                   })
-                  .catch(function(response) {
+                  .catch(function(e) {
+                    console.log(e)
                     alert('查询医生信息失败，请稍后再试');
                   });
                 }

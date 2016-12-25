@@ -6,16 +6,16 @@
         <li v-for="item,index in items">
           <p>{{index+1}}.{{item.question}}？</p>
           <label >
-            <input type="radio" :name="prefix+index" value="0" v-model="item.status">
-            是
-          </label>
-          <label >
             <input type="radio" :name="prefix+index" value="1" v-model="item.status">
-            否
+            {{item.options?item.options[0]:'是'}}
           </label>
           <label >
             <input type="radio" :name="prefix+index" value="2" v-model="item.status">
-            不确定
+            {{item.options?item.options[1]:'否'}}
+          </label>
+          <label >
+            <input type="radio" :name="prefix+index" value="3" v-model="item.status">
+            {{item.options?item.options[2]:'不确定'}}
           </label>
         </li>
       </ul>
@@ -30,206 +30,60 @@
 
 <script>
 
-import util from '../../static/js/util.js'
+  import util from '../../static/js/util.js'
+  import SickStatus from '../../static/js/config/SickStatus.js'
     export default {
         data() {
             return {
               prefix: 'sick-status-',
+              url: util.api.host + util.api.SickStatus.url,
               key: 'SickStatus',
-              items: [
-                {
-                  status: '',
-                  question: '是否有禁止性震颤',
-                },
-                {
-                  status: '',
-                  question: '是否写字越来越小'
-                },
-                {
-                  status: '',
-                  question: '是否有慌张步态'
-                },
-                {
-                  status: '',
-                  question: '是否面部表情减少（面具脸）'
-                },
-                {
-                  status: '',
-                  question: '是否有手部肌肉张力增高'
-                },
-                {
-                  status: '',
-                  question: '是否有姿势步态异常'
-                },
-                {
-                  status: '',
-                  question: '是否有站立牵拉平衡障碍'
-                },
-                {
-                  status: '',
-                  question: '是否有抑郁、淡漠、焦虑'
-                },
-                {
-                  status: '',
-                  question: '是否有兴趣缺失'
-                },
-                {
-                  status: '',
-                  question: '是否难以集中注意力'
-                },
-                {
-                  status: '',
-                  question: '是否会产生幻觉、妄想、错觉'
-                },
-                {
-                  status: '',
-                  question: '是否有记忆力下降的情况'
-                },
-                {
-                  status: '',
-                  question: '是否有强迫行为(可由药物引起)和重复性行为'
-                },
-                {
-                  status: '',
-                  question: '是否有惊恐发作'
-                },
-                {
-                  status: '',
-                  question: '是否有不宁腿综合征和周期性肢体运动'
-                },
-                {
-                  status: '',
-                  question: '是否出现日间过度嗜睡'
-                },
-                {
-                  status: '',
-                  question: '是否有生动梦境'
-                },
-                {
-                  status: '',
-                  question: '是否有睡眠呼吸障碍'
-                },
-                {
-                  status: '',
-                  question: '是否会失眠'
-                },
-                {
-                  status: '',
-                  question: '是否有味觉缺失'
-                },
-                {
-                  status: '',
-                  question: '是否有嗅觉障碍'
-                },
-                {
-                  status: '',
-                  question: '是否有流涎'
-                },
-                {
-                  status: '',
-                  question: '是否有便秘'
-                },
-                {
-                  status: '',
-                  question: '是否有小便不尽'
-                },
-                {
-                  status: '',
-                  question: '是否有尿频或夜尿增多情况'
-                },
-                {
-                  status: '',
-                  question: '您的血压值是多少'
-                },
-                {
-                  status: '',
-                  question: '是否有直立性低血压情况（突然站立时血压得急剧下降）'
-                },
-                {
-                  status: '',
-                  question: '是否有性功能障碍'
-                },
-                {
-                  status: '',
-                  question: '是否有感觉异常（疼痛、疲劳）'
-                },
-                {
-                  status: '',
-                  question: '是否有冻结步态'
-                },
-                {
-                  status: '',
-                  question: '是否有剂末现象'
-                },
-                {
-                  status: '',
-                  question: '是否有开关现象'
-                },
-                {
-                  status: '',
-                  question: '是否对多巴胺无反应或延迟“开期”'
-                },
-                {
-                  status: '',
-                  question: '是否有药物峰值异动症'
-                },
-                {
-                  status: '',
-                  question: '是否有双相异动症'
-                },
-                {
-                  status: '',
-                  question: '是否有关期肌张力障碍'
-                },
-                {
-                  status: '',
-                  question: '是否做手术DBS'
-                },
-                {
-                  status: '',
-                  question: '是否做日常头颈部锻炼'
-                },
-                {
-                  status: '',
-                  question: '是否做鼓腮锻炼'
-                },
-                {
-                  status: '',
-                  question: '是否做面部动作训练'
-                },
-                {
-                  status: '',
-                  question: '是否做语言训练'
-                },
-                {
-                  status: '',
-                  question: '是否做步态训练'
-                },
-                {
-                  status: '',
-                  question: '是否做躯干训练'
-                },
-                {
-                  status: '',
-                  question: '是否做平衡训练'
-                }
-              ]
+              items: SickStatus,
+              info: {
+                doctorMobile: '',
+                patientMobile: '',
+                familyMobile: ''
+              }
             }
         },
-
         created() {
+          util.storeData.get('info', this, 'info');
           util.storeData.get(this.key, this.items);
         },
         methods :{
           goBack() {
+            // util.storeData.set('info', this, 'info');
             util.storeData.set(this.key, this.items);
             $router.push("PatientInfo");
           },
           goNext() {
-            var flag = util.checkForm(this.items);
+            var flag = util.checkForm(this.items, 'status', 2);
             if(flag) {
-              util.storeData.set(this.key, this.items);
-              $router.push("DrugStatus");
+              var answers = this.items.map(function(item) {
+                return +item.status;
+              });
+              var postData = {
+                "patientMobile": this.info.patientMobile,
+                "quizAnswers": {
+                    "quizId": 1,
+                    "answers": answers
+                }
+              };
+              this.$http.post(this.url, postData)
+              .then((response) => {
+                var data = response.body;
+                if(data.code === 0) {
+                  util.storeData.set(this.key, this.items);
+                  // util.storeData.set('info', this, 'info');
+                  $router.push("DrugStatus");
+                } else {
+                  alert(data.message);
+                }
+              })
+              .catch(function(response) {
+                alert('您当前网络出现故障，请稍后再试');
+              });
+
             }
           }
         },
