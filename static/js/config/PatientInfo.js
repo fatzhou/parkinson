@@ -54,7 +54,7 @@ module.exports = [{
     type: 5,
     status: '',
     id: 'anamnesis',
-    placeholder: '请输入擅长及诊所介绍。请输入擅长及诊所介绍。请输入擅长及诊所介绍。请输入擅长及诊所介绍。请输入擅长及诊所介绍。'
+    placeholder: '请输入擅长及诊所介绍。'
 }, {
     logo: '../static/image/data_icon_family.png',
     question: '家族是否有人患帕金森病',

@@ -11,31 +11,31 @@ module.exports = [{
         ['其他人', 4]
     ]
 }, {
-    logo: '../../static/image/data_icon_name.png',
+    logo: '../static/image/data_icon_name.png',
     question: '姓名',
     type: 1,
     status: '',
     id: 'name',
     default: '填写'
 }, {
-    logo: '../../static/image/data_icon_born.png',
+    logo: '../static/image/data_icon_born.png',
     question: '性别',
     type: 3,
     status: '',
     id: "sex",
     options: [
-        ['男', 3],
-        ['女', 4]
+        ['男', 1],
+        ['女', 2]
     ]
 }, {
-    logo: '../../static/image/data_icon_born.png',
+    logo: '../static/image/data_icon_born.png',
     question: '出生年月',
     type: 2,
     status: '',
     id: "birthday",
     default: '选择'
 }, {
-    logo: '../../static/image/data_icon_name.png',
+    logo: '../static/image/data_icon_name.png',
     question: '电话1',
     type: 1,
     status: '',
@@ -43,7 +43,7 @@ module.exports = [{
     id: 'tel',
     default: '填写'
 }, {
-    logo: '../../static/image/data_icon_name.png',
+    logo: '../static/image/data_icon_name.png',
     question: '电话2',
     notneed: true,
     type: 1,

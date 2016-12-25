@@ -6,7 +6,7 @@
         <label class="label" for="">
             {{item.question}}
             <input type="text" v-model="item.status" :placeholder="item.default"  :name="item.id" :id="item.id">
-            <span v-if="!item.notneed">*</span>
+            <span class="red-star" v-if="!item.notneed">*</span>
           </label>
       </div>
       <div class="label-wrap" v-else-if="item.type==3">
@@ -16,10 +16,10 @@
           <div class="label-radio">
             <label v-for="i in item.options">
               <input type="radio" v-model="item.status" :value="i[1]"  :name="item.id" >
-              {{i[0]}}
+              <span>{{i[0]}}</span>
             </label>
           </div>
-          <span v-if="!item.notneed">*</span>
+          <span class="red-star" v-if="!item.notneed">*</span>
         </label>
       </div>
       <div class="label-wrap" v-else-if="item.type==4">
@@ -28,7 +28,7 @@
           {{item.question}}
           <input type="text" v-model="item.status"   :placeholder="item.default" :id="item.id">
           <input type="hidden" :id="item.areaId" v-model="item.hiddenValue">
-          <span v-if="!item.notneed">*</span>
+          <span class="red-star" v-if="!item.notneed">*</span>
         </label>
       </div>
       <div class="label-wrap" v-else-if="item.type==5">
@@ -37,7 +37,7 @@
         <div class="textarea-wrap">
           <label class="label" for="">
             {{item.question}}
-            <span v-if="!item.notneed">*</span>
+            <span class="red-star" v-if="!item.notneed">*</span>
           </label>
           <div class="">
             <textarea name="" v-model="item.status" :id="item.id" rows="3" :placeholder="item.placeholder">
@@ -53,12 +53,12 @@
         <div class="textarea-wrap">
           <label class="label" for="">
             {{item.question}}
-            <span v-if="!item.notneed">*</span>
+            <span class="red-star" v-if="!item.notneed">*</span>
           </label>
           <div class="radio-wrap">
              <label class="new-label" v-for="i in item.options">
                <input type="radio" v-model="item.status" :value="i[1]"  :name="item.id">
-               {{i[0]}}
+               <span>{{i[0]}}</span>
              </label>
           </div>
         </div>
@@ -130,9 +130,9 @@
   }
   li img {
     display: block;
-    width: .46rem;
-    height: .46rem;
-    margin-top: .54rem;
+    width: .6rem;
+    height: .6rem;
+    margin-top: .47rem;
     margin-right: .5rem;
   }
 
@@ -144,7 +144,7 @@
     position: relative;
     height: 1.54rem;
   }
-  li span {
+  li .red-star {
     color: red;
     display: inline-block;
     position: absolute;
@@ -161,7 +161,7 @@
     height: 100%;
     font-size: .46rem;
     line-height: 1.46rem;
-    /*margin-top: -.05rem;*/
+    color: #a5b1c6;
     text-align: right;
     /*border: 1px solid #ccc;*/
   }
@@ -169,13 +169,20 @@
     position: absolute;
     right: .7rem;
     top: 0;
+    font-size: .46rem;
   }
-
-  .label-radio label{
-    margin-right: .15rem;
+  .label-radio label {
+    margin-right: .4rem;
   }
   .label-radio label:last-child{
     margin-right: 0;
+  }
+  .label-radio label input, .label-radio label span {
+    font-size: .46rem;
+    display: inline-block;
+    line-height: 1.54rem;
+    height: 1.54rem;
+    vertical-align: middle;
   }
   .little-line {
     position: absolute;
@@ -200,10 +207,11 @@
 
   textarea {
     width: 100%;
-    font-size: .36rem;
-    line-height: 1.75;
-    color: #333;
+    font-size: .46rem;
+    line-height: 1.5;
+    color: #a5b1c6;
     margin: .4rem 0;
+    word-break: break-all;
   }
 
   .label-wrap p {
@@ -225,7 +233,13 @@
     width: 50%;
     padding: .15rem 0;
   }
-
+  .new-label  input, .new-label  span {
+    font-size: .46rem;
+    display: inline-block;
+    line-height: .8rem;
+    height: .8rem;
+    vertical-align: middle;
+  }
   .radio-wrap {
     padding: .2rem 0;
   }

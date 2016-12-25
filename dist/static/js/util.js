@@ -14,7 +14,7 @@ var checkForm = function(data, attr, style) {
     style = style || 1;
     var flag = data.every(function(item, index) {
         var desc = (item.desc || item.question).replace('：', '');
-        if (!item.status && !item.notneed) {
+        if (!item[attr] && !item.notneed) {
           if(style == 1) {
             alert('请填写' + desc);
           } else {
@@ -22,8 +22,8 @@ var checkForm = function(data, attr, style) {
           }
           $('li').get(index).scrollIntoView(true);
             return false;
-        } else if (item.validate && !item.notneed) {
-            if (validator[item.validate] && !validator[item.validate](item.status)) {
+        } else if (item.validate) {
+            if (validator[item.validate] && item[attr] && !validator[item.validate](item[attr])) {
                 alert('请填写正确的' + desc);
                 $('li').get(index).scrollIntoView(true);
                 return false;
@@ -39,12 +39,22 @@ var checkForm = function(data, attr, style) {
 
 var api = {
     'host': 'http://120.27.25.118:1080',
-    'sourcehost': function() {
-        var path = location.pathname;
-
-    }(),
     'Login': {
         url: '/service_im/doctorConfirm'
+    },
+    'PatientInfo': {
+      url: '/service_im/upsertPatient'
+    },
+    'SickStatus': {
+      url: '/service_im/upsertQuiz'
+    },
+    'DrugStatus': {
+      url: '/service_im/upsertMed'
+    },
+    'FamilyMember': {
+      url: '/service_im/upsertFamily',
+      verifyCodeUrl: '/service_im/getSmscode',
+      updateUrl: '/service_im/updatePatient'
     }
 };
 
@@ -54,9 +64,13 @@ var storeData = {
         attr = attr || 'status';
         if (this.storage) {
             var data = [];
-            items.forEach(function(item) {
-                data.push(item[attr]);
-            });
+            if(Object.prototype.toString.call(items).toLowerCase().indexOf('array') > -1) {
+              items.forEach(function(item) {
+                  data.push(item[attr]);
+              });
+            } else {
+              data = items[attr];
+            }
             this.storage.setItem(key, JSON.stringify(data));
         }
     },
@@ -70,9 +84,13 @@ var storeData = {
                 } catch (e) {
                     data = eval('(' + data + ')');
                 }
-                items.forEach(function(item, index) {
-                    item[attr] = data[index];
-                })
+                if(Object.prototype.toString.call(data).toLowerCase().indexOf('array') > -1) {
+                  items.forEach(function(item, index) {
+                      item[attr] = data[index];
+                  })
+                } else {
+                  items[attr] = data;
+                }
             }
         }
     },
