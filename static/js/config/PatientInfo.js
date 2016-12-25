@@ -13,7 +13,7 @@ module.exports = [{
     id: "birthday",
     default: '选择'
 }, {
-    logo: '../static/image/data_icon_born.png',
+    logo: '../static/image/data_icon_gender.png',
     question: '性别',
     type: 3,
     status: '',
@@ -23,7 +23,7 @@ module.exports = [{
         ['女', 2]
     ]
 }, {
-    logo: '../static/image/data_icon_born.png',
+    logo: '../static/image/data_icon_phone.png',
     question: '手机号码',
     type: 1,
     status: '',
@@ -31,7 +31,7 @@ module.exports = [{
     validate: 'telephone',
     default: '填写'
 }, {
-    logo: '../static/image/data_icon_born.png',
+    logo: '../static/image/data_icon_city.png',
     question: '居住地',
     type: 4,
     status: '',
@@ -40,7 +40,7 @@ module.exports = [{
     hiddenValue: '',
     default: '选择'
 }, {
-    logo: '../static/image/data_icon_born.png',
+    logo: '../static/image/data_icon_birthplace.png',
     question: '籍贯',
     type: 4,
     status: '',
@@ -49,14 +49,14 @@ module.exports = [{
     hiddenValue: '',
     default: '选择'
 }, {
-    logo: '../static/image/data_icon_born.png',
+    logo: '../static/image/data_icon_history.png',
     question: '既往病史',
     type: 5,
     status: '',
     id: 'anamnesis',
     placeholder: '请输入擅长及诊所介绍。请输入擅长及诊所介绍。请输入擅长及诊所介绍。请输入擅长及诊所介绍。请输入擅长及诊所介绍。'
 }, {
-    logo: '../static/image/data_icon_born.png',
+    logo: '../static/image/data_icon_family.png',
     question: '家族是否有人患帕金森病',
     type: 6,
     status: '',
@@ -68,26 +68,26 @@ module.exports = [{
         ['其他人', 4]
     ]
 }, {
-    logo: '../static/image/data_icon_born.png',
+    logo: '../static/image/data_icon_type.png',
     question: '疾病类型',
     type: 6,
     status: '',
     id: 'sicktype',
     options: [
-        ['帕金森病', 1],
-        ['特发性震颤', 2],
-        ['继发性帕金森综合症', 3],
-        ['其他类型', 4]
+        ['帕金森病', 2],
+        ['特发性震颤', 3],
+        ['继发性帕金森综合症', 4],
+        ['其他类型', 1]
     ]
 }, {
-    logo: '../static/image/data_icon_born.png',
+    logo: '../static/image/data_icon_time.png',
     question: '发病时间',
     type: 2,
     status: '',
     id: "sicktime",
     default: '选择'
 }, {
-    logo: '../static/image/data_icon_born.png',
+    logo: '../static/image/data_icon_confirmed.png',
     question: '确诊时间',
     type: 2,
     status: '',

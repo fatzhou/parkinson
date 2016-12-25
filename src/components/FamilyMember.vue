@@ -38,6 +38,7 @@
           return {
             url: util.api.host + util.api.FamilyMember.url,
             verifyCodeUrl: util.api.host + util.api.FamilyMember.verifyCodeUrl,
+            updateUrl: util.api.host + util.api.FamilyMember.updateUrl,
             verifyCode: '',
             dialog: false,
             key: 'FamilyMember',
@@ -136,10 +137,31 @@
           }
         },
         goNext1() {
-          $router.push("GeneQUestion");
+          this.updateFamilyInfo(1, function() {
+            $router.push("GeneQUestion");
+          })
         },
         goNext2() {
-          $router.push("EnvironmentQuestion");
+          this.updateFamilyInfo(1, function() {
+            $router.push("EnvironmentQuestion");
+          })
+        },
+        updateFamilyInfo(genetest, callback) {
+            var postData = {
+              "patientMobile": this.info.familyMobile,
+              "genetest": genetest
+            };
+            console.log(postData)
+            this.$http.post(this.updateUrl, postData)
+            .then((response) => {
+              console.log(response)
+              var data = response.body;
+              if(data.code === 0) {
+                callback && callback();
+              } else {
+                alert(data.message);
+              }
+            })
         },
         saveData() {
             this.info.familyMobile = this.items[4].status;

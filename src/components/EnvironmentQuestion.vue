@@ -4,7 +4,11 @@
     <div class="ul-wrap bottom-padding">
       <ul>
         <li v-for="item,index in items">
-          <p>{{index+1}}. {{item.question}}？</p>
+          <div class="p-wrap">
+            <p class="p-title">{{index+1}}. {{item.question}}？</p>
+            <p class="p-explain" v-if="item.explain">{{item.explain}}</p>
+          </div>
+
           <label >
             <input type="radio" :name="prefix+index" value="0" v-model="item.status">
             是
@@ -105,11 +109,18 @@ import EnvironmentQuestion from '../../static/js/config/EnvironmentQuestion.js'
     padding: 0 .15rem;
     border-radius: 8px;
   }
-  li p {
+  li .p-wrap {
+    border-bottom: 1px solid #c5cbd3;
+  }
+  li .p-title {
     font-size: .48rem;
     line-height: 1.48rem;
-    border-bottom: 1px solid #c5cbd3;
     color: #3c485a;
+  }
+  li .p-explain {
+    font-size: .42rem;
+    line-height: 1.34rem;
+    color: #a5b1c6;
   }
   li label {
     display: block;

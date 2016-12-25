@@ -53,7 +53,8 @@ var api = {
     },
     'FamilyMember': {
       url: '/service_im/upsertFamily',
-      verifyCodeUrl: '/service_im/getSmscode'
+      verifyCodeUrl: '/service_im/getSmscode',
+      updateUrl: '/service_im/updatePatient'
     }
 };
 

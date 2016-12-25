@@ -116,7 +116,7 @@
     padding-left: .5rem;
     line-height: 1;
     margin-top: .2rem;
-    font-size: .42rem;
+    font-size: .46rem;
   }
   li {
     border-bottom: 1px solid #c5cbd3;
@@ -130,9 +130,9 @@
   }
   li img {
     display: block;
-    width: .6rem;
-    height: .6rem;
-    margin-top: .43rem;
+    width: .46rem;
+    height: .46rem;
+    margin-top: .54rem;
     margin-right: .5rem;
   }
 
@@ -140,9 +140,9 @@
     display: block;
     vertical-align: middle;
     -webkit-box-flex: 1;
-    line-height: 1.46rem;
+    line-height: 1.54rem;
     position: relative;
-    height: 1.46rem;
+    height: 1.54rem;
   }
   li span {
     color: red;
@@ -159,8 +159,8 @@
     position: absolute;
     right: .7rem;
     height: 100%;
-    font-size: .42rem;
-    line-height: 1.75;
+    font-size: .46rem;
+    line-height: 1.46rem;
     /*margin-top: -.05rem;*/
     text-align: right;
     /*border: 1px solid #ccc;*/

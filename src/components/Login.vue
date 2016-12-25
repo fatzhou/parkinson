@@ -120,11 +120,11 @@
     display: block;
     height: .6rem;
     width: .6rem;
-    margin-top: .37rem;
+    margin-top: .6rem;
   }
 
   li label {
-    font-size: .42rem;
+    font-size: .6rem;
     border-bottom: 1px solid #ccc;
     color: #5a7193;
     font-weight: bold;
@@ -135,15 +135,15 @@
     -webkit-box-flex: 1;
   }
   li label span {
-    line-height: 1.34rem;
-    height: 1.34rem;
+    line-height: 1.8rem;
+    height: 1.8rem;
   }
   li label input {
     -webkit-box-flex: 1;
     display: block;
-    font-size: .42rem;
-    height: 1.34rem;
-    line-height: .42rem;
+    font-size: .6rem;
+    height: 1.8rem;
+    line-height: 1.8rem;
   }
   .button {
     margin-top: -2.6rem;
