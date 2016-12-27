@@ -107,7 +107,7 @@
   }
 
   ul {
-    width: 8.54rem;
+    width: 9.2rem;
     margin: 0 auto;
     margin-top: 2.2rem;
     margin-bottom: 1rem;
