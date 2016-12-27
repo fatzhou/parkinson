@@ -173,7 +173,8 @@
   }
 </script>
 
-<style scoped>
+<style lang="less" scoped>
+  @fontSize: .48rem;
   #family-member {
     height: 100%;
   }
@@ -195,19 +196,19 @@
     border-top: 1px solid #f3f3f3;
     border-bottom: 1px solid #f3f3f3;
     padding-right: .7rem;
-    font-size: .42rem;
+    font-size: @fontSize;
   }
   .verify-code input {
     float: left;
     /*padding: .52rem 0;*/
     line-height: 1;
-    font-size: .42rem;
+    font-size: @fontSize;
     height: 1.46rem;
   }
   .code-button {
     float: right;
     color: #fff;
-    font-size: .42rem;
+    font-size: @fontSize;
     border-radius: .5rem;
     margin-top: .27rem;
     padding: .25rem .3rem;
@@ -234,14 +235,14 @@
   }
   .dialog-select .question {
     color: #333;
-    font-size: .42rem;
+    font-size: @fontSize;
     line-height: 1;
     padding: .46rem 0;
 
   }
   .button-answer {
     color: #fff;
-    font-size: .42rem;
+    font-size: @fontSize;
     line-height: 1;
     padding: .46rem 0;
     width: 70%;
@@ -266,7 +267,7 @@
   }
   .button-answer span {
     font-size: .36rem;
-    line-height: .42rem;
+    line-height: @fontSize;
     color: #f3f3f3;
   }
 </style>

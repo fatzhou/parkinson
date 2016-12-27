@@ -101,7 +101,7 @@
   }
   ul {
     background: #fff;
-    padding: 0 .15rem;
+    /*padding: 0 .15rem;*/
     border-radius: 8px;
   }
   li p {
@@ -109,11 +109,16 @@
     line-height: 1.48rem;
     border-bottom: 1px solid #c5cbd3;
     color: #3c485a;
+    padding: 0 .15rem;
   }
   li label {
     display: block;
     font-size: .42rem;
     line-height: 1.34rem;
     color: #5a7193;
+    padding: 0 .15rem;
+  }
+  li label:hover, li label:active {
+    background: #f2f2f2;
   }
 </style>

@@ -111,12 +111,13 @@
     }
 </script>
 
-<style scoped>
+<style lang="less" scoped>
+  @fontSize: .48rem;
   ul {
     padding-left: .5rem;
     line-height: 1;
     margin-top: .2rem;
-    font-size: .46rem;
+    font-size: @fontSize;
   }
   li {
     border-bottom: 1px solid #c5cbd3;
@@ -158,9 +159,8 @@
     width: 4rem;
     position: absolute;
     right: .7rem;
-    height: 100%;
-    font-size: .46rem;
-    line-height: 1.46rem;
+    height: 1.44rem;
+    font-size: @fontSize;
     color: #a5b1c6;
     text-align: right;
     /*border: 1px solid #ccc;*/
@@ -169,7 +169,7 @@
     position: absolute;
     right: .7rem;
     top: 0;
-    font-size: .46rem;
+    font-size: @fontSize;
   }
   .label-radio label {
     margin-right: .4rem;
@@ -178,7 +178,7 @@
     margin-right: 0;
   }
   .label-radio label input, .label-radio label span {
-    font-size: .46rem;
+    font-size: @fontSize;
     display: inline-block;
     line-height: 1.54rem;
     height: 1.54rem;
@@ -207,7 +207,7 @@
 
   textarea {
     width: 100%;
-    font-size: .46rem;
+    font-size: @fontSize;
     line-height: 1.5;
     color: #a5b1c6;
     margin: .4rem 0;
@@ -234,7 +234,7 @@
     padding: .15rem 0;
   }
   .new-label  input, .new-label  span {
-    font-size: .46rem;
+    font-size: @fontSize;
     display: inline-block;
     line-height: .8rem;
     height: .8rem;

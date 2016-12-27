@@ -29,7 +29,7 @@
         this.oldtext;
         this.text = ['', '', ''];
         this.level = 3;
-        this.mtop = 30;
+        this.mtop = Math.min(document.documentElement.clientWidth, 1080) / 12.42 * 1.34;
         this.separator = ' ';
     };
     MobileSelectDate.prototype = {
@@ -107,7 +107,7 @@
                     this.dispose();
                 }, $.extend({
                     width: 320,
-                    height: 215
+                    height: Math.max(Math.min(document.documentElement.clientWidth, 1080) / 1.75, 250)
                 },settings));
 
                 _this.scroller = $('#' + _this.id);
@@ -160,6 +160,7 @@
                         _this.format();
                     }
                     $(dl.children().get(index)).addClass('focus').siblings().removeClass('focus');
+                    console.log(mode, _this.mtop)
                     dl.css('top', mode * _this.mtop);
                     return false;
                 });

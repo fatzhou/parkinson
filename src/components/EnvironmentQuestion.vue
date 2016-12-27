@@ -106,7 +106,6 @@ import EnvironmentQuestion from '../../static/js/config/EnvironmentQuestion.js'
   }
   ul {
     background: #fff;
-    padding: 0 .15rem;
     border-radius: 8px;
   }
   li .p-wrap {
@@ -116,16 +115,22 @@ import EnvironmentQuestion from '../../static/js/config/EnvironmentQuestion.js'
     font-size: .48rem;
     line-height: 1.48rem;
     color: #3c485a;
+    padding: 0 .15rem;
   }
   li .p-explain {
     font-size: .42rem;
     line-height: 1.34rem;
     color: #a5b1c6;
+    padding: 0 .15rem;
   }
   li label {
     display: block;
     font-size: .42rem;
     line-height: 1.34rem;
+        padding: 0 .15rem;
     color: #5a7193;
+  }
+  li label:hover, li label:active {
+    background: #f2f2f2;
   }
 </style>

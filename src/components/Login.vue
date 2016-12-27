@@ -83,26 +83,27 @@
     padding: .42rem 0;
     color: #3c485a;
     background: #fff;
+    border-bottom: .4rem solid #f2f2f2;
+    position: relative;
   }
   .content {
     background: #fff;
     box-sizing: border-box;
-    height: 100%;
-    margin-top: -1.38rem;
-    padding-top: 1.38rem;
+    min-height: 100%;
+    margin-top: -1.78rem;
   }
   .content-wrap {
-    height: 100%;
+    min-height: 100%;
     box-sizing: border-box;
-    border-top: .4rem solid #f3f3f3;
-    border-bottom: .4rem solid #f3f3f3;
+    /*border-top: .4rem solid #f3f3f3;*/
+    /*border-bottom: .4rem solid #f3f3f3;*/
     padding-bottom: 3rem;
   }
   .logo-img {
     display: block;
     width: 7.5rem;
     margin: 0 auto;
-    padding-top: 1.4rem;
+    padding-top: 3rem;
   }
 
   ul {
@@ -143,10 +144,11 @@
     display: block;
     font-size: .6rem;
     height: 1.8rem;
-    line-height: 1.8rem;
+    line-height: .6rem;
   }
   .button {
     margin-top: -2.6rem;
+    margin-bottom: 1rem;
   }
 </style>
 <!-- 样式自行设置，或者直接看源码就好 -->

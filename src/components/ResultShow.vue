@@ -3,9 +3,15 @@
     <h1>查看结论</h1>
     <div class="content">
       <div class="content-wrap">
-        <img src="../../static/image/result_iphone.png" alt="">
-        <p>您完成了帕金森病前驱期筛查评估答题!</p>
-        <img src="../../static/image/result_qrcode.png" alt="">
+        <div class="qrcode-area">
+          <p >扫描二维码，下载医动力APP</p>
+          <img src="../../static/image/result_qrcode.png" alt="">
+        </div>
+        <div class="split"></div>
+        <div class="result-area">
+           <p>请在医动力——"我的诊断"查看自己的评估结论</p>
+          <img src="../../static/image/result_iphone.png" alt="">
+        </div>
       </div>
     </div>
   </div>
@@ -46,28 +52,29 @@
     padding-top: 1.38rem;
     margin-top: -1.38rem;
   }
-  .content img:first-child {
+  .content .result-area img {
     display: block;
-    width: 80%;
+    width: 60%;
     margin: 0 auto;
-    padding: .7rem 0 1rem;
+    padding: .5rem 0 1rem;
   }
-  .content p {
-    font-size: .42rem;
-    line-height: 1;
+  .content .qrcode-area p, .content .result-area p {
+    font-size: .48rem;
+    line-height: 5;
     text-align: center;
     color: ##5a7193;
-    margin-bottom: .8rem;
   }
-  .content img:last-child {
+
+  .content .qrcode-area img {
     display: block;
-    width: 25%;
+    width: 30%;
     margin: 0 auto;
+    padding-bottom: 1rem;
   }
   .content-wrap {
     height: 100%;
     box-sizing: border-box;
     border-top: .4rem solid #f3f3f3;
-    border-bottom: .4rem solid #f3f3f3;
+/*    border-bottom: .4rem solid #f3f3f3;*/
   }
 </style>

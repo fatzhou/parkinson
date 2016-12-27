@@ -110,10 +110,10 @@
 
 .ui-confirm-title, .ui-alert-title {
   text-align: center;
-  font-size: 14px;
+  /*font-size: 14px;*/
   color: #333;
-  line-height: 25px;
-  padding: 27px 0 20px 0; }
+  /*line-height: 25px;*/
+  padding: .54rem 0 .4rem 0; }
 
 .confirm-title2 {
   font-size: 16px;
@@ -126,8 +126,8 @@
   background-color: #999999; }
 
 .ui-dialog-action {
-  height: 45px;
-  line-height: 45px;
+  height: 1rem;
+  line-height: 1rem;
   border-collapse: collapse;
   border-spacing: 0;
   pointer-events: auto;

@@ -18,7 +18,7 @@ module.exports = [{
     id: 'name',
     default: '填写'
 }, {
-    logo: '../static/image/data_icon_born.png',
+    logo: '../static/image/data_icon_gender.png',
     question: '性别',
     type: 3,
     status: '',
@@ -35,24 +35,24 @@ module.exports = [{
     id: "birthday",
     default: '选择'
 }, {
-    logo: '../static/image/data_icon_name.png',
-    question: '电话1',
+    logo: '../static/image/data_icon_phone.png',
+    question: '手机号码',
     type: 1,
     status: '',
     validate: 'telephone',
     id: 'tel',
     default: '填写'
 }, {
-    logo: '../static/image/data_icon_name.png',
-    question: '电话2',
+    logo: '../static/image/data_icon_phone.png',
+    question: '备选电话',
     notneed: true,
     type: 1,
     status: '',
     validate: 'telephone',
     id: 'tel2',
-    default: '选填号码'
+    default: '备选电话'
 }, {
-    logo: '../static/image/data_icon_name.png',
+    logo: '../static/image/data_icon_mail.png',
     question: '邮箱地址',
     notneed: true,
     type: 1,
@@ -61,7 +61,7 @@ module.exports = [{
     id: 'email',
     default: '填写'
 }, {
-    logo: '../static/image/data_icon_born.png',
+    logo: '../static/image/data_icon_birthplace.png',
     question: '籍贯',
     notneed: true,
     type: 4,
@@ -71,7 +71,7 @@ module.exports = [{
     hiddenValue: '',
     default: '选择'
 }, {
-    logo: '../static/image/data_icon_born.png',
+    logo: '../static/image/data_icon_city.png',
     question: '居住地',
     notneed: true,
     type: 4,
@@ -81,11 +81,11 @@ module.exports = [{
     hiddenValue: '',
     default: '选择'
 }, {
-    logo: '../static/image/data_icon_born.png',
+    logo: '../static/image/data_icon_family.png',
     question: '家族疾病史',
     notneed: true,
     type: 5,
     status: '',
     id: 'anamnesis',
-    placeholder: '请输入擅长及诊所介绍。请输入擅长及诊所介绍。请输入擅长及诊所介绍。请输入擅长及诊所介绍。请输入擅长及诊所介绍。'
+    placeholder: '请输入家族疾病史'
 }, ]

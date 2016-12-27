@@ -34,7 +34,7 @@ a {
   line-height: 1.2rem;
   color: #fff;
   letter-spacing: 2px;
-  font-size: .42rem;
+  font-size: .54rem;
   border-radius: .16rem;
   cursor: pointer;
 }
@@ -48,7 +48,7 @@ a {
   height: 1.5rem;
   line-height: 1.5rem;
   background: #5a7193;
-  font-size: .48rem;
+  font-size: .54rem;
   margin: 0 auto;
   color: #fff;
   text-align: center;
@@ -80,9 +80,8 @@ input, a, textarea {
 
 .split {
   display: block;
-  height: .3rem;
-  box-shadow: 0 .2rem .1rem #f0f0f0;
-  margin-top: -.3rem;
+  height: .4rem;
+  background:  #f2f2f2;
 }
 
 textarea {

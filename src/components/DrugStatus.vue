@@ -129,15 +129,15 @@ import drugStatus from '../../static/js/config/DrugStatus.js'
     border-radius: 8px;
   }
   li p {
-    font-size: .48rem;
-    line-height: 1.48rem;
+    font-size: .54rem;
+    line-height: 1.54rem;
     border-bottom: 1px solid #c5cbd3;
     color: #3c485a;
   }
   .items {
-    font-size: .42rem;
-    line-height: 1.34rem;
-    height: 1.34rem;
+    font-size: .48rem;
+    line-height: 1.48rem;
+    height: 1.48rem;
     display: -webkit-box;
     padding-right: .3rem;
     padding-left: .5rem;
@@ -150,8 +150,9 @@ import drugStatus from '../../static/js/config/DrugStatus.js'
     text-align: right;
   }
   .items label input {
-    height: .42rem;
-    line-height: .42rem;
+    height: .48rem;
+    line-height: .48rem;
+    font-size: .48rem;
     text-align: right;
   }
 </style>

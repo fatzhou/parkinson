@@ -4,7 +4,7 @@ module.exports = [{
     type: 1,
     status: '',
     id: 'name',
-    default: '某某某'
+    default: '填写'
 }, {
     logo: '../static/image/data_icon_born.png',
     question: '出生年月',
@@ -54,7 +54,7 @@ module.exports = [{
     type: 5,
     status: '',
     id: 'anamnesis',
-    placeholder: '请输入擅长及诊所介绍。'
+    placeholder: '请输入既往病史'
 }, {
     logo: '../static/image/data_icon_family.png',
     question: '家族是否有人患帕金森病',

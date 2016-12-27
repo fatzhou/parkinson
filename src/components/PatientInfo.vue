@@ -21,6 +21,7 @@
   import InfoType from './InfoType'
   import util from '../../static/js/util.js'
   import PatientInfo from '../../static/js/config/PatientInfo.js'
+  require('../../static/css/mobile-select-date.less')
   export default {
       data() {
           return {
@@ -93,7 +94,8 @@
   }
 </script>
 
-<style scoped>
+<style style="less" scoped>
+  @fontSize: .48rem;
   #patient-info {
     height: 100%;
     overflow: scroll;
@@ -112,7 +114,7 @@
   .h1link {
     position: absolute;
     left: .5rem;
-    font-size: .42rem;
+    font-size: @fontSize;
     transform: scaleY(2);
     top: .42rem;
     color: #5a7193;
