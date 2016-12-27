@@ -8,8 +8,8 @@
           <li v-for="item in items">
             <img :src="item.logo" alt="">
             <label :for="item.name">
-              <span>{{item.desc}}</span>
-              <input :id="item.name" :name="item.name" v-model.trim="item.status" >
+              <!-- <span>{{item.desc}}</span> -->
+              <input :id="item.name" :name="item.name" v-model.trim="item.status" :placeholder="item.placeholder" >
             </label>
           </li>
           <li>
@@ -28,6 +28,7 @@
         data() {
             return {
               url: util.api.host + util.api.Login.url,
+              key: 'Login',
               items: loginConfig,
               info: {
                 doctorMobile: '',
@@ -37,7 +38,7 @@
             }
         },
         created() {
-          util.storeData.get('Login', this.items);
+          util.storeData.get(this.key, this.items);
         },
         methods :{
             queryPatient () {
@@ -53,7 +54,7 @@
                     var data = response.body;
                     if(data.code === 0) {
                       this.info.doctorMobile = this.items[1].status;
-                      util.storeData.set('Login', this.items);
+                      util.storeData.set(this.key, this.items);
                       util.storeData.set('info', this, 'info');
                       $router.push("PatientInfo");
                     } else {

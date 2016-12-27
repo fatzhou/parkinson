@@ -29,15 +29,11 @@
             return {
               url: util.api.host + util.api.Login.url,
               items: loginConfig,
-              info: {
-                doctorMobile: '',
-                patientMobile: '',
-                familyMobile: ''
-              }
+              key: 'Admin',
             }
         },
         created() {
-          util.storeData.get('Login', this.items);
+          util.storeData.get(this.key, this.items);
         },
         methods :{
             queryPatient () {
@@ -48,23 +44,27 @@
                     mobile: this.items[1].status
                   };
 
-                  this.$http.post(this.url, data)
-                  .then((response) => {
-                    var data = response.body;
-                    if(data.code === 0) {
-                      this.info.doctorMobile = this.items[1].status;
-                      util.storeData.set('Login', this.items);
-                      util.storeData.set('info', this, 'info');
-                      $router.push("PatientInfo");
-                    } else {
-                      console.log(data.message)
-                      alert(data.message);
-                    }
-                  })
-                  .catch(function(e) {
-                    console.log(e)
-                    alert('查询医生信息失败，请稍后再试');
-                  });
+                  util.storeData.set('Login', this.items);
+                  // util.storeData.set('info', this, 'info');
+
+                  $router.push("PatientList");
+                  // this.$http.post(this.url, data)
+                  // .then((response) => {
+                  //   var data = response.body;
+                  //   if(data.code === 0) {
+                  //     this.info.doctorMobile = this.items[1].status;
+                  //     util.storeData.set('Login', this.items);
+                  //     util.storeData.set('info', this, 'info');
+                  //     $router.push("PatientInfo");
+                  //   } else {
+                  //     console.log(data.message)
+                  //     alert(data.message);
+                  //   }
+                  // })
+                  // .catch(function(e) {
+                  //   console.log(e)
+                  //   alert('查询医生信息失败，请稍后再试');
+                  // });
                 }
             }
         }

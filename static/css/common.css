@@ -34,8 +34,8 @@ a {
   line-height: 1.2rem;
   color: #fff;
   letter-spacing: 2px;
-  font-size: .54rem;
-  border-radius: .16rem;
+  font-size: .5rem;
+  border-radius: 10px;
   cursor: pointer;
 }
 
@@ -121,4 +121,29 @@ textarea {
 
 #app .bottom-padding {
   padding-bottom: 2.6rem;
+}
+
+input[type="radio"] {
+  -webkit-appearance: none;
+  width: 16px;
+  height: 16px;
+  display: inline-block;
+  border: 1px solid #a5b1c6;
+  border-radius: 50%;
+}
+
+input[type="radio"]:checked {
+  border-color: #ff9c00;
+  background: #fff;
+}
+
+input[type="radio"]:checked:after {
+  content: '';
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  margin-top: 2px;
+  margin-left: 2px;
+  background: #ff9c00;
+  border-radius: 50%;
 }

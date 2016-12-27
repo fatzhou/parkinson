@@ -7,15 +7,15 @@
           <p>{{index+1}}. {{item.question}}？</p>
           <label >
             <input type="radio" :name="prefix+index" value="0" v-model="item.status">
-            是
+            <span>是</span>
           </label>
           <label >
             <input type="radio" :name="prefix+index" value="1" v-model="item.status">
-            否
+            <span>否</span>
           </label>
           <label >
             <input type="radio" :name="prefix+index" value="2" v-model="item.status">
-            不确定
+            <span>不确定</span>
           </label>
         </li>
       </ul>
@@ -101,7 +101,7 @@
   }
   ul {
     background: #fff;
-    /*padding: 0 .15rem;*/
+    padding: 0 .15rem;
     border-radius: 8px;
   }
   li p {
@@ -109,16 +109,20 @@
     line-height: 1.48rem;
     border-bottom: 1px solid #c5cbd3;
     color: #3c485a;
-    padding: 0 .15rem;
+    /*padding: 0 .15rem;*/
   }
   li label {
     display: block;
     font-size: .42rem;
     line-height: 1.34rem;
     color: #5a7193;
-    padding: 0 .15rem;
+    /*padding: 0 .15rem;*/
   }
   li label:hover, li label:active {
     background: #f2f2f2;
+  }
+  li label input, li label span {
+    display: inline-block;
+    vertical-align: middle;
   }
 </style>

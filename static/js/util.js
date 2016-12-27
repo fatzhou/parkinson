@@ -4,7 +4,7 @@ var validator = {
         return re.test(str);
     },
     telephone: function(str) {
-        var re = /^0?1[3|4|5|8][0-9]\d{8}$/;
+        var re = /^0?1[3|4|5|8|7][0-9]\d{8}$/;
         return re.test(str);
     }
 };

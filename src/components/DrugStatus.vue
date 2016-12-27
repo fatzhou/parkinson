@@ -150,7 +150,7 @@ import drugStatus from '../../static/js/config/DrugStatus.js'
     text-align: right;
   }
   .items label input {
-    height: .48rem;
+    /*height: .48rem;*/
     line-height: .48rem;
     font-size: .48rem;
     text-align: right;

@@ -50,6 +50,16 @@ const routes = [
     component: require('./components/ResultShow')
   },
   {
+    path: '/PatientAdmin',
+    name: 'PatientAdmin',
+    component: require('./components/PatientAdmin')
+  },
+  {
+    path: '/PatientList',
+    name: 'PatientList',
+    component: require('./components/PatientList')
+  },
+  {
     path: '*',
     redirect: {
       name: 'Login'

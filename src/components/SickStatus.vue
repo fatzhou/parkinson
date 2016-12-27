@@ -7,15 +7,15 @@
           <p>{{index+1}}.{{item.question}}？</p>
           <label >
             <input type="radio" :name="prefix+index" value="1" v-model="item.status">
-            {{item.options?item.options[0]:'是'}}
+            <span>{{item.options?item.options[0]:'是'}}</span>
           </label>
           <label >
             <input type="radio" :name="prefix+index" value="2" v-model="item.status">
-            {{item.options?item.options[1]:'否'}}
+            <span>{{item.options?item.options[1]:'否'}}</span>
           </label>
           <label >
             <input type="radio" :name="prefix+index" value="3" v-model="item.status">
-            {{item.options?item.options[2]:'不确定'}}
+            <span>{{item.options?item.options[2]:'不确定'}}</span>
           </label>
         </li>
       </ul>
@@ -123,5 +123,9 @@
     font-size: .42rem;
     line-height: 1.34rem;
     color: #5a7193;
+  }
+  li label input, li label span {
+    display: inline-block;
+    vertical-align: middle;
   }
 </style>

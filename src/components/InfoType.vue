@@ -177,11 +177,14 @@
   .label-radio label:last-child{
     margin-right: 0;
   }
-  .label-radio label input, .label-radio label span {
+   .label-radio label span {
     font-size: @fontSize;
     display: inline-block;
     line-height: 1.54rem;
     height: 1.54rem;
+    vertical-align: middle;
+  }
+  .label-radio label input {
     vertical-align: middle;
   }
   .little-line {
@@ -233,12 +236,20 @@
     width: 50%;
     padding: .15rem 0;
   }
-  .new-label  input, .new-label  span {
+  .new-label  span {
     font-size: @fontSize;
     display: inline-block;
     line-height: .8rem;
     height: .8rem;
     vertical-align: middle;
+    max-width: 90%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  .new-label  input {
+    vertical-align: middle;
+    display: inline-block;
   }
   .radio-wrap {
     padding: .2rem 0;
