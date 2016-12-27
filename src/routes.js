@@ -5,6 +5,11 @@ const routes = [
     component: require('./components/Login')
   },
   {
+    path: '/Admin',
+    name: 'Admin',
+    component: require('./components/Admin')
+  },
+  {
     path: '/PatientInfo',
     name: 'patientInfo',
     component: require('./components/PatientInfo')
