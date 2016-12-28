@@ -1,5 +1,9 @@
 module.exports = [{
     status: '',
+    question: '您的性别',
+    options: ['男', '女']
+}, {
+    status: '',
     question: '您的身体定期暴露于有杀虫剂的环境中吗'
 }, {
     status: '',
