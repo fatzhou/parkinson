@@ -7,7 +7,7 @@
     <div class="verify-code">
       <input type="text" v-model="verifyCode" placeholder="请输入验证码"/>
       <div class="code-button" @click="getVerifyCode">
-        获取验证码
+        {{this.verifyCodeWord}}
       </div>
     </div>
 
@@ -40,6 +40,8 @@
             verifyCodeUrl: util.api.host + util.api.FamilyMember.verifyCodeUrl,
             updateUrl: util.api.host + util.api.FamilyMember.updateUrl,
             verifyCode: '',
+            verifyCodeWord: '获取验证码',
+            verifyCodeCount: 0,
             dialog: false,
             key: 'FamilyMember',
             items: FamilyMember,
@@ -66,12 +68,27 @@
             $('li').get(4).scrollIntoView(true);
             return false;
           }
+
+          if(this.verifyCodeCount > 0) {
+            return false;
+          }
+
           var postData = {
               "mobile": number,
               "countryCode":"86"
           };
           this.$http.post(this.verifyCodeUrl, postData)
           .then((response) => {
+            this.verifyCodeCount = 121;
+            this.verifyCodeInterval = setInterval(()=>{
+              this.verifyCodeCount--;
+              if(this.verifyCodeCount > 0) {
+                this.verifyCodeWord = this.verifyCodeCount + 's';
+              } else {
+                this.verifyCodeWord = '获取验证码';
+                clearInterval(this.verifyCodeInterval);
+              }
+            }, 1000);
           })
           .catch(function(response) {
             alert('您当前网络出现故障，请稍后再试');
@@ -216,6 +233,7 @@
     margin-top: .27rem;
     padding: .25rem .3rem;
     background: #ff9c00;
+    line-height: 1;
   }
   .code-button:hover, .code-button:active {
     background: #f78000;

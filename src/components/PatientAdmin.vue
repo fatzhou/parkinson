@@ -4,7 +4,7 @@
     <div class="content">
       <img class="question-banner" src="../../static/image/questionnaire_banner.png" alt="">
       <div class="confirm-button" @click="goNext">
-          <img src="../../static/image/data_icon_name.png" alt="">
+          <img src="../../static/image/questionnaire_icon_fmaily.png" alt="">
           <span>患者管理</span>
       </div>
     </div>
@@ -23,7 +23,7 @@
       },
       methods :{
         goNext() {
-          $route.push('PatientList');
+          $router.push('PatientList');
         }
       }
   }

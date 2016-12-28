@@ -8,8 +8,7 @@
           <li v-for="item in items">
             <img :src="item.logo" alt="">
             <label :for="item.name">
-              <span>{{item.desc}}</span>
-              <input :id="item.name" :name="item.name" v-model.trim="item.status" >
+              <input :id="item.name" :name="item.name" v-model.trim="item.status" :placeholder="item.placeholder">
             </label>
           </li>
           <li>
@@ -44,10 +43,10 @@
                     mobile: this.items[1].status
                   };
 
-                  util.storeData.set('Login', this.items);
+                  util.storeData.set(this.key, this.items);
                   // util.storeData.set('info', this, 'info');
 
-                  $router.push("PatientList");
+                  $router.push("PatientAdmin");
                   // this.$http.post(this.url, data)
                   // .then((response) => {
                   //   var data = response.body;

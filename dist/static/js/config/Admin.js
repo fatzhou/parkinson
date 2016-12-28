@@ -1,15 +1,17 @@
 module.exports = [
     {
       name: 'doctor-name',
-      desc: '',
+      desc: '手机号',
       status: '',
-      logo: '../static/image/data_icon_name.png'
+      logo: '../static/image/data_icon_name.png',
+      validate: "telephone",
+      placeholder: '请输入手机号'
     },
     {
       name: 'doctor-tel',
-      desc: '',
+      desc: '登录密码',
       status: '',
       logo: '../static/image/data_icon_phone.png',
-       validate: "telephone"
+       placeholder: '请输入登录密码'
      }
 ]
