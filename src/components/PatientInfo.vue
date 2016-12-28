@@ -49,8 +49,9 @@
           var flag = util.checkForm(this.items);
           if(flag) {
             var items = this.items;
-            var livePlace = items[4].status.split(' ') || [],
-                homePlace = items[5].status.split(' ') || [];
+            var livePlace = items[4].status.replace(/\s+/,'#').split('#') || [],
+                homePlace = items[5].status.replace(/\s+/,'#').split('#') || [];
+                console.log(livePlace, items[4].status)
             this.saveData();
             var postData = {
               "doctorMobile": this.info.doctorMobile,
