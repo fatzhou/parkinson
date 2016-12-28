@@ -15,6 +15,9 @@
             return {
             }
         },
+        mounted: function() {
+          util.storeData.clear();
+        },
         methods :{
           getResult: function() {
 

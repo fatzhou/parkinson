@@ -37,7 +37,6 @@
       },
       created() {
         util.storeData.get('info', this, 'info');
-        console.log(this.info)
         util.storeData.get(this.key, this.items);
       },
       methods :{

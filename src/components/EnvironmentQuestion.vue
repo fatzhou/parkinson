@@ -9,17 +9,9 @@
             <p class="p-explain" v-if="item.explain">{{item.explain}}</p>
           </div>
 
-          <label >
-            <input type="radio" :name="prefix+index" value="0" v-model="item.status">
-            <span>是</span>
-          </label>
-          <label >
-            <input type="radio" :name="prefix+index" value="1" v-model="item.status">
-            <span>否</span>
-          </label>
-          <label >
-            <input type="radio" :name="prefix+index" value="2" v-model="item.status">
-            <span>不确定</span>
+          <label v-for="i,j in (item.options || ['是','否', '不确定'])">
+            <input type="radio" :name="prefix+index" :value="j+1" v-model="item.status">
+            <span>{{i}}</span>
           </label>
         </li>
       </ul>

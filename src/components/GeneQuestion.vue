@@ -6,15 +6,15 @@
         <li v-for="item,index in items">
           <p>{{index+1}}. {{item.question}}？</p>
           <label >
-            <input type="radio" :name="prefix+index" value="0" v-model="item.status">
+            <input type="radio" :name="prefix+index" value="1" v-model="item.status">
             <span>是</span>
           </label>
           <label >
-            <input type="radio" :name="prefix+index" value="1" v-model="item.status">
+            <input type="radio" :name="prefix+index" value="2" v-model="item.status">
             <span>否</span>
           </label>
           <label >
-            <input type="radio" :name="prefix+index" value="2" v-model="item.status">
+            <input type="radio" :name="prefix+index" value="3" v-model="item.status">
             <span>不确定</span>
           </label>
         </li>
@@ -66,6 +66,7 @@
               this.$http.post(this.url, postData)
               .then((response) => {
                 var data = response.body;
+                console.log(response, data)
                 if(data.code === 0) {
                   $router.push("FinishPage");
                 } else {

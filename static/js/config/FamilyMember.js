@@ -73,7 +73,6 @@ module.exports = [{
 }, {
     logo: '../static/image/data_icon_city.png',
     question: '居住地',
-    notneed: true,
     type: 4,
     status: '',
     id: 'home',

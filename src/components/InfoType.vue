@@ -40,7 +40,7 @@
             <span class="red-star" v-if="!item.notneed">*</span>
           </label>
           <div class="">
-            <textarea name="" v-model="item.status" :id="item.id" rows="3" :placeholder="item.placeholder">
+            <textarea name="" maxLength="300" v-model="item.status" :id="item.id" rows="3" :placeholder="item.placeholder">
             </textarea>
           </div>
           <p>{{item.status.length}}/300</p>
@@ -156,7 +156,7 @@
   }
   li input[type="text"] {
     display: inline-block;
-    width: 4rem;
+    width: 8rem;
     position: absolute;
     right: .7rem;
     height: 1.44rem;

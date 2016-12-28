@@ -15,12 +15,12 @@ var checkForm = function(data, attr, style) {
     var flag = data.every(function(item, index) {
         var desc = (item.desc || item.question).replace('：', '');
         if (!item[attr] && !item.notneed) {
-          if(style == 1) {
-            alert('请填写' + desc);
-          } else {
-            alert('第'+(index+1)+'题尚未回答');
-          }
-          $('li').get(index).scrollIntoView(true);
+            if (style == 1) {
+                alert('请填写' + desc);
+            } else {
+                alert('第' + (index + 1) + '题尚未回答');
+            }
+            $('li').get(index).scrollIntoView(true);
             return false;
         } else if (item.validate) {
             if (validator[item.validate] && item[attr] && !validator[item.validate](item[attr])) {
@@ -43,59 +43,100 @@ var api = {
         url: '/service_im/doctorConfirm'
     },
     'PatientInfo': {
-      url: '/service_im/upsertPatient'
+        url: '/service_im/upsertPatient'
     },
     'SickStatus': {
-      url: '/service_im/upsertQuiz'
+        url: '/service_im/upsertQuiz'
     },
     'DrugStatus': {
-      url: '/service_im/upsertMed'
+        url: '/service_im/upsertMed'
     },
     'FamilyMember': {
-      url: '/service_im/upsertFamily',
-      verifyCodeUrl: '/service_im/getSmscode',
-      updateUrl: '/service_im/updatePatient'
+        url: '/service_im/upsertFamily',
+        verifyCodeUrl: '/service_im/getSmscode',
+        updateUrl: '/service_im/updatePatient'
     }
 };
 
 var storeData = {
+    isLocalStorageSupported: function(){
+      var testKey = 'test',
+          storage = window.sessionStorage;
+      try {
+          storage.setItem(testKey, 'testValue');
+          storage.removeItem(testKey);
+          return true;
+      } catch (error) {
+          return false;
+      }
+    }(),
     storage: window.localStorage || null,
     set: function(key, items, attr) {
         attr = attr || 'status';
-        if (this.storage) {
-            var data = [];
-            if(Object.prototype.toString.call(items).toLowerCase().indexOf('array') > -1) {
-              items.forEach(function(item) {
-                  data.push(item[attr]);
-              });
-            } else {
-              data = items[attr];
-            }
-            this.storage.setItem(key, JSON.stringify(data));
+        var data = [];
+        if (Object.prototype.toString.call(items).toLowerCase().indexOf('array') > -1) {
+            items.forEach(function(item) {
+                data.push(item[attr]);
+            });
+        } else {
+            data = items[attr];
+        }
+        data = JSON.stringify(data);
+        if (this.isLocalStorageSupported) {
+            this.storage.removeItem(key);
+            this.storage.setItem(key, data);
+        } else {
+            var str = key + "=" + encodeURIComponent(data) + ";";
+            document.cookie = str;
         }
     },
     get: function(key, items, attr) {
-        if (this.storage) {
-            attr = attr || 'status';
-            var data = this.storage.getItem(key);
-            if (data) {
-                try {
-                    data = JSON.parse(data);
-                } catch (e) {
-                    data = eval('(' + data + ')');
-                }
-                if(Object.prototype.toString.call(data).toLowerCase().indexOf('array') > -1) {
-                  items.forEach(function(item, index) {
-                      item[attr] = data[index];
-                  })
-                } else {
-                  items[attr] = data;
-                }
+        var data = '';
+        attr = attr || 'status';
+
+        if (this.isLocalStorageSupported) {
+            data = this.storage.getItem(key);
+        } else {
+          var cookie = document.cookie;
+           var index = cookie.indexOf(key + "=");
+           if(index > -1) {
+             var start = index + key.length + 1,
+                end = cookie.indexOf(";", start);
+             end == -1 && (end = cookie.length);
+             data = cookie.substring(start, end);
+           }
+           data = decodeURIComponent(data);
+        }
+        if (data) {
+            try {
+                data = JSON.parse(data);
+                console.log(3,data)
+            } catch (e) {
+                data = eval('(' + data + ')');
+                console.log(4, data)
+            }
+
+            if (Object.prototype.toString.call(data).toLowerCase().indexOf('array') > -1) {
+                items.forEach(function(item, index) {
+                    item[attr] = data[index];
+                })
+            } else {
+                items[attr] = data;
             }
         }
     },
     clear: function() {
+      if(this.isLocalStorageSupported) {
         this.storage.clear();
+      } else {
+        var cookie = document.cookie;
+        var keys = cookie.match(/[^ =;]+(?=\=)/g);
+        if (keys) {
+          for (var i = keys.length; i--;) {
+            document.cookie = keys[i]+'=0;expires=' + new Date( 0).toUTCString()
+          }
+        }
+      }
     }
 };
 
