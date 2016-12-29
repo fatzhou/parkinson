@@ -79,7 +79,7 @@
           };
           this.$http.post(this.verifyCodeUrl, postData)
           .then((response) => {
-            this.verifyCodeCount = 121;
+            this.verifyCodeCount = 501;
             this.verifyCodeInterval = setInterval(()=>{
               this.verifyCodeCount--;
               if(this.verifyCodeCount > 0) {

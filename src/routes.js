@@ -65,7 +65,7 @@ const routes = [
       name: 'Login'
     }
   }
-]
+];
 
 module.exports = routes;
 
