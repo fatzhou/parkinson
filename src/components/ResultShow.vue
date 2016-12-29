@@ -1,6 +1,6 @@
 <template>
   <div id="result-show">
-    <h1>查看结论</h1>
+    <h1>查看结论<a href="javascript:;" @click="close">关闭</a></h1>
     <div class="content">
       <div class="content-wrap">
         <div class="qrcode-area">
@@ -28,6 +28,9 @@
           util.storeData.clear();
         },
         methods :{
+          close: function() {
+            location.href = '/';
+          }
         },
     }
 </script>
@@ -45,6 +48,17 @@
     color: #3c485a;
     background: #fff;
   }
+  h1 a {
+    position: absolute;
+    right: 0;
+    font-size: .48rem;
+    line-height: 1.38rem;
+    top: 0;
+    padding: 0 .5rem;
+    color: #5a7193;
+    display: block;
+  }
+
   .content {
     background: #fff;
     height: 100%;
