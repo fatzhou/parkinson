@@ -57,14 +57,14 @@
               "patient":
               {
                   "mobile": items[3].status,
-                  "name": items[0].status,
+                  "name": util.filteremoji(items[0].status),
                   "birthday": items[1].status,
                   "sex": parseInt(items[2].status),
                   "liveProvince": livePlace[0],
                   "liveCity": livePlace[1],
                   "homeProvince": homePlace[0],
                   "homeCity": homePlace[1],
-                  "history": items[6].status,
+                  "history": util.filteremoji(items[6].status),
                   "familyPatient": items[7].status,
                   "deseaseType": items[8].status,
                   "startDate": items[9].status,

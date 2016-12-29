@@ -9,6 +9,15 @@ var validator = {
     }
 };
 
+function filteremoji(str){
+    var ranges = [
+        '\ud83c[\udf00-\udfff]',
+        '\ud83d[\udc00-\ude4f]',
+        '\ud83d[\ude80-\udeff]'
+    ];
+    return  str.replace(new RegExp(ranges.join('|'), 'g'), '');
+}
+
 var checkForm = function(data, attr, style) {
     attr = attr || 'status';
     style = style || 1;
@@ -144,5 +153,6 @@ module.exports = {
     validator: validator,
     checkForm: checkForm,
     storeData: storeData,
-    api: api
+    api: api,
+    filteremoji: filteremoji
 }

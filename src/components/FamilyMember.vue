@@ -111,15 +111,13 @@
             var family = {
                 "mobile": this.info.familyMobile,
                 "relation": items[0].status,
-                "name": items[1].status,
+                "name": util.filteremoji(items[1].status),
                 "birthday": items[3].status,
                 "sex": parseInt(items[2].status),
-                "liveProvince":"广东",
-                "liveCity":"深圳市",
                 "smsCode": this.verifyCode
             };
             items[5].status && (family.mobile2 = items[5].status);
-            items[9].status && (family.history = items[9].status);
+            items[9].status && (family.history = util.filteremoji(items[9].status));
             items[6].status && (family.email = items[6].status);
             if(items[7].status) {
               var home = items[7].status.split(' ') || [];
@@ -144,7 +142,9 @@
               if(data.code === 0) {
                 this.saveData();
                 this.dialog = true;
-              } else {
+              } else if(data.code === 109) {
+                alert('您的验证码已过期，请重新获取');
+              }{
                 alert(data.message);
               }
             })
