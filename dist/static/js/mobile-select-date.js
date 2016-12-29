@@ -160,7 +160,6 @@
                         _this.format();
                     }
                     $(dl.children().get(index)).addClass('focus').siblings().removeClass('focus');
-                    console.log(mode, _this.mtop)
                     dl.css('top', mode * _this.mtop);
                     return false;
                 });
@@ -229,8 +228,14 @@
             _this.f(childData);
         },
         submit: function() {
-            this.oldvalue = this.value.concat([]);
-            this.oldtext = this.text.concat([]);
+
+            if(!this.value[1]) {
+                this.value = this.oldvalue.concat([]);
+                this.text = this.oldtext.concat([]);
+            } else {
+                 this.oldvalue = this.value.concat([]);
+                this.oldtext = this.text.concat([]);           
+            }
             if (this.trigger[0].nodeType == 1) {
                 //input
                 this.trigger.val(this.text.join(this.separator));

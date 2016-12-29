@@ -145,7 +145,7 @@
     display: block;
     font-size: .6rem;
     height: 1.8rem;
-    line-height: .6rem;
+    line-height: 1.25;
   }
   .button {
     margin-top: -2.6rem;

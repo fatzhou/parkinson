@@ -10,6 +10,7 @@
 </template>
 
 <script>
+import util from '../../static/js/util.js'
     export default {
         data() {
             return {

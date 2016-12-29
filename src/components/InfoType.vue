@@ -92,7 +92,7 @@
           return item.type == 4;
         }).forEach(function(item, index) {
             var selectArea = new MobileSelectArea();
-            selectArea.init({trigger:'#'+item.id,level:2,data:data.data,value:item.hiddenValue,position:"bottom",callback: function(a,b,c) {
+            selectArea.init({trigger:'#'+item.id,level:2,data:data.data,animate:true,value:item.hiddenValue,position:"bottom",callback: function(a,b,c) {
               item.status = b;
               item.default = '';
             }});
@@ -102,7 +102,7 @@
           return item.type == 2;
         }).forEach(function(item, index) {
             var selectDate = new MobileSelectDate();
-            selectDate.init({trigger:'#'+item.id,min:'1900/01/01',max:self.getDate(),position:"bottom",callback:function(scroller,value){
+            selectDate.init({trigger:'#'+item.id,min:'1900/01/01',max:self.getDate(),animate:true,position:"bottom",callback:function(scroller,value){
               item.status = value;
               item.default = '';
             }});

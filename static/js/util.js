@@ -47,7 +47,7 @@ var checkForm = function(data, attr, style) {
 }
 
 var api = {
-    'host': 'http://120.27.25.118:1080',
+    'host': 'http://ruiyun.gyenno.com',
     'Login': {
         url: '/service_im/doctorConfirm'
     },

@@ -260,9 +260,13 @@
             })
         },
         dispose: function() {
-            this.dialogContainer.remove();
-            this.mask.remove();
-            this.timer && clearInterval(this.timer);
+            var _this = this;
+            setTimeout(function(){
+                            _this.dialogContainer.remove();
+            _this.mask.remove();
+            _this.timer && clearInterval(this.timer);
+
+            }, 500)
         },
         hide: function() {
             var _this = this;

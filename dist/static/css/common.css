@@ -76,6 +76,11 @@ input, a, textarea {
   outline: none;
   border: none;
   box-sizing: border-box;
+  background: none;
+}
+
+input:focus {
+  outline: none;
 }
 
 .split {
