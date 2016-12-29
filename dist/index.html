@@ -1,13 +1,23 @@
-<!DOCTYPE html><html><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=0"><meta http-equiv=X-UA-Compatible content="IE=edge"><meta content=yes name=apple-mobile-web-app-capable><meta content=yes name=apple-touch-fullscreen><meta content="telephone=no,email=no" name=format-detection><meta name=App-Config content="fullscreen=yes,useHistoryState=yes,transition=yes"><link rel=stylesheet href=static/css/common.css><link rel="shotcut icon" href=favicon.png><script src=static/js/jquery.1.9.1.js></script><script src=static/js/dialog.js></script><script src=static/js/mobile-select-date.js></script><script src=static/js/mobile-select-area.js></script><title>全国多中心PD大数据库</title><link href=static/css/app.68a6b8c65094c1e7c6a388f342fa783a.css rel=stylesheet></head><body><div id=app><router-view></router-view></div><script>$(function() {
-          $('body').on('touchmove', '.ui-dialog', function(e){return false;})
+<!DOCTYPE html><html><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=0"><meta http-equiv=X-UA-Compatible content="IE=edge"><meta content=yes name=apple-mobile-web-app-capable><meta content=yes name=apple-touch-fullscreen><meta content="telephone=no,email=no" name=format-detection><meta name=App-Config content="fullscreen=yes,useHistoryState=yes,transition=yes"><link rel=stylesheet href=static/css/common.css><link rel="shotcut icon" href=favicon.png><script src=static/js/jquery.1.9.1.js></script><script src=static/js/dialog.js></script><script src=static/js/mobile-select-date.js></script><script src=static/js/mobile-select-area.js></script><title>睿云APP</title><link href=static/css/app.68a6b8c65094c1e7c6a388f342fa783a.css rel=stylesheet></head><body><div id=app><router-view></router-view></div><script>$(function() {
+          // function fn1() {return true}
+          // function fn2() {return false}
+          $('body').on('touchmove', '.ui-dialog', function(e){
+            // $('body').on('touchstart', '.ui-dialog', fn2);
+            return false;
+          })
+          $('body').on('touchend', '.ui-dialog', function(e){
+            // $('body').off('touchstart', '.ui-dialog', fn2);
+            // $('body').on('touchstart', '.ui-dialog', fn1);
+            return false;
+          })
 
-          function reorient(e) {
-            var portrait = (window.orientation % 180 == 0);
-            // alert(portrait)
-            $("body > div").css("-webkit-transform", !portrait ? "rotate(-90deg)" : "");
-          }
-          window.onorientationchange = reorient;
-          window.setTimeout(reorient, 0);
+          // function reorient(e) {
+          //   var portrait = (window.orientation % 180 == 0);
+          //   // alert(portrait)
+          //   $("body > div").css("-webkit-transform", !portrait ? "rotate(-90deg)" : "");
+          // }
+          // window.onorientationchange = reorient;
+          // window.setTimeout(reorient, 0);
 
           var resize = function() {
              var deviceWidth = document.documentElement.clientWidth;

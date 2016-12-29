@@ -15,7 +15,7 @@
     <script src="static/js/dialog.js"></script>
     <script src="static/js/mobile-select-date.js"></script>
     <script src="static/js/mobile-select-area.js"></script>
-    <title>全国多中心PD大数据库</title>
+    <title>睿云APP</title>
 </head>
 
 <body>
@@ -25,15 +25,25 @@
 
     <script>
       $(function() {
-          $('body').on('touchmove', '.ui-dialog', function(e){return false;})
+          // function fn1() {return true}
+          // function fn2() {return false}
+          $('body').on('touchmove', '.ui-dialog', function(e){
+            // $('body').on('touchstart', '.ui-dialog', fn2);
+            return false;
+          })
+          $('body').on('touchend', '.ui-dialog', function(e){
+            // $('body').off('touchstart', '.ui-dialog', fn2);
+            // $('body').on('touchstart', '.ui-dialog', fn1);
+            return false;
+          })
 
-          function reorient(e) {
-            var portrait = (window.orientation % 180 == 0);
-            // alert(portrait)
-            $("body > div").css("-webkit-transform", !portrait ? "rotate(-90deg)" : "");
-          }
-          window.onorientationchange = reorient;
-          window.setTimeout(reorient, 0);
+          // function reorient(e) {
+          //   var portrait = (window.orientation % 180 == 0);
+          //   // alert(portrait)
+          //   $("body > div").css("-webkit-transform", !portrait ? "rotate(-90deg)" : "");
+          // }
+          // window.onorientationchange = reorient;
+          // window.setTimeout(reorient, 0);
 
           var resize = function() {
              var deviceWidth = document.documentElement.clientWidth;
