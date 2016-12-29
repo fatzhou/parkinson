@@ -107,7 +107,7 @@
                     this.dispose();
                 }, $.extend({
                     width: 320,
-                    height: Math.max(Math.min(document.documentElement.clientWidth, 1080) / 1.75, 250)
+                    height: Math.min(Math.max(Math.min(document.documentElement.clientWidth, 1080) / 1.75, 335), window.innerHeight)
                 },settings));
 
                 _this.scroller = $('#' + _this.id);
@@ -228,13 +228,12 @@
             _this.f(childData);
         },
         submit: function() {
-
-            if(!this.value[1]) {
+            if(!this.value[1] || !this.value[2]) {
                 this.value = this.oldvalue.concat([]);
                 this.text = this.oldtext.concat([]);
             } else {
-                 this.oldvalue = this.value.concat([]);
-                this.oldtext = this.text.concat([]);           
+                this.oldvalue = this.value.concat([]);
+                this.oldtext = this.text.concat([]);
             }
             if (this.trigger[0].nodeType == 1) {
                 //input

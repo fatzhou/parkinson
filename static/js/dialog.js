@@ -262,11 +262,10 @@
         dispose: function() {
             var _this = this;
             setTimeout(function(){
-                            _this.dialogContainer.remove();
-            _this.mask.remove();
-            _this.timer && clearInterval(this.timer);
-
-            }, 500)
+                _this.dialogContainer.remove();
+                _this.mask.remove();
+                _this.timer && clearInterval(_this.timer);
+            }, 400);
         },
         hide: function() {
             var _this = this;

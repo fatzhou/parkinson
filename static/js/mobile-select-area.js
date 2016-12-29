@@ -110,7 +110,7 @@
                     this.dispose();
                 }, $.extend({
                     width: 320,
-                    height: Math.max(Math.min(document.documentElement.clientWidth, 1080) / 1.75, 250)
+                    height: Math.min(Math.max(Math.min(document.documentElement.clientWidth, 1080) / 1.75, 335), window.innerHeight)
                 }, settings));
                 _this.scroller = $('#' + _this.id);
                 _this.getData().done(function() {

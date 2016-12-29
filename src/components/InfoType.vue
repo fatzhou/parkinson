@@ -88,7 +88,8 @@
       mounted: function() {
         var self = this;
         var data = require('../../static/js/province.js');
-        this.items.filter(function(item) {
+
+        self.items.filter(function(item) {
           return item.type == 4;
         }).forEach(function(item, index) {
             var selectArea = new MobileSelectArea();
@@ -98,7 +99,7 @@
             }});
         });
 
-        this.items.filter(function(item) {
+        self.items.filter(function(item) {
           return item.type == 2;
         }).forEach(function(item, index) {
             var selectDate = new MobileSelectDate();
