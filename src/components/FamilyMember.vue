@@ -144,7 +144,7 @@
                 this.dialog = true;
               } else if(data.code === 109) {
                 alert('您的验证码已过期，请重新获取');
-              }{
+              } else {
                 alert(data.message);
               }
             })
