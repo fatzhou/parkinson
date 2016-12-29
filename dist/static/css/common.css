@@ -12,6 +12,8 @@ body {
   font-family: PingFangSC-Regular,Helvetica,"Droid Sans",Arial,sans-serif;
 }
 
+body > div { -webkit-transition: all 1s ease-in-out; }
+
 ul, li {
   list-style: none;
 }

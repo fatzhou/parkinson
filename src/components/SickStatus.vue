@@ -51,7 +51,7 @@
         },
         created() {
           util.storeData.get('info', this, 'info');
-          if(!this.info.doctorMobile || !this.info.patientMobile) {
+          if(!this.info || !this.info.doctorMobile || !this.info.patientMobile) {
             if(window.$router) {
               $router.push("Login");
             } else {

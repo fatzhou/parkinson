@@ -37,7 +37,7 @@
       },
       created() {
         util.storeData.get('info', this, 'info');
-        if(!this.info.doctorMobile) {
+        if(!this.info || !this.info.doctorMobile) {
           if(window.$router) {
             $router.push("Login");
           } else {

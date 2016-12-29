@@ -27,6 +27,14 @@
       $(function() {
           $('body').on('touchmove', '.ui-dialog', function(e){return false;})
 
+          function reorient(e) {
+            var portrait = (window.orientation % 180 == 0);
+            // alert(portrait)
+            $("body > div").css("-webkit-transform", !portrait ? "rotate(-90deg)" : "");
+          }
+          window.onorientationchange = reorient;
+          window.setTimeout(reorient, 0);
+
           var resize = function() {
              var deviceWidth = document.documentElement.clientWidth;
              if(deviceWidth > 1080) {
@@ -35,7 +43,7 @@
              document.documentElement.style.fontSize = deviceWidth / 12.42 + 'px';
           };
           window.onresize = resize;
-          resize();
+          window.setTimeout(resize, 0);
         });
     </script>
 </body>

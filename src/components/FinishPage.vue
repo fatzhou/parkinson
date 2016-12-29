@@ -18,7 +18,7 @@ import util from '../../static/js/util.js'
         },
         mounted: function() {
           util.storeData.get('info', this, 'info');
-          if(!this.info.doctorMobile || !this.info.patientMobile || !this.info.familyMobile) {
+          if(!this.info || !this.info.doctorMobile || !this.info.patientMobile || !this.info.familyMobile) {
             if(window.$router) {
               $router.push("Login");
             } else {
