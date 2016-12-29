@@ -116,6 +116,7 @@
                     end = 0
                 _this.scroller.children().bind('touchstart', function(e) {
                     start = (e.changedTouches || e.originalEvent.changedTouches)[0].pageY;
+                    return false;
                 });
                 _this.scroller.children().bind('touchmove', function(e) {
                     end = (e.changedTouches || e.originalEvent.changedTouches)[0].pageY;

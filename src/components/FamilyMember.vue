@@ -54,6 +54,13 @@
       },
       created() {
         util.storeData.get('info', this, 'info');
+        if(!this.info.doctorMobile || !this.info.patientMobile) {
+          if(window.$router) {
+            $router.push("Login");
+          } else {
+            location.href = '/';
+          }
+        }
         util.storeData.get(this.key, this.items);
       },
       methods: {
@@ -79,7 +86,7 @@
           };
           this.$http.post(this.verifyCodeUrl, postData)
           .then((response) => {
-            this.verifyCodeCount = 501;
+            this.verifyCodeCount = 301;
             this.verifyCodeInterval = setInterval(()=>{
               this.verifyCodeCount--;
               if(this.verifyCodeCount > 0) {

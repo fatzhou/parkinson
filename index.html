@@ -24,6 +24,8 @@
 
     <script>
       $(function() {
+          $('body').on('touchmove', '.ui-dialog', function(e){return false;})
+
           var resize = function() {
              var deviceWidth = document.documentElement.clientWidth;
              if(deviceWidth > 1080) {

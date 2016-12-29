@@ -9,7 +9,8 @@ module.exports = [{
     question: '是否有慌张步态'
 }, {
     status: '',
-    question: '是否面部表情减少（面具脸）'
+    question: '是否面部表情减少',
+    explain: '面具脸'
 }, {
     status: '',
     question: '是否有手部肌肉张力增高'
@@ -79,7 +80,8 @@ module.exports = [{
     options: ['低血压','正常','高血压']
 }, {
     status: '',
-    question: '是否有直立性低血压情况（突然站立时血压得急剧下降）'
+    question: '是否有直立性低血压情况',
+    explain: '突然站立时血压得急剧下降'
 }, {
     status: '',
     question: '是否有性功能障碍'
@@ -88,25 +90,32 @@ module.exports = [{
     question: '是否有感觉异常（疼痛、疲劳）'
 }, {
     status: '',
-    question: '是否有冻结步态'
+    question: '是否有冻结步态',
+    explain: '起步困难，像被胶水粘住双脚，遇到空间障碍或紧张时明显'
 }, {
     status: '',
-    question: '是否有剂末现象'
+    question: '是否有剂末现象',
+    explain: '药物治疗若干年后出现药性减弱，药效维持时间变短'
 }, {
     status: '',
-    question: '是否有开关现象'
+    question: '是否有开关现象',
+    explain: '帕金森病症状在突然缓解和突然加重之间转换，缓解时常有不自主运动，加重时全身僵硬、寸步难行'
 }, {
     status: '',
-    question: '是否对多巴胺无反应或延迟“开期”'
+    question: '是否对多巴胺无反应或延迟“开期”',
+    explain: '服药后没有效果'
 }, {
     status: '',
-    question: '是否有药物峰值异动症'
+    question: '是否有药物峰值异动症',
+    explain: '每次药劲一上来，身体就不那样硬了，动作也快了，但身体会不自主的晃动，控制不住'
 }, {
     status: '',
-    question: '是否有双相异动症'
+    question: '是否有双相异动症',
+    explain: '在剂初和剂末均出现运动多是刻板的，节律的，非对称的'
 }, {
     status: '',
-    question: '是否有关期肌张力障碍'
+    question: '是否有关期肌张力障碍',
+    explain: '表现为足或小腿痛性痉挛，多发生于清晨服药前多或左旋多巴疗效减退时，以足、腿痉挛多见'
 }, {
     status: '',
     question: '是否做手术DBS'

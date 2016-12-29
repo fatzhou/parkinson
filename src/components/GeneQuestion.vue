@@ -43,6 +43,13 @@
         created() {
           util.storeData.get(this.key, this.items);
           util.storeData.get('info', this, 'info');
+          if(!this.info.doctorMobile || !this.info.patientMobile || !this.info.familyMobile) {
+            if(window.$router) {
+              $router.push("Login");
+            } else {
+              location.href = '/';
+            }
+          }
         },
         methods :{
           goBack() {

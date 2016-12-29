@@ -186,7 +186,7 @@ module.exports = [{
 }, {
     status: '',
     question: '您是否吸食过毒品',
-    explain: '6月以内频繁吸食频繁吸食'
+    explain: '6月以内频繁吸食'
 }, {
     status: '',
     question: '您有服用过抗精神病药物的药史吗',

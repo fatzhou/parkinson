@@ -88,7 +88,7 @@ var storeData = {
           return false;
       }
     }(),
-    storage: window.localStorage || null,
+    storage: window.sessionStorage || null,
     set: function(key, items, attr) {
         attr = attr || 'status';
         var data = [];

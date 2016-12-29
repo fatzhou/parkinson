@@ -120,6 +120,9 @@
                     end = 0
                 _this.scroller.children().bind('touchstart', function(e) {
                     start = (e.changedTouches || e.originalEvent.changedTouches)[0].pageY;
+                    e.preventDefault();
+                    e.stopPropagation();
+                    return false;
                 });
                 _this.scroller.children().bind('touchmove', function(e) {
                     end = (e.changedTouches || e.originalEvent.changedTouches)[0].pageY;
@@ -131,6 +134,8 @@
                     var top = parseInt(dl.css('top') || 0) + diff;
                     dl.css('top', top);
                     start = end;
+                    e.preventDefault();
+                    e.stopPropagation();
                     return false;
                 });
                 _this.scroller.children().bind('touchend', function(e) {
@@ -165,6 +170,8 @@
                     }
                     $(dl.children().get(index)).addClass('focus').siblings().removeClass('focus');
                     dl.css('top', mode * _this.mtop);
+                    e.preventDefault();
+                    e.stopPropagation();
                     return false;
                 });
                 return false;
@@ -233,6 +240,8 @@
             _this.f(childData);
         },
         submit: function() {
+            this.value = this.value.slice(0, this.level);
+            this.text = this.text.slice(0, this.level);
             this.oldvalue = this.value.concat([]);
             this.oldtext = this.text.concat([]);
             if (this.trigger[0].nodeType == 1) {

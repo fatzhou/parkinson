@@ -4,7 +4,10 @@
     <div class="ul-wrap bottom-padding">
       <ul>
         <li v-for="item,index in items">
-          <p>{{index+1}}.{{item.question}}？</p>
+          <div class="p-wrap">
+            <p class="p-title">{{index+1}}. {{item.question}}？</p>
+            <p class="p-explain" v-if="item.explain">{{item.explain}}</p>
+          </div>
           <label >
             <input type="radio" :name="prefix+index" value="1" v-model="item.status">
             <span>{{item.options?item.options[0]:'是'}}</span>
@@ -48,6 +51,13 @@
         },
         created() {
           util.storeData.get('info', this, 'info');
+          if(!this.info.doctorMobile || !this.info.patientMobile) {
+            if(window.$router) {
+              $router.push("Login");
+            } else {
+              location.href = '/';
+            }
+          }
           util.storeData.get(this.key, this.items);
         },
         methods :{
@@ -112,11 +122,26 @@
     padding: 0 .15rem;
     border-radius: 8px;
   }
-  li p {
+/*  li p {
     font-size: .48rem;
     line-height: 1.48rem;
     border-bottom: 1px solid #c5cbd3;
     color: #3c485a;
+  }
+*/  li .p-wrap {
+    border-bottom: 1px solid #c5cbd3;
+  }
+  li .p-title {
+    font-size: .48rem;
+    line-height: 1.48rem;
+    color: #3c485a;
+    /*padding: 0 .15rem;*/
+  }
+  li .p-explain {
+    font-size: .42rem;
+    line-height: 1.34rem;
+    color: #a5b1c6;
+    /*padding: 0 .15rem;*/
   }
   li label {
     display: block;

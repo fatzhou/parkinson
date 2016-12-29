@@ -27,13 +27,13 @@ module.exports = [{
     question: '您的基因Parkin是否为纯合子或复合型杂合子'
 }, {
     status: '',
-    question: '您的基因PARKIN是否为杂合突变突变'
+    question: '您的基因PARKIN是否为杂合突变'
 }, {
     status: '',
     question: '您的基因PINK1是否为纯合子或复合型杂合子突变'
 }, {
     status: '',
-    question: '您的基因PINK1是否为一种杂合子突变突变'
+    question: '您的基因PINK1是否为一种杂合子突变'
 }, {
     status: '',
     question: '您的基因DJ-1是否为纯合子或复合型杂合子突变'
