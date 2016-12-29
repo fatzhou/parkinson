@@ -23,6 +23,16 @@ var checkForm = function(data, attr, style) {
     style = style || 1;
     var flag = data.every(function(item, index) {
         var desc = (item.desc || item.question).replace('：', '');
+        var ranges = [
+            '\ud83c[\udf00-\udfff]',
+            '\ud83d[\udc00-\ude4f]',
+            '\ud83d[\ude80-\udeff]'
+        ];
+        if(new RegExp(ranges.join('|'), 'g').test(item[attr])) {
+          alert('您输入的' + desc + '含有表情符号');
+          $('li').get(index).scrollIntoView(true);
+          return false;
+        }
         if (!item[attr] && !item.notneed) {
             if (style == 1) {
                 alert('请填写' + desc);

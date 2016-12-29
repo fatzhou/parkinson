@@ -117,15 +117,15 @@
                 "smsCode": this.verifyCode
             };
             items[5].status && (family.mobile2 = items[5].status);
-            items[9].status && (family.history = util.filteremoji(items[9].status));
+            items[9].status && (family.history = util.filteremoji(items[9].status) || ' ');
             items[6].status && (family.email = items[6].status);
             if(items[7].status) {
-              var home = items[7].status.split(' ') || [];
+              var home = items[7].status.replace(/\s+/,'#').split('#') || [];
               family.homeProvince = home[0];
               family.homeCity = home[1];
             }
             if(items[8].status) {
-              var home = items[8].status.split(' ') || [];
+              var home = items[8].status.replace(/\s+/,'#').split('#')|| [];
               family.liveProvince = home[0];
               family.liveCity = home[1];
             }
@@ -234,6 +234,8 @@
     padding: .25rem .3rem;
     background: #ff9c00;
     line-height: 1;
+    display: block;
+    white-space: nowrap;
   }
   .code-button:hover, .code-button:active {
     background: #f78000;

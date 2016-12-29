@@ -143,6 +143,9 @@ import drugStatus from '../../static/js/config/DrugStatus.js'
     padding-left: .5rem;
     color: #5a7193;
   }
+  .items span {
+    display: block;
+  }
   .items label {
     border-bottom: 1px solid #c5cbd3;
     -webkit-box-flex: 1;
