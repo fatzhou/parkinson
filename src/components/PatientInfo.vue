@@ -53,12 +53,13 @@
           util.storeData.set('info', this, 'info');
         },
         savePatientInfo: function() {
+          console.log(1)
           var flag = util.checkForm(this.items);
           if(flag) {
             var items = this.items;
             var livePlace = items[4].status.replace(/\s+/,'#').split('#') || [],
                 homePlace = items[5].status.replace(/\s+/,'#').split('#') || [];
-                console.log(livePlace, items[4].status)
+                // console.log(livePlace, items[4].status)
             this.saveData();
             var postData = {
               "doctorMobile": this.info.doctorMobile,
@@ -80,10 +81,10 @@
 
               }
             };
-            console.log(postData)
+            // console.log(postData)
             this.$http.post(this.url, postData)
             .then((response) => {
-              console.log(response)
+              // console.log(response)
               var data = response.body;
               if(data.code === 0) {
                 $router.push("SickStatus");
