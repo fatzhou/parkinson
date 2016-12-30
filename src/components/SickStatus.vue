@@ -52,11 +52,7 @@
         created() {
           util.storeData.get('info', this, 'info');
           if(!this.info || !this.info.doctorMobile || !this.info.patientMobile) {
-            if(window.$router) {
-              $router.push("Login");
-            } else {
-              location.href = '/';
-            }
+            location.href = '/';
           }
           util.storeData.get(this.key, this.items);
         },

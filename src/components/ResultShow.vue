@@ -27,11 +27,7 @@
         mounted: function() {
           util.storeData.get('info', this, 'info');
           if(!this.info || !this.info.doctorMobile || !this.info.patientMobile || !this.info.familyMobile) {
-            if(window.$router) {
-              $router.push("Login");
-            } else {
-              location.href = '/';
-            }
+            location.href = '/';
           }
           util.storeData.clear();
         },
