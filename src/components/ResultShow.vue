@@ -29,10 +29,11 @@
           if(!this.info || !this.info.doctorMobile || !this.info.patientMobile || !this.info.familyMobile) {
             location.href = '/';
           }
-          util.storeData.clear();
+          // util.storeData.clear();
         },
         methods :{
           close: function() {
+            util.storeData.clear();
             location.href = '/';
           }
         },
