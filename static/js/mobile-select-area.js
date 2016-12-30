@@ -112,6 +112,9 @@
                     width: 320,
                     height: Math.min(Math.max(Math.min(document.documentElement.clientWidth, 1080) / 1.75, 335), window.innerHeight)
                 }, settings));
+
+                $('.ui-confirm-submit').focus();
+
                 _this.scroller = $('#' + _this.id);
                 _this.getData().done(function() {
                     _this.format();
