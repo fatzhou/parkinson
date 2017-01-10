@@ -32,7 +32,7 @@
 </template>
 
 <script>
-
+  import myAlert from '../../static/js/alert.js'
   import util from '../../static/js/util.js'
   import SickStatus from '../../static/js/config/SickStatus.js'
     export default {
@@ -52,7 +52,8 @@
         created() {
           util.storeData.get('info', this, 'info');
           if(!this.info || !this.info.doctorMobile || !this.info.patientMobile) {
-            location.href = '/';
+            // location.href = '/';
+            this.$router.push("Login");
           }
           util.storeData.get(this.key, this.items);
         },
@@ -60,7 +61,7 @@
           goBack() {
             // util.storeData.set('info', this, 'info');
             util.storeData.set(this.key, this.items);
-            $router.push("PatientInfo");
+            this.$router.push("PatientInfo");
           },
           goNext() {
             var flag = util.checkForm(this.items, 'status', 2);
@@ -81,13 +82,13 @@
                 if(data.code === 0) {
                   util.storeData.set(this.key, this.items);
                   // util.storeData.set('info', this, 'info');
-                  $router.push("DrugStatus");
+                  this.$router.push("DrugStatus");
                 } else {
-                  alert(data.message);
+                  myAlert(data.message);
                 }
               })
               .catch(function(response) {
-                alert('您当前网络出现故障，请稍后再试');
+                myAlert('您当前网络出现故障，请稍后再试');
               });
 
             }

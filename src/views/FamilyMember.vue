@@ -29,10 +29,11 @@
 </template>
 
 <script>
-  import InfoType from './InfoType'
+  import InfoType from '../components/InfoType'
   import util from '../../static/js/util.js'
   import FamilyMember from '../../static/js/config/FamilyMember.js'
-
+  import myAlert from '../../static/js/alert.js'
+require('../../static/css/mobile-select-date.less')
   export default {
       data() {
           return {
@@ -54,8 +55,9 @@
       },
       created() {
         util.storeData.get('info', this, 'info');
-        if(!this.info || !this.info.doctorMobile || !this.info.patientMobile) {
-            location.href = '/';
+        if(!this.info || !this.info.doctorMobile) {
+            this.$router.push("Login");
+            // location.href = '/';
           }
         util.storeData.get(this.key, this.items);
       },
@@ -94,18 +96,18 @@
             }, 1000);
           })
           .catch(function(response) {
-            alert('您当前网络出现故障，请稍后再试');
+            myAlert('您当前网络出现故障，请稍后再试');
           });
         },
         goBack() {
           this.saveData();
-          $router.push("DrugStatus");
+          this.$router.push("DrugStatus");
         },
         goNext() {
           var flag = util.checkForm(this.items);
           if(flag && !this.verifyCode) {
             $('.verify-code').get(0).scrollIntoView(true);
-            alert('请输入验证码');
+            myAlert('请输入验证码');
             flag = false;
           }
           if(flag) {
@@ -146,24 +148,24 @@
                 this.saveData();
                 this.dialog = true;
               } else if(data.code === 109) {
-                alert('您的验证码已过期，请重新获取');
+                myAlert('您的验证码已过期，请重新获取');
               } else {
-                alert(data.message);
+                myAlert(data.message);
               }
             })
             .catch(function(response) {
-              alert('您当前网络出现故障，请稍后再试');
+              myAlert('您当前网络出现故障，请稍后再试');
             });
           }
         },
         goNext1() {
-          this.updateFamilyInfo(1, function() {
-            $router.push("GeneQUestion");
+          this.updateFamilyInfo(1, ()=> {
+            this.$router.push("GeneQUestion");
           })
         },
         goNext2() {
           this.updateFamilyInfo(1, function() {
-            $router.push("EnvironmentQuestion");
+            this.$router.push("EnvironmentQuestion");
           })
         },
         updateFamilyInfo(genetest, callback) {
@@ -179,7 +181,7 @@
               if(data.code === 0) {
                 callback && callback();
               } else {
-                alert(data.message);
+                myAlert(data.message);
               }
             })
         },

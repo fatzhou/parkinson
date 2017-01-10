@@ -28,7 +28,14 @@ module.exports = merge(baseWebpackConfig, {
     new HtmlWebpackPlugin({
       filename: 'index.html',
       template: 'index.html',
+      chunks: ['manifest', 'vendor',"app"],
       inject: true
-    })
+    }),
+    new HtmlWebpackPlugin({
+      filename: 'index_social.html',
+      template: 'index.html',
+      chunks: ['manifest', 'vendor',"app_social"],
+      inject: true
+    }),
   ]
 })

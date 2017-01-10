@@ -47,6 +47,7 @@ var webpackConfig = merge(baseWebpackConfig, {
         ? 'index.html'
         : config.build.index,
       template: 'index.html',
+      chunks: ['manifest', 'vendor',"app"],
       inject: true,
       minify: {
         removeComments: true,
@@ -56,6 +57,20 @@ var webpackConfig = merge(baseWebpackConfig, {
         // https://github.com/kangax/html-minifier#options-quick-reference
       },
       // necessary to consistently work with multiple chunks via CommonsChunkPlugin
+      chunksSortMode: 'dependency'
+    }),
+    new HtmlWebpackPlugin({
+      filename: 'index_social.html',
+      template: 'index.html',
+      chunks: ['manifest', 'vendor',"app_social"],
+      inject: true,
+      minify: {
+        removeComments: true,
+        collapseWhitespace: true,
+        removeAttributeQuotes: true
+        // more options:
+        // https://github.com/kangax/html-minifier#options-quick-reference
+      },
       chunksSortMode: 'dependency'
     }),
     // split vendor js into its own file

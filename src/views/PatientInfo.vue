@@ -18,8 +18,9 @@
 </template>
 
 <script>
-  import InfoType from './InfoType'
+  import InfoType from '../components/InfoType'
   import util from '../../static/js/util.js'
+  import myAlert from '../../static/js/alert.js'
   import PatientInfo from '../../static/js/config/PatientInfo.js'
   require('../../static/css/mobile-select-date.less')
   export default {
@@ -38,7 +39,8 @@
       created() {
         util.storeData.get('info', this, 'info');
         if(!this.info || !this.info.doctorMobile) {
-            location.href = '/';
+            // location.href = '/';
+            this.$router.push("Login");
         }
         util.storeData.get(this.key, this.items);
       },
@@ -49,12 +51,11 @@
           util.storeData.set('info', this, 'info');
         },
         savePatientInfo: function() {
-          console.log(1)
           var flag = util.checkForm(this.items);
           if(flag) {
             var items = this.items;
-            var livePlace = items[4].status.replace(/\s+/,'#').split('#') || [],
-                homePlace = items[5].status.replace(/\s+/,'#').split('#') || [];
+            var livePlace = items[6].status.replace(/\s+/,'#').split('#') || [],
+                homePlace = items[7].status.replace(/\s+/,'#').split('#') || [];
                 // console.log(livePlace, items[4].status)
             this.saveData();
             var postData = {
@@ -65,31 +66,32 @@
                   "name": util.filteremoji(items[0].status),
                   "birthday": items[1].status,
                   "sex": parseInt(items[2].status),
+                  "mobile1": items[4].status,
                   "liveProvince": livePlace[0],
                   "liveCity": livePlace[1],
                   "homeProvince": homePlace[0],
                   "homeCity": homePlace[1],
-                  "history": util.filteremoji(items[6].status),
-                  "familyPatient": items[7].status,
-                  "deseaseType": items[8].status,
-                  "startDate": items[9].status,
-                  "confirmDate": items[10].status,
-
+                  "history": util.filteremoji(items[8].status),
+                  "familyPatient": items[9].status,
+                  "deseaseType": items[10].status,
+                  "startDate": items[11].status,
+                  "confirmDate": items[12].status,
               }
             };
+            items[5].status && (postData.patient.mobile2 = items[5].status);
             // console.log(postData)
             this.$http.post(this.url, postData)
             .then((response) => {
               // console.log(response)
               var data = response.body;
               if(data.code === 0) {
-                $router.push("SickStatus");
+                this.$router.push("SickStatus");
               } else {
-                alert(data.message);
+                myAlert(data.message);
               }
             })
             .catch(function(response) {
-              alert('您当前网络出现故障，请稍后再试');
+              myAlert('您当前网络出现故障，请稍后再试');
             });
           }
         }

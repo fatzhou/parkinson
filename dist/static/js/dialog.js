@@ -138,7 +138,7 @@
                     button: button,
                     timer: timer,
                     callback: callback,
-                    width: 283,
+                    width: '90%',
                     height: 'auto'
                 });
             }

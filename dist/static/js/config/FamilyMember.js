@@ -1,4 +1,5 @@
-module.exports = [{
+module.exports = [
+{
     logo: '../static/image/data_icon_born.png',
     question: '关系',
     type: 6,
@@ -10,7 +11,8 @@ module.exports = [{
         ['祖父母/外祖父母', 3],
         ['其他人', 4]
     ]
-}, {
+},
+{
     logo: '../static/image/data_icon_name.png',
     question: '姓名',
     type: 1,

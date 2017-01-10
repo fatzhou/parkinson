@@ -46,7 +46,7 @@
                   util.storeData.set(this.key, this.items);
                   // util.storeData.set('info', this, 'info');
 
-                  $router.push("PatientAdmin");
+                  this.$router.push("PatientAdmin");
                   // this.$http.post(this.url, data)
                   // .then((response) => {
                   //   var data = response.body;

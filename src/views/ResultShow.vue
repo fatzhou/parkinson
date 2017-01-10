@@ -5,7 +5,7 @@
       <div class="content-wrap">
         <div class="qrcode-area">
           <p >扫描二维码，下载医动力APP</p>
-          <img src="../../static/image/result_qrcode.png" alt="">
+          <a href="http://www.gyenno.com/future/medical_power"><img src="../../static/image/result_qrcode.png" alt=""></a>
         </div>
         <div class="split"></div>
         <div class="result-area">
@@ -27,14 +27,15 @@
         mounted: function() {
           util.storeData.get('info', this, 'info');
           if(!this.info || !this.info.doctorMobile || !this.info.patientMobile || !this.info.familyMobile) {
-            location.href = '/';
+            // location.href = '/';
+            this.$router.push('Login');
           }
           // util.storeData.clear();
         },
         methods :{
           close: function() {
             util.storeData.clear();
-            location.href = '/';
+            this.$router.push('Login');
           }
         },
     }

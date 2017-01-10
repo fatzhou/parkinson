@@ -9,6 +9,7 @@
     <meta content="telephone=no,email=no" name="format-detection" />
     <meta name="App-Config" content="fullscreen=yes,useHistoryState=yes,transition=yes" />
     <link rel="stylesheet" href="static/css/common.css">
+    <link rel="stylesheet" href="static/css/dialog.css">
     <link rel="shotcut icon" href="favicon.png" />
     <!-- <link rel="stylesheet" href="static/css/mobile-select-date.css"> -->
     <script src="static/js/jquery.1.9.1.js"></script>
@@ -25,26 +26,6 @@
 
     <script>
       $(function() {
-          // function fn1() {return true}
-          // function fn2() {return false}
-          // $('body').on('touchmove', '.ui-dialog', function(e){
-          //   // $('body').on('touchstart', '.ui-dialog', fn2);
-          //   return false;
-          // })
-          // $('body').on('touchend', '.ui-dialog', function(e){
-          //   // $('body').off('touchstart', '.ui-dialog', fn2);
-          //   // $('body').on('touchstart', '.ui-dialog', fn1);
-          //   return false;
-          // })
-
-          // function reorient(e) {
-          //   var portrait = (window.orientation % 180 == 0);
-          //   // alert(portrait)
-          //   $("body > div").css("-webkit-transform", !portrait ? "rotate(-90deg)" : "");
-          // }
-          // window.onorientationchange = reorient;
-          // window.setTimeout(reorient, 0);
-
           var resize = function() {
              var deviceWidth = document.documentElement.clientWidth;
              if(deviceWidth > 1080) {

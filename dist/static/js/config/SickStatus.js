@@ -1,96 +1,98 @@
 module.exports = [{
     status: '',
-    question: '是否有禁止性震颤',
+    question: '是否出现单侧或双侧上下肢不自主抖动，紧张时更明显',
 }, {
     status: '',
-    question: '是否写字越来越小'
+    question: '是否经常出现活动过程中，手脚轻度或明显僵硬'
 }, {
     status: '',
-    question: '是否有慌张步态'
+    question: '是否身体短暂活动后容易出现疲劳'
 }, {
     status: '',
-    question: '是否面部表情减少',
-    explain: '面具脸'
+    question: '是否家属或朋友反映你的面部表情较以前缺少丰富表情',
 }, {
     status: '',
-    question: '是否有手部肌肉张力增高'
+    question: '是否出现手部肌肉活动受限或持筷、写字等精细动作不灵活'
 }, {
     status: '',
-    question: '是否有姿势步态异常'
+    question: '是否行走时姿势欠平稳衡或步态欠灵活'
 }, {
     status: '',
-    question: '是否有站立牵拉平衡障碍'
+    question: '是否站立或上下楼梯或坡度时觉得身体容易向一侧平衡失调'
 }, {
     status: '',
-    question: '是否有抑郁、淡漠、焦虑'
+    question: '是否经常出现抑郁、淡漠、焦虑情绪'
 }, {
     status: '',
-    question: '是否有兴趣缺失'
+    question: '是否过去感兴趣的事情最近兴趣明显缺失'
 }, {
     status: '',
     question: '是否难以集中注意力'
 }, {
     status: '',
-    question: '是否会产生幻觉、妄想、错觉'
+    question: '是否经常产生幻觉、妄想、错觉？特别是服用药物后'
 }, {
     status: '',
-    question: '是否有记忆力下降的情况'
+    question: '是否出现近期记忆力下降的情况？甚至白天晚上时空不分'
 }, {
     status: '',
-    question: '是否有强迫行为(可由药物引起)和重复性行为'
+    question: '是否有肢体强迫行为(可由药物引起)和重复性行为？或头脑中出现强迫思想'
 }, {
     status: '',
-    question: '是否有惊恐发作'
+    question: '是否睡梦中经常出现惊恐情景或噩梦'
 }, {
     status: '',
-    question: '是否有不宁腿综合征和周期性肢体运动'
+    question: '是否双下肢出现难以描述的感觉异常症状',
+    explain: '不宁腿综合征和周期性肢体运动'
 }, {
     status: '',
-    question: '是否出现日间过度嗜睡'
+    question: '是否出现白天不分场合的过度嗜睡',
+    explain: '日间过度嗜睡'
 }, {
     status: '',
-    question: '是否有生动梦境'
+    question: '是否经常出现生动梦境'
 }, {
     status: '',
-    question: '是否有睡眠呼吸障碍'
+    question: '睡眠过程中经常出现呼吸障碍',
+    explain: '特别是严重鼾声或呼吸暂停'
 }, {
     status: '',
-    question: '是否会失眠'
+    question: '是否经常出现失眠，难以入睡'
 }, {
     status: '',
-    question: '是否有味觉缺失'
+    question: '是否感觉不到食物味道，出现味觉缺失'
 }, {
     status: '',
-    question: '是否有嗅觉障碍'
+    question: '是否开始明显的嗅觉障碍，不能区分各种气味'
 }, {
     status: '',
-    question: '是否有流涎'
+    question: '是否出现一侧口腔流口水现象，即口腔流涎'
 }, {
     status: '',
-    question: '是否有便秘'
+    question: '是否经常出现便秘、腹胀，难以消化'
 }, {
     status: '',
-    question: '是否有小便不尽'
+    question: '是否经常出现日间小便不尽'
 }, {
     status: '',
-    question: '是否有尿频或夜尿增多情况'
+    question: '是否出现尿频或夜尿增多情况'
 }, {
     status: '',
-    question: '您的血压值是正常吗',
+    question: '你自己在家或医生体检的多次测量的血压值多少？是否在正常范围',
     options: ['低血压','正常','高血压']
 }, {
     status: '',
-    question: '是否有直立性低血压情况',
+    question: '是否站立时出现头昏眼黑，血压体位性降低即直立性低血压情况',
     explain: '突然站立时血压得急剧下降'
 }, {
     status: '',
-    question: '是否有性功能障碍'
+    question: '是否出现性功能障碍'
 }, {
     status: '',
-    question: '是否有感觉异常（疼痛、疲劳）'
+    question: '是否出现肢体特别是小腿部或躯干不明原因的感觉异常（疼痛、疲劳）'
 }, {
     status: '',
-    question: '是否有冻结步态',
+    question: '出现冻结步态',
     explain: '起步困难，像被胶水粘住双脚，遇到空间障碍或紧张时明显'
 }, {
     status: '',
@@ -98,11 +100,11 @@ module.exports = [{
     explain: '药物治疗若干年后出现药性减弱，药效维持时间变短'
 }, {
     status: '',
-    question: '是否有开关现象',
+    question: '是否出现药物的开关现象',
     explain: '帕金森病症状在突然缓解和突然加重之间转换，缓解时常有不自主运动，加重时全身僵硬、寸步难行'
 }, {
     status: '',
-    question: '是否对多巴胺无反应或延迟“开期”',
+    question: '是否对多巴胺类药物无反应或延迟“开期”',
     explain: '服药后没有效果'
 }, {
     status: '',
@@ -111,33 +113,33 @@ module.exports = [{
 }, {
     status: '',
     question: '是否有双相异动症',
-    explain: '在剂初和剂末均出现运动多是刻板的，节律的，非对称的'
+    explain: '服药初和服药末均出现四肢异常难以控制的运动，多为刻板的，节律，非对称的扭动'
 }, {
     status: '',
-    question: '是否有关期肌张力障碍',
-    explain: '表现为足或小腿痛性痉挛，多发生于清晨服药前多或左旋多巴疗效减退时，以足、腿痉挛多见'
+    question: '是否出现关期肌张力障碍现象',
+    explain: '足或小腿痛性痉挛，多发生于清晨服药前多或左旋多巴疗效减退时，以足、腿痉挛多见'
 }, {
     status: '',
-    question: '是否做手术DBS'
+    question: '是否做了脑起搏手术即DBS'
 }, {
     status: '',
-    question: '是否做日常头颈部锻炼'
+    question: '是否在医生指导下日常做头颈部锻炼'
 }, {
     status: '',
-    question: '是否做鼓腮锻炼'
+    question: '是否在医生指导下经常做鼓腮锻炼'
 }, {
     status: '',
-    question: '是否做面部动作训练'
+    question: '是否在医生指导下做面部动作训练'
 }, {
     status: '',
-    question: '是否做语言训练'
+    question: '是否在医生指导下做语言训练'
 }, {
     status: '',
-    question: '是否做步态训练'
+    question: '是否在医生指导下做步态训练'
 }, {
     status: '',
-    question: '是否做躯干训练'
+    question: '是否在医生指导下做躯干训练'
 }, {
     status: '',
-    question: '是否做平衡训练'
+    question: '是否在医生指导下做平衡训练'
 }]

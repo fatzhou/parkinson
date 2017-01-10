@@ -27,6 +27,7 @@
 <script>
 import util from '../../static/js/util.js'
 import EnvironmentQuestion from '../../static/js/config/EnvironmentQuestion.js'
+import myAlert from '../../static/js/alert.js'
     export default {
         data() {
             return {
@@ -39,14 +40,15 @@ import EnvironmentQuestion from '../../static/js/config/EnvironmentQuestion.js'
         created() {
           util.storeData.get(this.key, this.items);
           util.storeData.get('info', this, 'info');
-          if(!this.info || !this.info.doctorMobile || !this.info.patientMobile || !this.info.familyMobile) {
-              location.href = '/';
+          if(!this.info || !this.info.doctorMobile || !this.info.familyMobile) {
+              // location.href = '/';
+              this.$router.push("Login");
           }
         },
         methods :{
           goBack() {
             util.storeData.set(this.key, this.items);
-            $router.push("FamilyMember");
+            this.$router.push("FamilyMember");
           },
           goNext() {
             var flag = util.checkForm(this.items, 'status', 2);
@@ -66,13 +68,13 @@ import EnvironmentQuestion from '../../static/js/config/EnvironmentQuestion.js'
                 .then((response) => {
                   var data = response.body;
                   if(data.code === 0) {
-                    $router.push("FinishPage");
+                    this.$router.push("FinishPage");
                   } else {
-                    alert(data.message);
+                    myAlert(data.message);
                   }
                 })
                 .catch(function(response) {
-                  alert('您当前网络出现故障，请稍后再试');
+                  myAlert('您当前网络出现故障，请稍后再试');
                 });
             }
 

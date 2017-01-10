@@ -9,6 +9,28 @@
   position: absolute;
   /* left:40%;top:40%; */ }
 
+.ui-dialog-content {
+  position: fixed;
+  top: 50%;
+  left: 5%;
+  right: 5%;
+  width: 90%;
+  transform: translateY(-50%);
+  background: #fff;
+  box-sizing: border-box;
+  word-break: break-all;
+  padding-bottom: .5rem;
+  display: none;
+}
+
+.ui-dialog-content p {
+  font-size: .48rem;
+  text-align: center;
+  line-height: 1.25;
+  padding: 1rem;
+  color: #909090;
+}
+
 .ui-dialog-close {
   position: absolute;
   right: 10px;

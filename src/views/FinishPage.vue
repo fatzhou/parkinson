@@ -25,7 +25,7 @@ import util from '../../static/js/util.js'
         methods :{
           getResult: function() {
 
-            $router.push("ResultShow");
+            this.$router.push("ResultShow");
           }
         },
     }

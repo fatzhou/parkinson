@@ -24,13 +24,30 @@ module.exports = [{
     ]
 }, {
     logo: '../static/image/data_icon_phone.png',
-    question: '手机号码',
+    question: '本人电话',
     type: 1,
     status: '',
     id: 'tel',
     validate: 'telephone',
     default: '填写'
 }, {
+    logo: '../static/image/data_icon_phone.png',
+    question: '子女电话1',
+    type: 1,
+    status: '',
+    id: 'tel',
+    validate: 'telephone',
+    default: '填写'
+}, {
+    logo: '../static/image/data_icon_phone.png',
+    question: '子女电话2',
+    type: 1,
+    status: '',
+    notneed: true,
+    id: 'tel',
+    validate: 'telephone',
+    default: '填写'
+},{
     logo: '../static/image/data_icon_city.png',
     question: '居住地',
     type: 4,

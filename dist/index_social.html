@@ -1,0 +1,11 @@
+<!DOCTYPE html><html><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=0"><meta http-equiv=X-UA-Compatible content="IE=edge"><meta content=yes name=apple-mobile-web-app-capable><meta content=yes name=apple-touch-fullscreen><meta content="telephone=no,email=no" name=format-detection><meta name=App-Config content="fullscreen=yes,useHistoryState=yes,transition=yes"><link rel=stylesheet href=static/css/common.css><link rel=stylesheet href=static/css/dialog.css><link rel="shotcut icon" href=favicon.png><script src=static/js/jquery.1.9.1.js></script><script src=static/js/dialog.js></script><script src=static/js/mobile-select-date.js></script><script src=static/js/mobile-select-area.js></script><title>睿云</title><link href=static/css/app_social.a2dbca553420fcdcde8c6a2887d7990e.css rel=stylesheet></head><body><div id=app><router-view></router-view></div><script>$(function() {
+          var resize = function() {
+             var deviceWidth = document.documentElement.clientWidth;
+             if(deviceWidth > 1080) {
+               deviceWidth = 1080;
+             }
+             document.documentElement.style.fontSize = deviceWidth / 12.42 + 'px';
+          };
+          window.onresize = resize;
+          window.setTimeout(resize, 0);
+        });</script><script type=text/javascript src=static/js/manifest.87827ad33962a3cf5b48.js></script><script type=text/javascript src=static/js/vendor.65e9e638b1b3736a7770.js></script><script type=text/javascript src=static/js/app_social.704ee2186ba2d5cb23b0.js></script></body></html>

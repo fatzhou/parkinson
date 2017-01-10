@@ -12,9 +12,13 @@
               <input :id="item.name" :name="item.name" v-model.trim="item.status" :placeholder="item.placeholder" >
             </label>
           </li>
-          <li>
         </ul>
-
+        <div class="protocol">
+          <label>
+            <input type="checkbox" v-model="protocolConfirm">
+            <span>我同意</span><a href="javascript:;" @click="beforeGoProtocol">《{{protocolName}}》</a>
+          </label>
+        </div>
       </div>
     </div>
     <div class="button" @click="queryPatient" >确定</div>
@@ -23,12 +27,18 @@
 
 <script>
   import util from '../../static/js/util.js'
+  import myAlert from '../../static/js/alert.js'
   import loginConfig from '../../static/js/config/Login.js'
     export default {
+        name: 'Login',
         data() {
             return {
               url: util.api.host + util.api.Login.url,
               key: 'Login',
+              // loginInfo: {
+              //   type: 'patient'
+              // },
+              protocolConfirm: false,
               items: loginConfig,
               info: {
                 doctorMobile: '',
@@ -37,12 +47,44 @@
               }
             }
         },
+        props: ['loginInfo','protocolName',"nextStep"],
         created() {
+          // console.log(this.loginInfo)
+          // util.storeData.type = this.loginInfo.type;
+          // util.storeData.set('loginInfo', this, 'loginInfo');
           util.storeData.get(this.key, this.items);
+          util.storeData.get('info', this, 'info');
+
+          if(!this.info.doctorMobile && this.items[1].status) {
+            // location.reload();
+            this.items.forEach(function(item) {
+              item.status = '';
+            })
+          }
+        },
+        mounted() {
+
         },
         methods :{
+            beforeGoProtocol() {
+              this.saveData();
+              this.$router.push('Protocol');
+            },
+            saveData() {
+              this.info.doctorMobile = this.items[1].status;
+              util.storeData.set(this.key, this.items);
+              util.storeData.set('info', this, 'info');
+            },
             queryPatient () {
                 var flag = util.checkForm(this.items);
+                if(flag) {
+                  if(!this.protocolConfirm) {
+                    myAlert({
+                      str: '请勾选' + this.protocolName
+                    });
+                    return false;
+                  }
+                }
                 if(flag) {
                   var data = {
                     name: this.items[0].status,
@@ -53,18 +95,16 @@
                   .then((response) => {
                     var data = response.body;
                     if(data.code === 0) {
-                      this.info.doctorMobile = this.items[1].status;
-                      util.storeData.set(this.key, this.items);
-                      util.storeData.set('info', this, 'info');
-                      $router.push("PatientInfo");
+                      this.saveData();
+                      this.$router.push(this.nextStep);
                     } else {
                       console.log(data.message)
-                      alert(data.message);
+                      myAlert(data.message);
                     }
                   })
                   .catch(function(e) {
                     console.log(e)
-                    alert('查询医生信息失败，请稍后再试');
+                    myAlert('查询医生信息失败，请稍后再试');
                   });
                 }
             }
@@ -150,6 +190,25 @@
   .button {
     margin-top: -2.6rem;
     margin-bottom: 1rem;
+  }
+  .protocol {
+    width: 9.2rem;
+    margin: 0 auto;
+    box-sizing: border-box;
+    padding-left: 1.1rem;
+    font-size: .4rem;
+    line-height: 1.75;
+    margin-top: -.4rem;
+  }
+  .protocol span, .protocol input, .protocol a {
+    display: inline-block;
+    vertical-align: middle;
+  }
+  .protocol span {
+    margin-left: .2rem;
+  }
+  .protocol a {
+    color:#5591fc;
   }
 </style>
 <!-- 样式自行设置，或者直接看源码就好 -->

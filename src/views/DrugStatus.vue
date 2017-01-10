@@ -31,13 +31,14 @@
     </div>
     <div class="function-area">
        <div class="back-button confirm-button" @click="goBack">上一部分</div>
-       <div class="next-button button" @click="goNext">保存并添加家属</div>
+       <div class="next-button button" @click="goNext">完成提交</div>
     </div>
   </div>
 </template>
 
 <script>
 import util from '../../static/js/util.js'
+import myAlert from '../../static/js/alert.js'
 import drugStatus from '../../static/js/config/DrugStatus.js'
     export default {
         data() {
@@ -55,7 +56,8 @@ import drugStatus from '../../static/js/config/DrugStatus.js'
         created() {
           util.storeData.get('info', this, 'info');
           if(!this.info || !this.info.doctorMobile || !this.info.patientMobile) {
-              location.href = '/';
+              // location.href = '/';
+              this.$router.push("Login");
           }
           util.storeData.get(this.key+'Amount', this.items, 'amount');
           util.storeData.get(this.key+'Times', this.items, 'times');
@@ -64,7 +66,7 @@ import drugStatus from '../../static/js/config/DrugStatus.js'
         methods :{
           goBack() {
             this.saveData();
-            $router.push("SickStatus");
+            this.$router.push("SickStatus");
           },
           goNext() {
               var flag = true;
@@ -88,13 +90,13 @@ import drugStatus from '../../static/js/config/DrugStatus.js'
                   var data = response.body;
                   if(data.code === 0) {
                     // this.saveData();
-                    $router.push("FamilyMember");
+                    this.$router.push("FamilyMemberAdd");
                   } else {
-                    alert(data.message);
+                    myAlert(data.message);
                   }
                 })
                 .catch(function(response) {
-                  alert('您当前网络出现故障，请稍后再试');
+                  myAlert('您当前网络出现故障，请稍后再试');
                 });
 
               }

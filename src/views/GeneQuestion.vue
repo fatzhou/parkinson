@@ -3,6 +3,7 @@
     <h1>基因因素</h1>
     <div class="ul-wrap bottom-padding">
       <ul>
+        <li class="li-desc"><p>（检测基因结果应认真咨询专业医生）</p></li>
         <li v-for="item,index in items">
           <p>{{index+1}}. {{item.question}}？</p>
           <label >
@@ -31,6 +32,7 @@
 <script>
     import util from '../../static/js/util.js'
     import GeneQuestion from '../../static/js/config/GeneQuestion.js'
+    import myAlert from '../../static/js/alert.js'
     export default {
         data() {
             return {
@@ -44,16 +46,17 @@
           util.storeData.get(this.key, this.items);
           util.storeData.get('info', this, 'info');
           if(!this.info || !this.info.doctorMobile || !this.info.patientMobile || !this.info.familyMobile) {
-              location.href = '/';
+              // location.href = '/';
+              this.$router.push("Login");
           }
         },
         methods :{
           goBack() {
             util.storeData.set(this.key, this.items);
-            $router.push("FamilyMember");
+            this.$router.push("FamilyMember");
           },
           goNext() {
-            var flag = util.checkForm(this.items, 'status' ,2);
+            var flag = util.checkForm(this.items, 'status' ,2, '资料未填写完整，部分题目未选择');
             if(flag) {
               util.storeData.set(this.key, this.items);
               var answers = this.items.map(function(item) {
@@ -71,13 +74,13 @@
                 var data = response.body;
                 console.log(response, data)
                 if(data.code === 0) {
-                  $router.push("FinishPage");
+                  this.$router.push("FinishPage");
                 } else {
-                  alert(data.message);
+                  myAlert(data.message);
                 }
               })
               .catch(function(response) {
-                alert('您当前网络出现故障，请稍后再试');
+                myAlert('您当前网络出现故障，请稍后再试');
               });
             }
           }
@@ -128,5 +131,13 @@
   li label input, li label span {
     display: inline-block;
     vertical-align: middle;
+  }
+  .li-desc {
+    margin-bottom: -.35rem;
+  }
+  .li-desc p {
+    color: #fa8e52;
+    text-align: center;
+    border: none;
   }
 </style>

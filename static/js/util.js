@@ -1,3 +1,5 @@
+var myAlert = require('./alert.js');
+
 var validator = {
     email: function(str) {
         var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -15,12 +17,13 @@ function filteremoji(str){
         '\ud83d[\udc00-\ude4f]',
         '\ud83d[\ude80-\udeff]'
     ];
-    return  str.replace(new RegExp(ranges.join('|'), 'g'), '');
+    return  str.toString().replace(new RegExp(ranges.join('|'), 'g'), '');
 }
 
-var checkForm = function(data, attr, style) {
+var checkForm = function(data, attr, style, tips) {
     attr = attr || 'status';
     style = style || 1;
+    tips = tips || '部分题目未选择'
     var flag = data.every(function(item, index) {
         var desc = (item.desc || item.question).replace('：', '');
         function checkEmoji(str) {
@@ -28,21 +31,22 @@ var checkForm = function(data, attr, style) {
           return reg.test(str);
         };
         if(checkEmoji(item[attr])) {
-          alert('您输入的' + desc + '含有表情符号');
+          myAlert('您输入的' + desc + '含有表情符号');
           $('li').get(index).scrollIntoView(true);
           return false;
         }
         if (!item[attr] && !item.notneed) {
             if (style == 1) {
-                alert('请填写' + desc);
+                myAlert('请填写' + desc);
             } else {
-                alert('第' + (index + 1) + '题尚未回答');
+                // alert('第' + (index + 1) + '题尚未回答');
+                myAlert(tips);
             }
             $('li').get(index).scrollIntoView(true);
             return false;
         } else if (item.validate) {
             if (validator[item.validate] && item[attr] && !validator[item.validate](item[attr])) {
-                alert('请填写正确的' + desc);
+                myAlert('请填写正确的' + desc);
                 $('li').get(index).scrollIntoView(true);
                 return false;
             } else {
@@ -56,27 +60,29 @@ var checkForm = function(data, attr, style) {
 }
 
 var api = {
-    'host': 'http://ruiyun.gyenno.com',
+    'host': 'http://ruiyuntest.gyenno.com/service_im_test',
     'Login': {
-        url: '/service_im/doctorConfirm'
+        url: '/doctorConfirm'
     },
     'PatientInfo': {
-        url: '/service_im/upsertPatient'
+        url: '/upsertPatient'
     },
     'SickStatus': {
-        url: '/service_im/upsertQuiz'
+        url: '/upsertQuiz'
     },
     'DrugStatus': {
-        url: '/service_im/upsertMed'
+        url: '/upsertMed'
     },
     'FamilyMember': {
-        url: '/service_im/upsertFamily',
-        verifyCodeUrl: '/service_im/getSmscode',
-        updateUrl: '/service_im/updatePatient'
+        url: '/upsertFamily',
+        verifyCodeUrl: '/getSmscode',
+        updateUrl: '/updatePatient'
     }
 };
 
 var storeData = {
+    prefix: 'loginInfo',
+    loginType: {},
     isLocalStorageSupported: function(){
       var testKey = 'test',
           storage = window.sessionStorage;
@@ -88,7 +94,12 @@ var storeData = {
           return false;
       }
     }(),
-    storage: window.sessionStorage || null,
+    storage: window.sessionStorage || window.localStorage || null,
+    getType: function() {
+      this.get(this.prefix, this, 'loginType');
+      console.log(this.loginType)
+      return this.loginType.type || 'patient';
+    },
     set: function(key, items, attr) {
         attr = attr || 'status';
         var data = [];
@@ -99,7 +110,17 @@ var storeData = {
         } else {
             data = items[attr];
         }
-        data = JSON.stringify(data);
+        if(typeof data !== 'string') {
+          data = JSON.stringify(data);
+        }
+
+        // if(key != this.prefix) {
+        //   if(!this.loginType.type) {
+        //     this.getType();
+        //   }
+        //   key = this.loginType.type+ '_' + key;
+        // }
+
         if (this.isLocalStorageSupported) {
             this.storage.removeItem(key);
             this.storage.setItem(key, data);
@@ -111,6 +132,15 @@ var storeData = {
     get: function(key, items, attr) {
         var data = '';
         attr = attr || 'status';
+
+        // if(key != this.prefix) {
+        //   console.log(this.loginType.type)
+        //   if(!this.loginType.type) {
+        //     this.getType();
+        //   }
+        //   console.log(this.loginType.type)
+        //   key = this.loginType.type + '_' + key;
+        // }
 
         if (this.isLocalStorageSupported) {
             data = this.storage.getItem(key);
@@ -128,10 +158,8 @@ var storeData = {
         if (data) {
             try {
                 data = JSON.parse(data);
-                console.log(3,data)
             } catch (e) {
                 data = eval('(' + data + ')');
-                console.log(4, data)
             }
 
             if (Object.prototype.toString.call(data).toLowerCase().indexOf('array') > -1) {

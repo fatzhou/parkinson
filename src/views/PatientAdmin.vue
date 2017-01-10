@@ -23,7 +23,7 @@
       },
       methods :{
         goNext() {
-          $router.push('PatientList');
+          this.$router.push('PatientList');
         }
       }
   }

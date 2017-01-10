@@ -1,23 +1,8 @@
 const routes = [
   {
     path: '/Login',
-    name: 'Login',
-    component: require('./views/Login')
-  },
-  {
-    path: '/PatientInfo',
-    name: 'patientInfo',
-    component: require('./views/PatientInfo')
-  },
-  {
-    path: '/SickStatus',
-    name: 'sickStatus',
-    component: require('./views/SickStatus')
-  },
-  {
-    path: '/DrugStatus',
-    name: 'drugStatus',
-    component: require('./views/DrugStatus')
+    name: 'LoginSocial',
+    component: require('./views/LoginSocial')
   },
   {
     path: '/FamilyMember',
@@ -50,14 +35,9 @@ const routes = [
     component: require('./views/Protocol')
   },
   {
-    path: '/FamilyMemberAdd',
-    name: 'FamilyMemberAdd',
-    component: require('./views/FamilyMemberAdd')
-  },
-  {
     path: '*',
     redirect: {
-      name: 'Login'
+      name: 'LoginSocial'
     }
   }
 ];

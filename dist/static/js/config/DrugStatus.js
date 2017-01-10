@@ -19,6 +19,11 @@ module.exports = [{
     times: '',
     years: ''
 }, {
+    drug: '罗匹尼罗',
+    amount: '',
+    times: '',
+    years: ''
+}, {
     drug: '金刚烷胺',
     amount: '',
     times: '',
