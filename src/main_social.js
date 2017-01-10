@@ -21,8 +21,12 @@ const app = new Vue({
 }).$mount('#app')
 
 // window.$router = router;
-// window.$info = {
-//   doctorMobile: '',
-//   patientMobile: '',
-//   familyMobile: ''
-// };
+window.info = {
+  doctorMobile: '',
+  patientMobile: '',
+  familyMobile: ''
+};
+
+window.onload = function() {
+  router.push('Login');
+}

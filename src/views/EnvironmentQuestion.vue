@@ -38,27 +38,27 @@ import myAlert from '../../static/js/alert.js'
             }
         },
         created() {
-          util.storeData.get(this.key, this.items);
-          util.storeData.get('info', this, 'info');
-          if(!this.info || !this.info.doctorMobile || !this.info.familyMobile) {
-              // location.href = '/';
-              this.$router.push("Login");
-          }
+          // util.storeData.get(this.key, this.items);
+          // util.storeData.get('info', this, 'info');
+          // if(!this.info || !this.info.doctorMobile || !this.info.familyMobile) {
+          //     // location.href = '/';
+          //     this.$router.push("Login");
+          // }
         },
         methods :{
           goBack() {
-            util.storeData.set(this.key, this.items);
+            // util.storeData.set(this.key, this.items);
             this.$router.push("FamilyMember");
           },
           goNext() {
             var flag = util.checkForm(this.items, 'status', 2);
             if(flag) {
-              util.storeData.set(this.key, this.items);
+              // util.storeData.set(this.key, this.items);
                 var answers = this.items.map(function(item) {
                   return +item.status;
                 });
                 var postData = {
-                  "patientMobile": this.info.familyMobile,
+                  "patientMobile": window.info.familyMobile,
                   "quizAnswers": {
                       "quizId": 3,
                       "answers": answers

@@ -37,18 +37,18 @@
           }
       },
       created() {
-        util.storeData.get('info', this, 'info');
-        if(!this.info || !this.info.doctorMobile) {
-            // location.href = '/';
-            this.$router.push("Login");
-        }
-        util.storeData.get(this.key, this.items);
+        // util.storeData.get('info', this, 'info');
+        // if(!this.info || !this.info.doctorMobile) {
+        //     // location.href = '/';
+        //     this.$router.push("Login");
+        // }
+        // util.storeData.get(this.key, this.items);
       },
       methods :{
         saveData() {
-          this.info.patientMobile = this.items[3].status;
-          util.storeData.set(this.key, this.items);
-          util.storeData.set('info', this, 'info');
+          window.info.patientMobile = this.items[3].status;
+          // util.storeData.set(this.key, this.items);
+          // util.storeData.set('info', this, 'info');
         },
         savePatientInfo: function() {
           var flag = util.checkForm(this.items);
@@ -59,7 +59,7 @@
                 // console.log(livePlace, items[4].status)
             this.saveData();
             var postData = {
-              "doctorMobile": this.info.doctorMobile,
+              "doctorMobile": window.info.doctorMobile,
               "patient":
               {
                   "mobile": items[3].status,

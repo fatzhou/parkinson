@@ -17,10 +17,11 @@ import util from '../../static/js/util.js'
             }
         },
         mounted: function() {
-          util.storeData.get('info', this, 'info');
-          if(!this.info || !this.info.doctorMobile || !this.info.patientMobile || !this.info.familyMobile) {
-              location.href = '/';
-          }
+          // util.storeData.get('info', this, 'info');
+          // if(!this.info || !this.info.doctorMobile || !this.info.familyMobile) {
+          //     // location.href = '/';
+          //     this.$router.push('Login');
+          // }
         },
         methods :{
           getResult: function() {

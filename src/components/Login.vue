@@ -40,11 +40,11 @@
               // },
               protocolConfirm: false,
               items: loginConfig,
-              info: {
-                doctorMobile: '',
-                patientMobile: '',
-                familyMobile: ''
-              }
+              // info: {
+              //   doctorMobile: '',
+              //   patientMobile: '',
+              //   familyMobile: ''
+              // }
             }
         },
         props: ['loginInfo','protocolName',"nextStep"],
@@ -52,28 +52,29 @@
           // console.log(this.loginInfo)
           // util.storeData.type = this.loginInfo.type;
           // util.storeData.set('loginInfo', this, 'loginInfo');
-          util.storeData.get(this.key, this.items);
-          util.storeData.get('info', this, 'info');
+          // util.storeData.get(this.key, this.items);
+          // util.storeData.get('info', this, 'info');
 
-          if(!this.info.doctorMobile && this.items[1].status) {
-            // location.reload();
-            this.items.forEach(function(item) {
-              item.status = '';
-            })
-          }
+          // if(!this.info.doctorMobile && this.items[1].status) {
+          //   // location.reload();
+          //   this.items.forEach(function(item) {
+          //     item.status = '';
+          //   })
+          // }
         },
         mounted() {
 
         },
         methods :{
             beforeGoProtocol() {
-              this.saveData();
+              // this.saveData();
               this.$router.push('Protocol');
             },
             saveData() {
-              this.info.doctorMobile = this.items[1].status;
-              util.storeData.set(this.key, this.items);
-              util.storeData.set('info', this, 'info');
+              window.info.doctorMobile = this.items[1].status;
+              // this.info.doctorMobile = this.items[1].status;
+              // util.storeData.set(this.key, this.items);
+              // util.storeData.set('info', this, 'info');
             },
             queryPatient () {
                 var flag = util.checkForm(this.items);

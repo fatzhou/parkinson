@@ -1,10 +1,10 @@
 <template>
   <div id="finish-page">
-    <h1>完成</h1>
+    <h1>完成<a href="javascript:;" @click="close">关闭</a></h1>
     <div class="content">
       <img src="../../static/image/answer_icon_finish.png" alt="">
       <p class="first-p">您已经完成了帕金森患者问卷!</p>
-      <p class="second-p">添加家庭成员，进行帕金森前驱期筛查，提前检测家庭成员患帕金森的风险</p>
+      <p class="second-p">添加家庭成员，进行帕金森前驱期筛查，提前检测家庭成员患帕金森的风险1111</p>
       <div class="button confirm-button confirm-button-1" @click="getResult">添加家庭成员</div>
     </div>
   </div>
@@ -18,15 +18,20 @@ import util from '../../static/js/util.js'
             }
         },
         mounted: function() {
-          util.storeData.get('info', this, 'info');
-          if(!this.info || !this.info.doctorMobile) {
-              // location.href = '/';
-              this.$router.push("Login");
-          }
+          // util.storeData.get('info', this, 'info');
+          // if(!this.info || !this.info.doctorMobile) {
+          //     // location.href = '/';
+          //     this.$router.push("Login");
+          // }
         },
         methods :{
           getResult: function() {
             this.$router.push("FamilyMember");
+          },
+          close: function() {
+            // util.storeData.clear();
+            // this.$router.push('Login');
+            location.reload();
           }
         },
     }
@@ -44,6 +49,16 @@ import util from '../../static/js/util.js'
     padding: .42rem 0;
     color: #3c485a;
     background: #fff;
+  }
+  h1 a {
+    position: absolute;
+    right: 0;
+    font-size: .48rem;
+    line-height: 1.38rem;
+    top: 0;
+    padding: 0 .5rem;
+    color: #5a7193;
+    display: block;
   }
   .content {
     background: #fff;

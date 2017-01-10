@@ -54,12 +54,12 @@ require('../../static/css/mobile-select-date.less')
           }
       },
       created() {
-        util.storeData.get('info', this, 'info');
-        if(!this.info || !this.info.doctorMobile) {
-            this.$router.push("Login");
-            // location.href = '/';
-          }
-        util.storeData.get(this.key, this.items);
+        // util.storeData.get('info', this, 'info');
+        // if(!this.info || !this.info.doctorMobile) {
+        //     this.$router.push("Login");
+        //     // location.href = '/';
+        //   }
+        // util.storeData.get(this.key, this.items);
       },
       methods: {
         getVerifyCode() {
@@ -114,7 +114,7 @@ require('../../static/css/mobile-select-date.less')
             this.saveData();
             var items = this.items;
             var family = {
-                "mobile": this.info.familyMobile,
+                "mobile": window.info.familyMobile,
                 "relation": items[0].status,
                 "name": util.filteremoji(items[1].status),
                 "birthday": items[3].status,
@@ -135,8 +135,8 @@ require('../../static/css/mobile-select-date.less')
               family.liveCity = home[1];
             }
             var postData = {
-              "doctorMobile": this.info.doctorMobile,
-              "patientMobile": this.info.familyMobile,
+              "doctorMobile": window.info.doctorMobile,
+              "patientMobile": window.info.familyMobile,
               "family": family
             };
             console.log(postData)
@@ -164,13 +164,13 @@ require('../../static/css/mobile-select-date.less')
           })
         },
         goNext2() {
-          this.updateFamilyInfo(1, function() {
+          this.updateFamilyInfo(1, ()=> {
             this.$router.push("EnvironmentQuestion");
           })
         },
         updateFamilyInfo(genetest, callback) {
             var postData = {
-              "patientMobile": this.info.familyMobile,
+              "patientMobile": window.info.familyMobile,
               "genetest": genetest
             };
             console.log(postData)
@@ -186,9 +186,9 @@ require('../../static/css/mobile-select-date.less')
             })
         },
         saveData() {
-            this.info.familyMobile = this.items[4].status;
-            util.storeData.set(this.key, this.items);
-            util.storeData.set('info', this, 'info');
+            window.info.familyMobile = this.items[4].status;
+            // util.storeData.set(this.key, this.items);
+            // util.storeData.set('info', this, 'info');
         }
       },
       components: {InfoType}

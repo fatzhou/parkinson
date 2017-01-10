@@ -46,22 +46,22 @@ import drugStatus from '../../static/js/config/DrugStatus.js'
               url: util.api.host + util.api.DrugStatus.url,
               key: 'DrugStatus',
               items: drugStatus,
-              info: {
-                doctorMobile: '',
-                patientMobile: '',
-                familyMobile: ''
-              }
+              // info: {
+              //   doctorMobile: '',
+              //   patientMobile: '',
+              //   familyMobile: ''
+              // }
             }
         },
         created() {
-          util.storeData.get('info', this, 'info');
-          if(!this.info || !this.info.doctorMobile || !this.info.patientMobile) {
-              // location.href = '/';
-              this.$router.push("Login");
-          }
-          util.storeData.get(this.key+'Amount', this.items, 'amount');
-          util.storeData.get(this.key+'Times', this.items, 'times');
-          util.storeData.get(this.key+'Years', this.items, 'years');
+          // util.storeData.get('info', this, 'info');
+          // if(!this.info || !this.info.doctorMobile || !this.info.patientMobile) {
+          //     // location.href = '/';
+          //     this.$router.push("Login");
+          // }
+          // util.storeData.get(this.key+'Amount', this.items, 'amount');
+          // util.storeData.get(this.key+'Times', this.items, 'times');
+          // util.storeData.get(this.key+'Years', this.items, 'years');
         },
         methods :{
           goBack() {
@@ -80,7 +80,7 @@ import drugStatus from '../../static/js/config/DrugStatus.js'
                   };
                 });
                 var postData = {
-                  "patientMobile": this.info.patientMobile,
+                  "patientMobile": window.info.patientMobile,
                   "med": meds
                 };
                 console.log(postData)
@@ -103,9 +103,9 @@ import drugStatus from '../../static/js/config/DrugStatus.js'
           },
           saveData() {
             // util.storeData.set('info', this, 'info');
-            util.storeData.set(this.key+'Amount', this.items, 'amount');
-            util.storeData.set(this.key+'Times', this.items, 'times');
-            util.storeData.set(this.key+'Years', this.items, 'years');
+            // util.storeData.set(this.key+'Amount', this.items, 'amount');
+            // util.storeData.set(this.key+'Times', this.items, 'times');
+            // util.storeData.set(this.key+'Years', this.items, 'years');
           }
         }
     }

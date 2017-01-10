@@ -42,25 +42,20 @@
               url: util.api.host + util.api.SickStatus.url,
               key: 'SickStatus',
               items: SickStatus,
-              info: {
-                doctorMobile: '',
-                patientMobile: '',
-                familyMobile: ''
-              }
             }
         },
         created() {
-          util.storeData.get('info', this, 'info');
-          if(!this.info || !this.info.doctorMobile || !this.info.patientMobile) {
-            // location.href = '/';
-            this.$router.push("Login");
-          }
-          util.storeData.get(this.key, this.items);
+          // util.storeData.get('info', this, 'info');
+          // if(!this.info || !this.info.doctorMobile || !this.info.patientMobile) {
+          //   // location.href = '/';
+          //   this.$router.push("Login");
+          // }
+          // util.storeData.get(this.key, this.items);
         },
         methods :{
           goBack() {
             // util.storeData.set('info', this, 'info');
-            util.storeData.set(this.key, this.items);
+            // util.storeData.set(this.key, this.items);
             this.$router.push("PatientInfo");
           },
           goNext() {
@@ -70,7 +65,7 @@
                 return +item.status;
               });
               var postData = {
-                "patientMobile": this.info.patientMobile,
+                "patientMobile": window.info.patientMobile,
                 "quizAnswers": {
                     "quizId": 1,
                     "answers": answers
@@ -80,7 +75,7 @@
               .then((response) => {
                 var data = response.body;
                 if(data.code === 0) {
-                  util.storeData.set(this.key, this.items);
+                  // util.storeData.set(this.key, this.items);
                   // util.storeData.set('info', this, 'info');
                   this.$router.push("DrugStatus");
                 } else {
