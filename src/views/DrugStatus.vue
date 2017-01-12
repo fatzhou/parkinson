@@ -118,14 +118,19 @@ import drugStatus from '../../static/js/config/DrugStatus.js'
                   };
                 });
 
-                var others = [{
-                  name: otherItem.name,
-                  use: {
-                    dose: parseInt(otherItem.amount) || 0,
-                    time: parseInt(otherItem.times) || 0,
-                    year: parseInt(otherItem.years) || 0
-                  }
-                }];
+                if(otherItem.name) {
+                  var others = [{
+                    name: otherItem.name,
+                    use: {
+                      dose: parseInt(otherItem.amount) || 0,
+                      time: parseInt(otherItem.times) || 0,
+                      year: parseInt(otherItem.years) || 0
+                    }
+                  }];
+                } else {
+                  others = [];
+                }
+
                 var postData = {
                   "patientMobile": window.info.patientMobile,
                   "med": meds,
