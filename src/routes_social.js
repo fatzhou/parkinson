@@ -10,6 +10,11 @@ const routes = [
     component: require('./views/FamilyMemberSocial')
   },
   {
+    path: '/GeneTested',
+    name: 'GeneTested',
+    component: require('./views/GeneTested')
+  },
+  {
     path: '/GeneQuestion',
     name: 'GeneQuestion',
     component: require('./views/GeneQuestion')

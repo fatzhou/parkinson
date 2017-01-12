@@ -25,13 +25,13 @@
        <div class="confirm-button" @click="goNext">保存并开始答题</div>
     </div>
 
-    <div class="dialog-select" v-show="dialog">
+<!--     <div class="dialog-select" v-show="dialog">
       <div class="dialog-select-wrap">
         <p class="question">您是否进行过基因检测？</p>
         <div class="button-answer button-answer-yes" @click="goNext1">有<span>（填写基因题目）</span></div>
         <div class="button-answer button-answer-no" @click="goNext2">没有<span>（填写生活和环境因素题）</span></div>
       </div>
-    </div>
+    </div> -->
   </div>
 </template>
 
@@ -47,7 +47,6 @@
           return {
             url: util.api.host + util.api.FamilyMember.url,
             verifyCodeUrl: util.api.host + util.api.FamilyMember.verifyCodeUrl,
-            updateUrl: util.api.host + util.api.FamilyMember.updateUrl,
             verifyCode: '',
             verifyCodeWord: '获取验证码',
             verifyCodeCount: 0,
@@ -191,7 +190,8 @@
               var data = response.body;
               if(data.code === 0) {
                 this.saveData();
-                this.dialog = true;
+                // this.dialog = true;
+                this.$router.push('EnvironmentQuestion');
               } else if(data.code === 109) {
                 myAlert('您的验证码已过期，请重新获取');
               } else {
@@ -202,33 +202,6 @@
               myAlert('您当前网络出现故障，请稍后再试');
             });
           }
-        },
-        goNext1() {
-          this.updateFamilyInfo(1, ()=> {
-            this.$router.push("GeneQUestion");
-          })
-        },
-        goNext2() {
-          this.updateFamilyInfo(1, ()=> {
-            this.$router.push("EnvironmentQuestion");
-          })
-        },
-        updateFamilyInfo(genetest, callback) {
-            var postData = {
-              "patientMobile": window.info.familyMobile,
-              "genetest": genetest
-            };
-            console.log(postData)
-            this.$http.post(this.updateUrl, postData)
-            .then((response) => {
-              console.log(response)
-              var data = response.body;
-              if(data.code === 0) {
-                callback && callback();
-              } else {
-                myAlert(data.message);
-              }
-            })
         },
         saveData() {
             window.info.familyMobile = this.items.filter(function(it) {

@@ -30,6 +30,11 @@ const routes = [
     component: require('./views/GeneQuestion')
   },
   {
+    path: '/GeneTested',
+    name: 'GeneTested',
+    component: require('./views/GeneTested')
+  },
+  {
     path: '/EnvironmentQuestion',
     name: 'EnvironmentQuestion',
     component: require('./views/EnvironmentQuestion')

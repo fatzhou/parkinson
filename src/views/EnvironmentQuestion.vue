@@ -68,7 +68,7 @@ import myAlert from '../../static/js/alert.js'
                 .then((response) => {
                   var data = response.body;
                   if(data.code === 0) {
-                    this.$router.push("FinishPage");
+                    this.$router.push("GeneTested");
                   } else {
                     myAlert(data.message);
                   }

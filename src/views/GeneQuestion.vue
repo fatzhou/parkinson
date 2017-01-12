@@ -53,7 +53,12 @@
         methods :{
           goBack() {
             // util.storeData.set(this.key, this.items);
-            this.$router.push("FamilyMember");
+            if(window.info.geneTest) {
+              this.$router.push("FamilyMember");
+            } else {
+              this.$router.push('GeneTested');
+            }
+
           },
           goNext() {
             var flag = util.checkForm(this.items, 'status' ,2, '资料未填写完整，部分题目未选择');
