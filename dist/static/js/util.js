@@ -101,75 +101,75 @@ var storeData = {
       return this.loginType.type || 'patient';
     },
     set: function(key, items, attr) {
-        // attr = attr || 'status';
-        // var data = [];
-        // if (Object.prototype.toString.call(items).toLowerCase().indexOf('array') > -1) {
-        //     items.forEach(function(item) {
-        //         data.push(item[attr]);
-        //     });
-        // } else {
-        //     data = items[attr];
-        // }
-        // if(typeof data !== 'string') {
-        //   data = JSON.stringify(data);
+        attr = attr || 'status';
+        var data = [];
+        if (Object.prototype.toString.call(items).toLowerCase().indexOf('array') > -1) {
+            items.forEach(function(item) {
+                data.push(item[attr]);
+            });
+        } else {
+            data = items[attr];
+        }
+        if(typeof data !== 'string') {
+          data = JSON.stringify(data);
+        }
+
+        // if(key != this.prefix) {
+        //   if(!this.loginType.type) {
+        //     this.getType();
+        //   }
+        //   key = this.loginType.type+ '_' + key;
         // }
 
-        // // if(key != this.prefix) {
-        // //   if(!this.loginType.type) {
-        // //     this.getType();
-        // //   }
-        // //   key = this.loginType.type+ '_' + key;
-        // // }
-
-        // if (this.isLocalStorageSupported) {
-        //     this.storage.removeItem(key);
-        //     this.storage.setItem(key, data);
-        // } else {
-        //     var str = key + "=" + encodeURIComponent(data) + ";";
-        //     document.cookie = str;
-        // }
+        if (this.isLocalStorageSupported) {
+            this.storage.removeItem(key);
+            this.storage.setItem(key, data);
+        } else {
+            var str = key + "=" + encodeURIComponent(data) + ";";
+            document.cookie = str;
+        }
     },
     get: function(key, items, attr) {
-        // var data = '';
-        // attr = attr || 'status';
+        var data = '';
+        attr = attr || 'status';
 
-        // // if(key != this.prefix) {
-        // //   console.log(this.loginType.type)
-        // //   if(!this.loginType.type) {
-        // //     this.getType();
-        // //   }
-        // //   console.log(this.loginType.type)
-        // //   key = this.loginType.type + '_' + key;
-        // // }
-
-        // if (this.isLocalStorageSupported) {
-        //     data = this.storage.getItem(key);
-        // } else {
-        //   var cookie = document.cookie;
-        //    var index = cookie.indexOf(key + "=");
-        //    if(index > -1) {
-        //      var start = index + key.length + 1,
-        //         end = cookie.indexOf(";", start);
-        //      end == -1 && (end = cookie.length);
-        //      data = cookie.substring(start, end);
-        //    }
-        //    data = decodeURIComponent(data);
+        // if(key != this.prefix) {
+        //   console.log(this.loginType.type)
+        //   if(!this.loginType.type) {
+        //     this.getType();
+        //   }
+        //   console.log(this.loginType.type)
+        //   key = this.loginType.type + '_' + key;
         // }
-        // if (data) {
-        //     try {
-        //         data = JSON.parse(data);
-        //     } catch (e) {
-        //         data = eval('(' + data + ')');
-        //     }
 
-        //     if (Object.prototype.toString.call(data).toLowerCase().indexOf('array') > -1) {
-        //         items.forEach(function(item, index) {
-        //             item[attr] = data[index];
-        //         })
-        //     } else {
-        //         items[attr] = data;
-        //     }
-        // }
+        if (this.isLocalStorageSupported) {
+            data = this.storage.getItem(key);
+        } else {
+          var cookie = document.cookie;
+           var index = cookie.indexOf(key + "=");
+           if(index > -1) {
+             var start = index + key.length + 1,
+                end = cookie.indexOf(";", start);
+             end == -1 && (end = cookie.length);
+             data = cookie.substring(start, end);
+           }
+           data = decodeURIComponent(data);
+        }
+        if (data) {
+            try {
+                data = JSON.parse(data);
+            } catch (e) {
+                data = eval('(' + data + ')');
+            }
+
+            if (Object.prototype.toString.call(data).toLowerCase().indexOf('array') > -1) {
+                items.forEach(function(item, index) {
+                    item[attr] = data[index];
+                })
+            } else {
+                items[attr] = data;
+            }
+        }
     },
     clear: function() {
       if(this.isLocalStorageSupported) {

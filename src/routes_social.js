@@ -7,7 +7,7 @@ const routes = [
   {
     path: '/FamilyMember',
     name: 'familyMember',
-    component: require('./views/FamilyMember')
+    component: require('./views/FamilyMemberSocial')
   },
   {
     path: '/GeneQuestion',
@@ -32,7 +32,7 @@ const routes = [
   {
     path: '/Protocol',
     name: 'Protocol',
-    component: require('./views/Protocol')
+    component: require('./views/ProtocolSocial')
   },
   {
     path: '*',

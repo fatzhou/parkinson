@@ -7,11 +7,11 @@
 <script>
     import FamilyMember from '../components/FamilyMember'
     export default {
-      name: 'FamilyMemberPatient',
+      name: 'FamilyMemberSocial',
       data() {
           return {
             loginInfo: {
-              type: 'patient'
+              type: 'social'
             }
           }
       },

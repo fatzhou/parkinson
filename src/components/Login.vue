@@ -16,7 +16,7 @@
         <div class="protocol">
           <label>
             <input type="checkbox" v-model="protocolConfirm">
-            <span>我同意</span><a href="javascript:;" @click="beforeGoProtocol">《{{protocolName}}》</a>
+            <span>我同意</span><router-link to="Protocol">《{{protocolName}}》</router-link>
           </label>
         </div>
       </div>

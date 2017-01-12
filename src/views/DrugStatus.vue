@@ -27,6 +27,37 @@
               </label>
             </div>
         </li>
+
+        <li>
+            <p>{{items.length+1}}. 其他药物</p>
+            <div class="items">
+              <span>药名</span>
+              <label for="">
+                <input type="text" v-model="otherItem.name">
+              </label>
+            </div>
+            <div class="items">
+              <span>剂量</span>
+              <label for="">
+                <input type="text" v-model="otherItem.amount">
+                片
+              </label>
+            </div>
+            <div class="items">
+              <span>次数</span>
+              <label for="">
+                <input type="text" v-model="otherItem.times">
+                次/天
+              </label>
+            </div>
+            <div class="items">
+              <span>年限</span>
+              <label for="">
+                <input type="text" v-model="otherItem.years">
+                年
+              </label>
+            </div>
+        </li>
       </ul>
     </div>
     <div class="function-area">
@@ -45,7 +76,8 @@ import drugStatus from '../../static/js/config/DrugStatus.js'
             return {
               url: util.api.host + util.api.DrugStatus.url,
               key: 'DrugStatus',
-              items: drugStatus,
+              items: drugStatus.items,
+              otherItem: drugStatus.otherItem
               // info: {
               //   doctorMobile: '',
               //   patientMobile: '',
@@ -79,9 +111,19 @@ import drugStatus from '../../static/js/config/DrugStatus.js'
                     "year": parseInt(item.years) || 0
                   };
                 });
+                var otherItem = this.otherItem;
+                var others = [{
+                  name: otherItem.name,
+                  use: {
+                    amount: otherItem.amount,
+                    times: otherItem.times,
+                    years: otherItem.years
+                  }
+                }];
                 var postData = {
                   "patientMobile": window.info.patientMobile,
-                  "med": meds
+                  "med": meds,
+                  "others": others
                 };
                 console.log(postData)
                 this.$http.post(this.url, postData)

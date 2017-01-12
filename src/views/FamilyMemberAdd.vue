@@ -4,7 +4,7 @@
     <div class="content">
       <img src="../../static/image/answer_icon_finish.png" alt="">
       <p class="first-p">您已经完成了帕金森患者问卷!</p>
-      <p class="second-p">添加家庭成员，进行帕金森前驱期筛查，提前检测家庭成员患帕金森的风险1111</p>
+      <p class="second-p">添加家庭成员，进行帕金森前驱期筛查，提前检测家庭成员患帕金森的风险</p>
       <div class="button confirm-button confirm-button-1" @click="getResult">添加家庭成员</div>
     </div>
   </div>
@@ -44,11 +44,11 @@ import util from '../../static/js/util.js'
   }
   h1 {
     font-size: .54rem;
-    text-align: center;
     line-height: 1;
     padding: .42rem 0;
     color: #3c485a;
     background: #fff;
+    text-align: center;
   }
   h1 a {
     position: absolute;
@@ -72,7 +72,7 @@ import util from '../../static/js/util.js'
     padding: .7rem 0;
   }
   .content .first-p {
-    font-size: .42rem;
+    font-size: .48rem;
     line-height: 1;
     text-align: center;
     color: #5a7193;
@@ -84,7 +84,7 @@ import util from '../../static/js/util.js'
     text-align: center;
     width: 80%;
     margin: 0 auto;
-    color: #5a7193;
+    color: #999;
     margin-bottom: .7rem;
   }
 </style>

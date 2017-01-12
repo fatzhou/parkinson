@@ -4,7 +4,7 @@ module.exports = [
     question: '关系',
     type: 6,
     status: '',
-    id: 'relationship',
+    id: 'relation',
     options: [
         ['父亲/母亲', 1],
         ['兄/弟/姐/妹', 2],
@@ -42,7 +42,7 @@ module.exports = [
     type: 1,
     status: '',
     validate: 'telephone',
-    id: 'tel',
+    id: 'mobile',
     default: '填写'
 }, {
     logo: '../static/image/data_icon_phone.png',
@@ -51,7 +51,7 @@ module.exports = [
     type: 1,
     status: '',
     validate: 'telephone',
-    id: 'tel2',
+    id: 'mobile2',
     default: '备选电话'
 }, {
     logo: '../static/image/data_icon_mail.png',
@@ -87,6 +87,6 @@ module.exports = [
     notneed: true,
     type: 5,
     status: '',
-    id: 'anamnesis',
+    id: 'history',
     placeholder: '请输入家族疾病史'
 }, ]

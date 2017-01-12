@@ -10,8 +10,8 @@ body, html {
 
 body {
   font-family: PingFangSC-Regular,Helvetica,"Droid Sans",Arial,sans-serif;
+  overflow: hidden;
 }
-
 
 ul, li {
   list-style: none;
@@ -41,7 +41,7 @@ a {
 }
 
 .button:hover, .buton:active {
-  background: #f78000;
+  /*background: #f78000;*/
 }
 
 .confirm-button {
@@ -70,10 +70,11 @@ a {
 
 #app {
   height: 100%;
-  /*overflow: scroll;*/
+  overflow: scroll;
+  -webkit-overflow-scrolling : touch;
 }
 
-input, a, textarea {
+input, a, textarea, div {
   outline: none;
   border: none;
   box-sizing: border-box;

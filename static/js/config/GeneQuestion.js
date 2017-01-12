@@ -1,30 +1,33 @@
 module.exports = [{
-    question: '您的基因SNCA是否发生A53T,A30PE46KG50D突变',
+    question: '您是否被检测过帕金森基因突变？单个或多个基因突变',
     status: ''
 }, {
-    question: '您的基因SNCA是否双倍复制',
+    question: '您的基因SNCA（PARK1）是否A53T, A30PE46KG50D突变',
     status: ''
 }, {
     status: '',
-    question: '您的基因SNCA是否为三倍复制'
+    question: '您的基因SNCA（PARK1）是否双倍复制'
 }, {
     status: '',
-    question: '您的基因SNCA是否发生Rep1-CA repeat突变'
+    question: '您的基因SNCA（PARK1）是否为三倍复制'
 }, {
     status: '',
-    question: '您的基因SNCA是否发生rs894278, GG+TG突变'
+    question: '您的基因SNCA（PARK1）是否发生Rep1-CA repeat突变'
 }, {
     status: '',
-    question: '您的基因SNCA是否发生rs11931074, TT+TG突变'
+    question: '您的基因SNCA（PARK1）是否发生rs894278, GG+TG突变'
 }, {
     status: '',
-    question: '您的基因SNCA是否发生rs356219,  GG突变'
+    question: '您的基因SNCA（PARK1）是否rs11931074, TT+TG突变'
 }, {
     status: '',
-    question: '您的基因SNCA是否发生rs356165, AA突变'
+    question: '您的基因SNCA（PARK1）是否发生rs356219,  GG突变'
 }, {
     status: '',
-    question: '您的基因Parkin是否为纯合子或复合型杂合子'
+    question: '您的基因SNCA（PARK1）是否发生rs356165, AA突变'
+}, {
+    status: '',
+    question: '您的基因PARKIN是否为纯合子或复合型杂合子'
 }, {
     status: '',
     question: '您的基因PARKIN是否为杂合突变'
@@ -33,7 +36,7 @@ module.exports = [{
     question: '您的基因PINK1是否为纯合子或复合型杂合子突变'
 }, {
     status: '',
-    question: '您的基因PINK1是否为一种杂合子突变'
+    question: '您的基因PINK1是否为一种杂合子突变突变'
 }, {
     status: '',
     question: '您的基因DJ-1是否为纯合子或复合型杂合子突变'
@@ -48,16 +51,13 @@ module.exports = [{
     question: '您的基因LRRK2是否发生R1628P, CG突变'
 }, {
     status: '',
-    question: '您的基因LRRK2是否发生R1441CGH, Y1699C,I2020T突变'
+    question: '基因LRRK2是否发生R1441CGH, Y1699C,I2020T突变'
 }, {
     status: '',
     question: '您的基因GBA是否出现外显子突变点'
 }, {
     status: '',
     question: '您的基因GBA是否发生L444P, TC突变'
-}, {
-    status: '',
-    question: '您的家族中是否有一人以上患病'
 }, {
     status: '',
     question: '您的基因MAPT是否发生rs356219, GG突变'

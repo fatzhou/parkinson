@@ -153,13 +153,18 @@
                     if (mode == 1) {
                         index = 0;
                     }
+                    var flag = true;
+                    if(index >= dl.children().size()) {
+                      index = dl.children().size() - 1;
+                      flag = false;
+                    }
                     _this.value[i] = $(dl.children().get(index)).attr('ref');
                     _this.value[i] == 0 ? _this.text[i] = "" : _this.text[i] = $(dl.children().get(index)).html();
                     for (var j = _this.level - 1; j > i; j--) {
                         _this.value[j] = 0;
                         _this.text[j] = "";
                     }
-                    if (!$(dl.children().get(index)).hasClass('focus')) {
+                    if (!flag || !$(dl.children().get(index)).hasClass('focus')) {
                         _this.format();
                     }
                     $(dl.children().get(index)).addClass('focus').siblings().removeClass('focus');

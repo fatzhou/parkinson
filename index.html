@@ -4,14 +4,15 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta content="yes" name="apple-mobile-web-app-capable" />
     <meta content="yes" name="apple-touch-fullscreen" />
     <meta content="telephone=no,email=no" name="format-detection" />
     <meta name="App-Config" content="fullscreen=yes,useHistoryState=yes,transition=yes" />
+    <meta name="mobile-web-app-capable" content="yes">
     <link rel="stylesheet" href="static/css/common.css">
     <link rel="stylesheet" href="static/css/dialog.css">
-    <link rel="shotcut icon" href="favicon.png" />
-    <!-- <link rel="stylesheet" href="static/css/mobile-select-date.css"> -->
+    <link rel="icon" href="favicon.png" />
+    <link rel="apple-touch-icon" sizes="128x128" href="favicon.png">
+    <link rel="apple-touch-icon-precomposed" sizes="128x128" href="favicon.png">
     <script src="static/js/jquery.1.9.1.js"></script>
     <script src="static/js/dialog.js"></script>
     <script src="static/js/mobile-select-date.js"></script>
@@ -27,6 +28,7 @@
     <script>
       $(function() {
           var resize = function() {
+            // alert(document.documentElement.clientHeight)
              var deviceWidth = document.documentElement.clientWidth;
              if(deviceWidth > 1080) {
                deviceWidth = 1080;
@@ -35,6 +37,7 @@
           };
           window.onresize = resize;
           window.setTimeout(resize, 0);
+
         });
     </script>
 </body>
