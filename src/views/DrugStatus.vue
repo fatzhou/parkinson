@@ -115,9 +115,9 @@ import drugStatus from '../../static/js/config/DrugStatus.js'
                 var others = [{
                   name: otherItem.name,
                   use: {
-                    amount: otherItem.amount,
-                    times: otherItem.times,
-                    years: otherItem.years
+                    dose: otherItem.amount,
+                    time: otherItem.times,
+                    year: otherItem.years
                   }
                 }];
                 var postData = {
