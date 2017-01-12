@@ -8,27 +8,27 @@
             <div class="items">
               <span>剂量</span>
               <label for="">
-                <input type="text" v-model="item.amount">
+                <input type="number" v-model="item.amount">
                 片
               </label>
             </div>
             <div class="items">
               <span>次数</span>
               <label for="">
-                <input type="text" v-model="item.times">
+                <input type="number" v-model="item.times">
                 次/天
               </label>
             </div>
             <div class="items">
               <span>年限</span>
               <label for="">
-                <input type="text" v-model="item.years">
+                <input type="number" v-model="item.years">
                 年
               </label>
             </div>
         </li>
 
-        <li>
+        <li id="other">
             <p>{{items.length+1}}. 其他药物</p>
             <div class="items">
               <span>药名</span>
@@ -39,21 +39,21 @@
             <div class="items">
               <span>剂量</span>
               <label for="">
-                <input type="text" v-model="otherItem.amount">
+                <input type="number" v-model="otherItem.amount">
                 片
               </label>
             </div>
             <div class="items">
               <span>次数</span>
               <label for="">
-                <input type="text" v-model="otherItem.times">
+                <input type="number" v-model="otherItem.times">
                 次/天
               </label>
             </div>
             <div class="items">
               <span>年限</span>
               <label for="">
-                <input type="text" v-model="otherItem.years">
+                <input type="number" v-model="otherItem.years">
                 年
               </label>
             </div>
@@ -102,7 +102,13 @@ import drugStatus from '../../static/js/config/DrugStatus.js'
           },
           goNext() {
               var flag = true;
+              var otherItem = this.otherItem;
               if(flag) {
+                if(!otherItem.name && (otherItem.amount || otherItem.times || otherItem.years)) {
+                  myAlert('请输入其他药物的药物名称');
+                  document.getElementById('other').scrollIntoView();
+                  return false;
+                }
                 this.saveData();
                 var meds = this.items.map(function(item) {
                   return {
@@ -111,13 +117,13 @@ import drugStatus from '../../static/js/config/DrugStatus.js'
                     "year": parseInt(item.years) || 0
                   };
                 });
-                var otherItem = this.otherItem;
+
                 var others = [{
                   name: otherItem.name,
                   use: {
-                    dose: otherItem.amount,
-                    time: otherItem.times,
-                    year: otherItem.years
+                    dose: parseInt(otherItem.amount) || 0,
+                    time: parseInt(otherItem.times) || 0,
+                    year: parseInt(otherItem.years) || 0
                   }
                 }];
                 var postData = {
