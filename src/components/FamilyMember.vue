@@ -1,20 +1,22 @@
 <template>
-  <div id="family-member">
-    <h1>帕金森高危人群问卷</h1>
-    <div class="split"></div>
+  <div class="wrap">
+    <div id="family-member">
+      <h1>帕金森高危人群问卷</h1>
+      <div class="split"></div>
 
-    <InfoType v-if="loginType" :items="items.slice(0,5)"></InfoType>
-    <InfoType v-else :items="items.slice(0,4)"></InfoType>
+      <InfoType v-if="loginType" :items="items.slice(0,5)"></InfoType>
+      <InfoType v-else :items="items.slice(0,4)"></InfoType>
 
-    <div class="verify-code">
-      <input type="text" v-model="verifyCode" placeholder="请输入验证码"/>
-      <div class="code-button" @click="getVerifyCode">
-        {{this.verifyCodeWord}}
+      <div class="verify-code">
+        <input type="text" v-model="verifyCode" placeholder="请输入验证码"/>
+        <div class="code-button" @click="getVerifyCode">
+          {{this.verifyCodeWord}}
+        </div>
       </div>
-    </div>
 
-    <InfoType v-if="loginType" class="bottom-padding" :items="items.slice(5)"></InfoType>
-    <InfoType v-else class="bottom-padding" :items="items.slice(4)"></InfoType>
+      <InfoType v-if="loginType" class="bottom-padding" :items="items.slice(5)"></InfoType>
+      <InfoType v-else class="bottom-padding" :items="items.slice(4)"></InfoType>
+    </div>
 
     <div v-if="loginType" class="function-area">
        <div class="back-button confirm-button" @click="goBack">上一部分</div>
@@ -24,15 +26,8 @@
     <div v-else class="function-area">
        <div class="confirm-button" @click="goNext">保存并开始答题</div>
     </div>
-
-<!--     <div class="dialog-select" v-show="dialog">
-      <div class="dialog-select-wrap">
-        <p class="question">您是否进行过基因检测？</p>
-        <div class="button-answer button-answer-yes" @click="goNext1">有<span>（填写基因题目）</span></div>
-        <div class="button-answer button-answer-no" @click="goNext2">没有<span>（填写生活和环境因素题）</span></div>
-      </div>
-    </div> -->
   </div>
+
 </template>
 
 <script>
@@ -84,11 +79,11 @@
           })[0].status,
               verifyNode = $('#mobile').get(0);
           if(!number) {
-            alert('请先填写手机号码');
+            myAlert('请先填写手机号码');
             verifyNode.scrollIntoView(true);
             return false;
           } else if(!util.validator.telephone(number)) {
-            alert('请填写正确的手机号码');
+            myAlert('请填写正确的手机号码');
             verifyNode.scrollIntoView(true);
             return false;
           }
@@ -217,11 +212,15 @@
 
 <style lang="less" scoped>
   @fontSize: .48rem;
+  .wrap {
+    height: 100%;
+  }
   #family-member {
     height: 100%;
     overflow: scroll;
     -webkit-overflow-scrolling : touch;
     color: #5a7193;
+    position: relative;
   }
   h1 {
     font-size: .54rem;

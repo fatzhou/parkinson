@@ -1,27 +1,29 @@
 <template>
-  <div id="environment-question">
-    <h1>生活和环境因素</h1>
-    <div class="ul-wrap bottom-padding">
-      <ul>
-        <li v-for="item,index in items">
-          <div class="p-wrap">
-            <p class="p-title">{{index+1}}. {{item.question}}？</p>
-            <p class="p-explain" v-if="item.explain">{{item.explain}}</p>
-          </div>
+  <div class="wrap">
+    <div id="environment-question">
+      <h1>生活和环境因素</h1>
+      <div class="ul-wrap">
+        <ul>
+          <li v-for="item,index in items">
+            <div class="p-wrap">
+              <p class="p-title">{{index+1}}. {{item.question}}？</p>
+              <p class="p-explain" v-if="item.explain">{{item.explain}}</p>
+            </div>
 
-          <label v-for="i,j in (item.options || ['是','否', '不确定'])">
-            <input type="radio" :name="prefix+index" :value="j+1" v-model="item.status">
-            <span>{{i}}</span>
-          </label>
-        </li>
-      </ul>
+            <label v-for="i,j in (item.options || ['是','否', '不确定'])">
+              <input type="radio" :name="prefix+index" :value="j+1" v-model="item.status">
+              <span>{{i}}</span>
+            </label>
+          </li>
+        </ul>
+      </div>
     </div>
-
     <div class="function-area">
        <div class="back-button confirm-button" @click="goBack">上一部分</div>
        <div class="next-button button" @click="goNext">保存并提交</div>
     </div>
   </div>
+
 </template>
 
 <script>
@@ -84,10 +86,19 @@ import myAlert from '../../static/js/alert.js'
 </script>
 
 <style scoped>
+  .wrap {
+    height: 100%;
+    padding-bottom: 2.3rem;
+    position: relative;
+    overflow: hidden;
+    box-sizing: border-box;
+  }
   #environment-question {
-    min-height: 100%;
+    height: 100%;
     position: relative;
     word-break: break-all;
+    overflow: scroll;
+    -webkit-overflow-scrolling : touch;
   }
   h1 {
     font-size: .54rem;

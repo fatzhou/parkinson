@@ -1,32 +1,36 @@
 <template>
-  <div id="gene-question">
-    <h1>基因因素</h1>
-    <div class="ul-wrap bottom-padding">
-      <ul>
-        <li class="li-desc"><p>（检测基因结果应认真咨询专业医生）</p></li>
-        <li v-for="item,index in items">
-          <p>{{index+1}}. {{item.question}}？</p>
-          <label >
-            <input type="radio" :name="prefix+index" value="1" v-model="item.status">
-            <span>是</span>
-          </label>
-          <label >
-            <input type="radio" :name="prefix+index" value="2" v-model="item.status">
-            <span>否</span>
-          </label>
-          <label >
-            <input type="radio" :name="prefix+index" value="3" v-model="item.status">
-            <span>不确定</span>
-          </label>
-        </li>
-      </ul>
-    </div>
+  <div class="wrap">
+    <div id="gene-question">
+      <h1>基因因素</h1>
+      <div class="ul-wrap">
+        <ul>
+          <li class="li-desc"><p>（检测基因结果应认真咨询专业医生）</p></li>
+          <li v-for="item,index in items">
+            <p>{{index+1}}. {{item.question}}？</p>
+            <label >
+              <input type="radio" :name="prefix+index" value="1" v-model="item.status">
+              <span>是</span>
+            </label>
+            <label >
+              <input type="radio" :name="prefix+index" value="2" v-model="item.status">
+              <span>否</span>
+            </label>
+            <label >
+              <input type="radio" :name="prefix+index" value="3" v-model="item.status">
+              <span>不确定</span>
+            </label>
+          </li>
+        </ul>
+      </div>
 
+
+    </div>
     <div class="function-area">
        <div class="back-button confirm-button" @click="goBack">上一部分</div>
        <div class="next-button button" @click="goNext">保存并提交</div>
     </div>
   </div>
+
 </template>
 
 <script>
@@ -94,10 +98,20 @@
 </script>
 
 <style scoped>
+  .wrap {
+    height: 100%;
+    overflow: hidden;
+    position: relative;
+    -webkit-overflow-scrolling : touch;
+    padding-bottom: 2.3rem;
+    box-sizing: border-box;
+  }
   #gene-question {
-    min-height: 100%;
+    height: 100%;
     position: relative;
     word-break: break-all;
+    overflow: scroll;
+    -webkit-overflow-scrolling : touch;
   }
   h1 {
     font-size: .54rem;

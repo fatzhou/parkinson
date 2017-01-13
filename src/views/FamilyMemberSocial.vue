@@ -1,7 +1,5 @@
 <template>
-  <div>
-      <FamilyMember :loginInfo="loginInfo"></FamilyMember>
-  </div>
+  <FamilyMember :loginInfo="loginInfo"></FamilyMember>
 </template>
 
 <script>

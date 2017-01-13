@@ -23,18 +23,18 @@ const app = new Vue({
 
 Vue.mixin({
   beforeMount: function () {
-    document.getElementById('app').scrollTop = 0
+    document.getElementById('app').scrollTop = 0;
   },
   mounted: function() {
     if(!window.info.doctorMobile && location.hash.indexOf('Login') == -1 && location.hash.indexOf('Protocol') == -1) {
       // location.reload();
-      router.push('Login');
+      // router.push('Login');
     }
   }
 })
 
 window.onload = function() {
-  router.push('Login');
+  // router.push('Login');
 }
 
 

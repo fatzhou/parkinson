@@ -1,34 +1,38 @@
 <template>
-  <div id="sick-status">
-    <h1>一.疾病现状问题</h1>
-    <div class="ul-wrap bottom-padding">
-      <ul>
-        <li v-for="item,index in items">
-          <div class="p-wrap">
-            <p class="p-title">{{index+1}}. {{item.question}}？</p>
-            <p class="p-explain" v-if="item.explain">{{item.explain}}</p>
-          </div>
-          <label >
-            <input type="radio" :name="prefix+index" value="1" v-model="item.status">
-            <span>{{item.options?item.options[0]:'是'}}</span>
-          </label>
-          <label >
-            <input type="radio" :name="prefix+index" value="2" v-model="item.status">
-            <span>{{item.options?item.options[1]:'否'}}</span>
-          </label>
-          <label >
-            <input type="radio" :name="prefix+index" value="3" v-model="item.status">
-            <span>{{item.options?item.options[2]:'不确定'}}</span>
-          </label>
-        </li>
-      </ul>
-    </div>
+  <div class="wrap">
+    <div id="sick-status">
+      <h1>一.疾病现状问题</h1>
+      <div class="ul-wrap bottom-padding">
+        <ul>
+          <li v-for="item,index in items">
+            <div class="p-wrap">
+              <p class="p-title">{{index+1}}. {{item.question}}？</p>
+              <p class="p-explain" v-if="item.explain">{{item.explain}}</p>
+            </div>
+            <label >
+              <input type="radio" :name="prefix+index" value="1" v-model="item.status">
+              <span>{{item.options?item.options[0]:'是'}}</span>
+            </label>
+            <label >
+              <input type="radio" :name="prefix+index" value="2" v-model="item.status">
+              <span>{{item.options?item.options[1]:'否'}}</span>
+            </label>
+            <label >
+              <input type="radio" :name="prefix+index" value="3" v-model="item.status">
+              <span>{{item.options?item.options[2]:'不确定'}}</span>
+            </label>
+          </li>
+        </ul>
+      </div>
 
+
+    </div>
     <div class="function-area">
        <div class="back-button confirm-button" @click="goBack">上一部分</div>
        <div class="next-button button" @click="goNext">保存并填写药物情况</div>
     </div>
   </div>
+
 </template>
 
 <script>
@@ -93,9 +97,14 @@
 </script>
 
 <style scoped>
+  .wrap {
+    height: 100%;
+  }
   #sick-status {
     height: 100%;
     position: relative;
+    overflow: scroll;
+    -webkit-overflow-scrolling : touch;
   }
   h1 {
     font-size: .54rem;

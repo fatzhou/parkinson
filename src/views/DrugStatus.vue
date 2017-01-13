@@ -1,69 +1,73 @@
 <template>
-  <div id="drug-status">
-    <h1>二.药物服用情况</h1>
-    <div class="ul-wrap bottom-padding">
-      <ul>
-        <li v-for="item,index in items">
-            <p>{{index+1}}. {{item.drug}}</p>
-            <div class="items">
-              <span>剂量</span>
-              <label for="">
-                <input type="number" v-model="item.amount">
-                片
-              </label>
-            </div>
-            <div class="items">
-              <span>次数</span>
-              <label for="">
-                <input type="number" v-model="item.times">
-                次/天
-              </label>
-            </div>
-            <div class="items">
-              <span>年限</span>
-              <label for="">
-                <input type="number" v-model="item.years">
-                年
-              </label>
-            </div>
-        </li>
+  <div class="wrap">
+    <div id="drug-status">
+      <h1>二.药物服用情况</h1>
+      <div class="ul-wrap bottom-padding">
+        <ul>
+          <li v-for="item,index in items">
+              <p>{{index+1}}. {{item.drug}}</p>
+              <div class="items">
+                <span>剂量</span>
+                <label for="">
+                  <input type="number" v-model="item.amount">
+                  片
+                </label>
+              </div>
+              <div class="items">
+                <span>次数</span>
+                <label for="">
+                  <input type="number" v-model="item.times">
+                  次/天
+                </label>
+              </div>
+              <div class="items">
+                <span>年限</span>
+                <label for="">
+                  <input type="number" v-model="item.years">
+                  年
+                </label>
+              </div>
+          </li>
 
-        <li id="other">
-            <p>{{items.length+1}}. 其他药物</p>
-            <div class="items">
-              <span>药名</span>
-              <label for="">
-                <input type="text" v-model="otherItem.name">
-              </label>
-            </div>
-            <div class="items">
-              <span>剂量</span>
-              <label for="">
-                <input type="number" v-model="otherItem.amount">
-                片
-              </label>
-            </div>
-            <div class="items">
-              <span>次数</span>
-              <label for="">
-                <input type="number" v-model="otherItem.times">
-                次/天
-              </label>
-            </div>
-            <div class="items">
-              <span>年限</span>
-              <label for="">
-                <input type="number" v-model="otherItem.years">
-                年
-              </label>
-            </div>
-        </li>
-      </ul>
+          <li id="other">
+              <p>{{items.length+1}}. 其他药物</p>
+              <div class="items">
+                <span>药名</span>
+                <label for="">
+                  <input type="text" v-model="otherItem.name">
+                </label>
+              </div>
+              <div class="items">
+                <span>剂量</span>
+                <label for="">
+                  <input type="number" v-model="otherItem.amount">
+                  片
+                </label>
+              </div>
+              <div class="items">
+                <span>次数</span>
+                <label for="">
+                  <input type="number" v-model="otherItem.times">
+                  次/天
+                </label>
+              </div>
+              <div class="items">
+                <span>年限</span>
+                <label for="">
+                  <input type="number" v-model="otherItem.years">
+                  年
+                </label>
+              </div>
+          </li>
+        </ul>
+      </div>
+
     </div>
     <div class="function-area">
        <div class="back-button confirm-button" @click="goBack">上一部分</div>
        <div class="next-button button" @click="goNext">完成提交</div>
     </div>
+
   </div>
 </template>
 
@@ -165,8 +169,14 @@ import drugStatus from '../../static/js/config/DrugStatus.js'
 </script>
 
 <style scoped>
+  .wrap {
+    height: 100%;
+  }
   #drug-status {
     height: 100%;
+    position: relative;
+    overflow: scroll;
+    -webkit-overflow-scrolling : touch;
   }
   h1 {
     font-size: .54rem;

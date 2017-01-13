@@ -266,6 +266,7 @@
                 _this.mask.remove();
                 _this.timer && clearInterval(_this.timer);
             }, 400);
+            $('body').unbind('touchstart');
         },
         hide: function() {
             var _this = this;
@@ -332,6 +333,10 @@
             if (this.settings.animate) {
                 this.dialogContainer.addClass('zoomIn').removeClass('zoomOut').addClass('animated');
             }
+            $('body').bind('touchstart', this.bodyRet);
+        },
+        bodyRet: function() {
+          return false;
         },
         setPosition: function() {
             if (this.showed) {
