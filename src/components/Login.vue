@@ -149,7 +149,10 @@
     margin: 0 auto;
     padding-top: 3rem;
   }
-
+  input[type="checkbox"] {
+    width: .5rem;
+    height: .5rem;
+  }
   ul {
     width: 9.2rem;
     margin: 0 auto;

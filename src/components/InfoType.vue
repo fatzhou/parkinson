@@ -124,10 +124,8 @@
             item.reset();
           });
         };
-        if(!window.orientationEventBinded) {
-          window.addEventListener('resize', resetHeight, false);
-          window.orientationEventBinded = true;
-        }
+        //事件重复绑定，这里有问题
+        window.addEventListener('resize', resetHeight, false);
 
       }
 
