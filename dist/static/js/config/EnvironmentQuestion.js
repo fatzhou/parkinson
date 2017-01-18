@@ -76,12 +76,12 @@ module.exports = [{
     explain: '身体暴露在环境下3年以上密切接触'
 }, {
     status: '',
-    question: '饮用水是否农村井水吗 ',
+    question: '饮用水是农村井水吗',
     explain: '常规饮用3年以上密切接触'
 }, {
     status: '',
-    question: '是否爱好饮用咖啡吗',
-    explain: '每周小常规饮用3年以上于3杯'
+    question: '是否爱好饮用咖啡',
+    explain: '常规饮用3年以上每周小于3杯'
 }, {
     status: '',
     question: '您有饮茶习惯吗',

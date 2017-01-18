@@ -82,7 +82,7 @@ module.exports = [{
         ['父亲/母亲', 1],
         ['兄/弟/姐/妹', 2],
         ['祖父母/外祖父母', 3],
-        ['其他人', 4]
+        ['其他人/无', 4]
     ]
 }, {
     logo: '../static/image/data_icon_type.png',

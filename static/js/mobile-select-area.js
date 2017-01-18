@@ -109,7 +109,7 @@
                     }
                     this.dispose();
                 }, $.extend({
-                    width: 320,
+                    width: window.innerWidth,
                     height: Math.min(Math.max(Math.min(document.documentElement.clientWidth, 1080) / 1.75, 335), window.innerHeight)
                 }, settings));
 

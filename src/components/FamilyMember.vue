@@ -9,7 +9,7 @@
 
       <div class="verify-code">
         <input type="text" v-model="verifyCode" placeholder="请输入验证码"/>
-        <div class="code-button" @click="getVerifyCode">
+        <div :class="{'code-button':true, 'code-time':isTiming}" @click="getVerifyCode">
           {{this.verifyCodeWord}}
         </div>
       </div>
@@ -45,9 +45,12 @@
             verifyCode: '',
             verifyCodeWord: '获取验证码',
             verifyCodeCount: 0,
+            startCountTime: 0,
+            totalCount: 10,
             dialog: false,
+            isTiming: false,
             key: 'FamilyMember',
-            itemList: FamilyMember,
+            itemList: FamilyMember.items,
             info: {
               doctorMobile: '',
               patientMobile: '',
@@ -64,7 +67,9 @@
           return this.loginType ? this.itemList : this.itemList.slice(1);
         }
       },
-      created() {
+      mounted() {
+        this.setVisibilityToggle(FamilyMember.eventBinded);
+
         // util.storeData.get('info', this, 'info');
         // if(!this.info || !this.info.doctorMobile) {
         //     this.$router.push("Login");
@@ -72,7 +77,36 @@
         //   }
         // util.storeData.get(this.key, this.items);
       },
+      beforeDestory() {
+        this.clearVisibilityToggle();
+      },
       methods: {
+        visibilityChange(e) {
+          //计算真实时间差
+          if(this.isTiming) {
+            var delta = Date.now() - this.startCountTime;
+            console.log(delta)
+            //已超时
+            if(delta > this.totalCount * 1000) {
+              this.isTiming = false;
+              this.verifyCodeWord = '获取验证码';
+              this.verifyCodeCount = 0;
+            } else {
+              //尚未超时
+              this.verifyCodeCount = Math.round(delta / 1000);
+            }
+          }
+        },
+        setVisibilityToggle(e) {
+          if(!FamilyMember.eventBinded) {
+            document.addEventListener('visibilitychange', this.visibilityChange);
+          }
+          FamilyMember.eventBinded = true;
+        },
+        clearVisibilityToggle() {
+          console.log(3)
+          document.removeEventListener('visibilitychange', this.visibilityChange);
+        },
         getVerifyCode() {
           var number = this.items.filter(function(item){
             return item.id === 'mobile';
@@ -103,12 +137,15 @@
                 self.verifyCodeWord = self.verifyCodeCount + 's';
                 setTimeout(timerCb, 1000);
               } else {
+                self.isTiming = false;
                 self.verifyCodeWord = '获取验证码';
               }
           }
           this.$http.post(this.verifyCodeUrl, postData)
           .then((response) => {
-            this.verifyCodeCount = 301;
+            this.verifyCodeCount = this.totalCount + 1;
+            this.isTiming = true;
+            this.startCountTime = Date.now();
             setTimeout(timerCb, 0);
           })
           .catch(function(response) {
@@ -260,6 +297,11 @@
     line-height: 1;
     display: block;
     white-space: nowrap;
+    text-align: center;
+  }
+  .code-time {
+    width: 2rem;
+    padding: .25rem 0;
   }
   .code-button:hover, .code-button:active {
     background: #f78000;

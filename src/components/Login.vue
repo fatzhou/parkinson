@@ -40,20 +40,21 @@
               // },
               protocolConfirm: false,
               items: loginConfig,
-              // info: {
-              //   doctorMobile: '',
-              //   patientMobile: '',
-              //   familyMobile: ''
-              // }
+              info: {
+                doctorMobile: '',
+                patientMobile: '',
+                familyMobile: ''
+              }
             }
         },
         props: ['loginInfo','protocolName',"nextStep"],
         created() {
           // console.log(this.loginInfo)
           // util.storeData.type = this.loginInfo.type;
-          // util.storeData.set('loginInfo', this, 'loginInfo');
-          // util.storeData.get(this.key, this.items);
-          // util.storeData.get('info', this, 'info');
+          //从缓存中读取医生数据
+          util.storeData.set('loginInfo', this, 'loginInfo');
+          util.storeData.get(this.key, this.items);
+          util.storeData.get('info', this, 'info');
 
           // if(!this.info.doctorMobile && this.items[1].status) {
           //   // location.reload();
@@ -72,9 +73,10 @@
             },
             saveData() {
               window.info.doctorMobile = this.items[1].status;
-              // this.info.doctorMobile = this.items[1].status;
-              // util.storeData.set(this.key, this.items);
-              // util.storeData.set('info', this, 'info');
+              //保存医生数据到本地缓存
+              this.info.doctorMobile = this.items[1].status;
+              util.storeData.set(this.key, this.items);
+              util.storeData.set('info', this, 'info');
             },
             queryPatient () {
                 var flag = util.checkForm(this.items);

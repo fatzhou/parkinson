@@ -34,7 +34,7 @@
               <div class="items">
                 <span>药名</span>
                 <label for="">
-                  <input type="text" v-model="otherItem.name">
+                  <input type="text" class="no-words" v-model="otherItem.name">
                 </label>
               </div>
               <div class="items">
@@ -226,5 +226,9 @@ import drugStatus from '../../static/js/config/DrugStatus.js'
     font-size: .48rem;
     text-align: right;
   }
+  .items label input.no-words {
+    width: 95%;
+  }
+
 </style>
 <!-- 样式自行设置，或者直接看源码就好 -->
