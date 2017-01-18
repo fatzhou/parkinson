@@ -37,7 +37,11 @@
           this.clientHeight = document.documentElement.clientHeight || document.body.clientHeight;
           this.clientWidth = document.documentElement.clientWidth || document.body.clientWidth;
           this.mtop =  Math.min(this.clientWidth, 1080) / 12.42 * 1.34;
-          this.scroller && this.format();
+          if(this.scroller) {
+            this.format();
+            var height = Math.min(Math.max(Math.min(document.documentElement.clientWidth, 1080) / 1.75, 335), window.innerHeight);
+            this.scroller.parents('.ui-dialog').css('height',height);
+          }
         },
         init: function(settings) {
             this.settings = $.extend({}, settings);

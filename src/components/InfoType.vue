@@ -72,6 +72,7 @@
       name: 'InfoType',
       data() {
           return {
+            count: 0
           }
       },
       props: ['items'],
@@ -85,6 +86,7 @@
          }
       },
       mounted: function() {
+        console.log('mounted')
         var self = this;
         var data = require('../../static/js/province.js');
 
@@ -114,8 +116,6 @@
         });
 
         var resetHeight = function() {
-          console.log('orientationchange')
-
           selectAreaList.forEach(function(item) {
             item.reset();
           });
@@ -124,7 +124,7 @@
             item.reset();
           });
         };
-        //事件重复绑定，这里有问题
+        //此处待优化，重复绑定事件了
         window.addEventListener('resize', resetHeight, false);
 
       }
