@@ -33,6 +33,12 @@
         this.separator = ' ';
     };
     MobileSelectDate.prototype = {
+        reset: function() {
+          this.clientHeight = document.documentElement.clientHeight || document.body.clientHeight;
+          this.clientWidth = document.documentElement.clientWidth || document.body.clientWidth;
+          this.mtop =  Math.min(this.clientWidth, 1080) / 12.42 * 1.34;
+          this.scroller && this.format();
+        },
         init: function(settings) {
             this.settings = $.extend({}, settings);
             this.separator = "/";
@@ -106,7 +112,7 @@
                     }
                     this.dispose();
                 }, $.extend({
-                    width: 320,
+                    width: window.innerWidth,
                     height: Math.min(Math.max(Math.min(document.documentElement.clientWidth, 1080) / 1.75, 335), window.innerHeight)
                 },settings));
 
@@ -226,6 +232,7 @@
             str += "</dl>";
             var newdom = $(str);
             newdom.css('top', top);
+            // document.title = top + ',' + _this.mtop;
             var child = _this.scroller.children();
             $(child[_this.index]).html(newdom);
             _this.index++;

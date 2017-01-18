@@ -72,7 +72,6 @@
       name: 'InfoType',
       data() {
           return {
-
           }
       },
       props: ['items'],
@@ -89,10 +88,14 @@
         var self = this;
         var data = require('../../static/js/province.js');
 
+        var selectAreaList = [],
+            selectDateList = [];
+
         self.items.filter(function(item) {
           return item.type == 4;
         }).forEach(function(item, index) {
             var selectArea = new MobileSelectArea();
+            selectAreaList.push(selectArea);
             selectArea.init({trigger:'#'+item.id,level:2,data:data.data,animate:true,value:item.hiddenValue,position:"bottom",callback: function(a,b,c) {
               item.status = b;
               item.default = '';
@@ -103,11 +106,29 @@
           return item.type == 2;
         }).forEach(function(item, index) {
             var selectDate = new MobileSelectDate();
+            selectDateList.push(selectDate);
             selectDate.init({trigger:'#'+item.id,min:'1900/01/01',max:self.getDate(),animate:true,position:"bottom",callback:function(scroller,value){
               item.status = value;
               item.default = '';
             }});
         });
+
+        var resetHeight = function() {
+          console.log('orientationchange')
+
+          selectAreaList.forEach(function(item) {
+            item.reset();
+          });
+
+          selectDateList.forEach(function(item) {
+            item.reset();
+          });
+        };
+        if(!window.orientationEventBinded) {
+          window.addEventListener('resize', resetHeight, false);
+          window.orientationEventBinded = true;
+        }
+
       }
 
     }

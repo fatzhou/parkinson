@@ -38,6 +38,12 @@
         this.separator = ' ';
     };
     MobileSelectArea.prototype = {
+        reset: function() {
+          this.clientHeight = document.documentElement.clientHeight || document.body.clientHeight;
+          this.clientWidth = document.documentElement.clientWidth || document.body.clientWidth;
+          this.mtop =  Math.min(this.clientWidth, 1080) / 12.42 * 1.34;
+          this.scroller && this.format();
+        },
         init: function(settings) {
             this.settings = $.extend({
                 eventName: 'click'
@@ -82,6 +88,7 @@
         bindEvent: function() {
             var _this = this;
             this.trigger[_this.settings.eventName](function(e) {
+              console.log(_this)
                 var dlgContent = '';
                 for (var i = 0; i < _this.level; i++) {
                     dlgContent += '<div></div>';
