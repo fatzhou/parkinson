@@ -26,7 +26,7 @@
   export default {
       data() {
           return {
-            url: util.api.host + util.api.PatientInfo.url,
+            url: util.api.patient.host + util.api.patient.PatientInfo.url,
             key: 'PatientInfo',
             items: PatientInfo,
             info: {

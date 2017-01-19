@@ -12,6 +12,11 @@
             </label>
           </li>
           <li>
+            <img src="../../static/image/data_icon_type.png" alt="">
+            <label for="">
+              <input type="password" name="doctor-passwd" v-model="passwd" placeholder="请输入密码">
+            </label>
+          </li>
         </ul>
 
       </div>
@@ -22,48 +27,59 @@
 
 <script>
   import util from '../../static/js/util.js'
-  import loginConfig from '../../static/js/config/Admin.js'
+  import myAlert from '../../static/js/alert.js'
+  import md5 from '../../static/js/md5.js'
+  import loginConfig from '../../static/js/config/LoginDoctor.js'
     export default {
         data() {
             return {
-              url: util.api.host + util.api.Login.url,
+              url: util.api.patient.host + util.api.patient.Login.doctorUrl,
               items: loginConfig,
-              key: 'Admin',
+              passwd: '',
+              key: 'LoginDoctor',
             }
         },
         created() {
-          util.storeData.get(this.key, this.items);
+          // util.storeData.get(this.key, this.items);
+        },
+        computed: {
+          md5Passwd() {
+            return md5(this.passwd);
+          }
         },
         methods :{
             queryPatient () {
                 var flag = util.checkForm(this.items);
+                if(!this.passwd) {
+                  myAlert('请输入登录密码');
+                  return false;
+                }
                 if(flag) {
-                  var data = {
-                    name: this.items[0].status,
-                    mobile: this.items[1].status
+                  var postData = {
+                    doctorMobile: this.items[0].status,
+                    password: this.md5Passwd
                   };
 
-                  util.storeData.set(this.key, this.items);
+                  // util.storeData.set(this.key, this.items);
                   // util.storeData.set('info', this, 'info');
 
-                  this.$router.push("PatientAdmin");
-                  // this.$http.post(this.url, data)
-                  // .then((response) => {
-                  //   var data = response.body;
-                  //   if(data.code === 0) {
-                  //     this.info.doctorMobile = this.items[1].status;
-                  //     util.storeData.set('Login', this.items);
-                  //     util.storeData.set('info', this, 'info');
-                  //     $router.push("PatientInfo");
-                  //   } else {
-                  //     console.log(data.message)
-                  //     alert(data.message);
-                  //   }
-                  // })
-                  // .catch(function(e) {
-                  //   console.log(e)
-                  //   alert('查询医生信息失败，请稍后再试');
-                  // });
+                  // this.$router.push("PatientAdmin");
+                  this.$http.post(this.url, postData)
+                  .then((response) => {
+                    var data = response.body;
+                    window.info.doctorMobile = this.items[0].status;
+                    console.log(data.doctorMobile)
+                    if(data.code === 0) {
+                      window.info.token = data.data.token;
+                      this.$router.push("PatientAdmin");
+                    } else {
+                      myAlert(data.message);
+                    }
+                  })
+                  .catch(function(e) {
+                    console.log(e)
+                    myAlert('查询医生信息失败，请稍后再试');
+                  });
                 }
             }
         }

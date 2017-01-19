@@ -43,7 +43,7 @@
               key: 'GeneQuestion',
               prefix: 'gene-question-',
               items: GeneQuestion,
-              url: util.api.host + util.api.SickStatus.url,
+              url: util.api.patient.host + util.api.patient.SickStatus.url,
             }
         },
         created() {

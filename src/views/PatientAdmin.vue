@@ -3,9 +3,15 @@
     <h1>帕金森流行病学调查问卷</h1>
     <div class="content">
       <img class="question-banner" src="../../static/image/questionnaire_banner.png" alt="">
-      <div class="confirm-button" @click="goNext">
+
+      <div class="confirm-button" @click="goNext1">
           <img src="../../static/image/questionnaire_icon_fmaily.png" alt="">
           <span>患者管理</span>
+      </div>
+
+      <div class="confirm-button little-margin" @click="goNext2">
+          <img src="../../static/image/questionnaire_icon_fmaily.png" alt="">
+          <span>患者管理(社会人群)</span>
       </div>
     </div>
 
@@ -22,9 +28,12 @@
           }
       },
       methods :{
-        goNext() {
+        goNext1() {
           this.$router.push('PatientList');
-        }
+        },
+        goNext2() {
+          this.$router.push('PatientList');
+        },
       }
   }
 </script>
@@ -58,6 +67,9 @@
   .confirm-button img {
     width: .6rem;
     height: .6rem;
+  }
+  .little-margin {
+    margin-top: 1rem;
   }
 </style>
 <!-- 样式自行设置，或者直接看源码就好 -->

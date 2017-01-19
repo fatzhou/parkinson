@@ -25,7 +25,7 @@
       name: 'GeneTested',
       data() {
           return {
-            updateUrl: util.api.host + util.api.FamilyMember.updateUrl,
+            updateUrl: util.api.patient.host + util.api.patient.FamilyMember.updateUrl,
           }
       },
       methods: {
@@ -93,13 +93,15 @@
     position: relative;
   }
   .genetest-wrap {
-    position: absolute;
+    /*position: absolute;*/
     text-align: center;
-    top: 50%;
+    padding: 2rem 0;
+    background: #f8f8f8;
+/*    top: 50%;
     left: 0;
     width: 100%;
     transform: translateY(-50%);
-    margin-top: -1.78rem;
+    margin-top: -1.78rem;*/
   }
   .genetest-wrap h2 {
     font-size: .48rem;

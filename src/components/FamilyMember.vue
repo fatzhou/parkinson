@@ -40,13 +40,13 @@
     name: 'FamilyMember',
       data() {
           return {
-            url: util.api.host + util.api.FamilyMember.url,
-            verifyCodeUrl: util.api.host + util.api.FamilyMember.verifyCodeUrl,
+            url: util.api.patient.host + util.api.patient.FamilyMember.url,
+            verifyCodeUrl: util.api.patient.host + util.api.patient.FamilyMember.verifyCodeUrl,
             verifyCode: '',
             verifyCodeWord: '获取验证码',
             verifyCodeCount: 0,
             startCountTime: 0,
-            totalCount: 10,
+            totalCount: 300,
             dialog: false,
             isTiming: false,
             key: 'FamilyMember',

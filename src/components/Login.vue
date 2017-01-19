@@ -33,7 +33,7 @@
         name: 'Login',
         data() {
             return {
-              url: util.api.host + util.api.Login.url,
+              url: util.api.patient.host + util.api.patient.Login.url,
               key: 'Login',
               // loginInfo: {
               //   type: 'patient'

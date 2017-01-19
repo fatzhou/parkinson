@@ -36,7 +36,7 @@ import myAlert from '../../static/js/alert.js'
               key: 'EnvironmentQuestion',
               prefix: 'gene-question-',
               items: EnvironmentQuestion,
-              url: util.api.host + util.api.SickStatus.url,
+              url: util.api.patient.host + util.api.patient.SickStatus.url,
             }
         },
         created() {

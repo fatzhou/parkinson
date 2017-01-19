@@ -14,6 +14,7 @@ module.exports = {
   entry: {
     app: ['./src/main.js'],
     app_social: ['./src/main_social.js'],
+    app_doctor: ['./src/main_doctor.js'],
   },
   output: {
     path: config.build.assetsRoot,

@@ -43,7 +43,7 @@
         data() {
             return {
               prefix: 'sick-status-',
-              url: util.api.host + util.api.SickStatus.url,
+              url: util.api.patient.host + util.api.patient.SickStatus.url,
               key: 'SickStatus',
               items: SickStatus,
             }

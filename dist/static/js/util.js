@@ -59,24 +59,56 @@ var checkForm = function(data, attr, style, tips) {
     return flag;
 }
 
+var host = {
+  patient: {
+    test: {
+      host: 'http://ruiyuntest.gyenno.com/',
+      path: 'service_im_test'
+    },
+    pub: {
+      host: 'http://ruiyun.gyenno.com/',
+      path: 'service_im'
+    }
+  },
+  doctor: {
+    test: {
+      host: 'http://ruiyuntest.gyenno.com/',
+      path: 'service_im_test/doctorapi'
+    },
+    pub: {
+      host: 'http://ruiyun.gyenno.com/',
+      path: 'service_im/doctorapi'
+    }
+  }
+},
+mode = 'test';
+
+
 var api = {
-    'host': 'http://ruiyuntest.gyenno.com/service_im_test',
-    'Login': {
-        url: '/doctorConfirm'
+    "patient": {
+      'host': host.patient[mode].host + host.patient[mode].path,
+      'Login': {
+          url: '/doctorConfirm',
+          doctorUrl: '/doctorLogin'
+      },
+      'PatientInfo': {
+          url: '/upsertPatient',
+      },
+      'SickStatus': {
+          url: '/upsertQuiz'
+      },
+      'DrugStatus': {
+          url: '/upsertMed'
+      },
+      'FamilyMember': {
+          url: '/upsertFamily',
+          verifyCodeUrl: '/getSmscode',
+          updateUrl: '/updatePatient'
+      },
     },
-    'PatientInfo': {
-        url: '/upsertPatient'
-    },
-    'SickStatus': {
-        url: '/upsertQuiz'
-    },
-    'DrugStatus': {
-        url: '/upsertMed'
-    },
-    'FamilyMember': {
-        url: '/upsertFamily',
-        verifyCodeUrl: '/getSmscode',
-        updateUrl: '/updatePatient'
+    "doctor": {
+        host: host.doctor[mode].host + host.doctor[mode].path,
+        patientList: '/QueryPatientList'
     }
 };
 

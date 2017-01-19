@@ -37,5 +37,12 @@ module.exports = merge(baseWebpackConfig, {
       chunks: ['manifest', 'vendor',"app_social"],
       inject: true
     }),
+    new HtmlWebpackPlugin({
+      filename: 'index_doctor.html',
+      template: 'index.html',
+      title: "医生查询系统",
+      chunks: ['manifest', 'vendor',"app_doctor"],
+      inject: true
+    }),
   ]
 })

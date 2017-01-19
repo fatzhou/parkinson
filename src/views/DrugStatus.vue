@@ -78,7 +78,7 @@ import drugStatus from '../../static/js/config/DrugStatus.js'
     export default {
         data() {
             return {
-              url: util.api.host + util.api.DrugStatus.url,
+              url: util.api.patient.host + util.api.patient.DrugStatus.url,
               key: 'DrugStatus',
               items: drugStatus.items,
               otherItem: drugStatus.otherItem

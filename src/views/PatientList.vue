@@ -1,15 +1,36 @@
 <template>
   <div id="PatintList">
-    <h1><router-link class="h1link" to="PatientAdmin">&lt;</router-link>患者列表<a href="javascript:;" class="search"></a></h1>
-    <div class="content">
+    <h1 v-if="!searching">
+      <router-link class="h1link" to="PatientAdmin">&lt;</router-link>
+      患者列表
+      <a href="javascript:;" class="search" @click="searchPatient"></a>
+    </h1>
+    <h1 v-else>
+      <router-link class="h1link" to="PatientAdmin">&lt;</router-link>
+      <label class="input-label"><input type="text" placeholder="搜索患者手机号或姓名"></label>
+      <label class="confirm-label">确定</label>
+    </h1>
+    <div class="content" v-if="patientList.length>0">
       <ul>
         <li>
-          <h3>李磊</h3>
-          <p><span>性别：男</span><span>年龄：68岁</span></p>
-          <p><span>电话：15111111111</span><span>籍贯：北京</span></p>
-          <a href="javascript:;" class="enter">&gt;</a>
+          <h3 class="name">李磊</h3>
+          <p class="sex-age"><span>性别: 男</span><span>年龄: 68岁</span></p>
+          <p class="tel-home"><span>电话: 15111111111</span><span>籍贯: 北京</span></p>
+          <a href="javascript:;" class="enter"></a>
+        </li>
+        <li>
+          <h3 class="name">李磊</h3>
+          <p class="sex-age"><span>性别: 男</span><span>年龄: 68岁</span></p>
+          <p class="tel-home"><span>电话: 15111111111</span><span>籍贯: 北京</span></p>
+          <a href="javascript:;" class="enter"></a>
         </li>
       </ul>
+    </div>
+    <div class="content content-position" v-else>
+      <div class="content-wrap">
+        <img src="../../static/image/choose_icon_default_85.png" alt="">
+        <p>未搜到结果</p>
+      </div>
     </div>
 
   </div>
@@ -21,12 +42,34 @@
   export default {
       data() {
           return {
-
+            url: util.api.doctor.host + util.api.doctor.patientList,
+            searching: false,
+            patientList: [],
+            pageNo: 1,
+            pageNum: 200
           }
+      },
+      created() {
+        var postData = {
+          doctorMobile: window.info.doctorMobile,
+          page: this.pageNo,
+          pageCount: this.pageNum
+        };
+
+        this.$http.headers.common.Authorization = window.info.token;
+        this.$http.post(this.url, postData, {
+          headers: {'Authorization': window.info.token}
+        })
+        .then((res)=>{
+          console.log(res)
+        });
       },
       methods :{
         goNext() {
           this.$router.push('PatientList');
+        },
+        searchPatient() {
+          this.searching = true;
         }
       }
   }
@@ -35,6 +78,9 @@
 <style scoped>
   #PatintList {
     height: 100%;
+    overflow: scroll;
+    -webkit-overflow-scrolling : touch;
+    background: #f2f2f2;
   }
   h1 {
     font-size: .54rem;
@@ -43,6 +89,7 @@
     padding: .42rem 0;
     color: #3c485a;
     position: relative;
+    background: #fff;
   }
   .h1link {
     position: absolute;
@@ -51,6 +98,7 @@
     transform: scaleY(2);
     top: .42rem;
     color: #5a7193;
+    line-height: 1;
   }
   .search {
     position: absolute;
@@ -60,9 +108,97 @@
     right: .5rem;
     top: .42rem;
     background: url(../../static/image/list_icon_search.png);
+    background-size: 100% 100%;
+  }
+  .input-label {
+    display: block;
+    padding: 0 2.0rem 0 1.2rem;
+    box-sizing: border-box;
+    height: .68rem;
+  }
+  .input-label input {
+    border: 1px solid #ccc;
+    border-radius: .4rem;
+    display: block;
+    width: 100%;
+    font-size: .44rem;
+    line-height: .68rem;
+    height: .68rem;
+    background: #f1f1f1;
+    color: #999;
+    /*text-align: center;*/
+    text-indent: .4rem;
+  }
+  .confirm-label {
+    position: absolute;
+    right: .6rem;
+    top: .42rem;
+    font-size: .48rem;
+    line-height: .68rem;
   }
   .content {
 
+  }
+
+  .content ul {
+    background: #f2f2f2;
+    padding: .4rem;
+  }
+
+  .content ul li {
+    background: #fff;
+    border-radius: .2rem;
+    margin-bottom: .4rem;
+    padding: .2rem .5rem .3rem;
+    position: relative;
+  }
+  .content .name {
+    color: #3c485a;
+    font-weight: bold;
+    font-size: .54rem;
+    line-height: 2;
+  }
+  .content .sex-age, .content .tel-home {
+    color: #aaa;
+    font-size: .42rem;
+    line-height: 1.6;
+  }
+  .content ul li .enter {
+    position: absolute;
+    width: .5rem;
+    height: .5rem;
+    right: .4rem;
+    background: url(../../static/image/detail_icon_return.png);
+    background-size: 100% 100%;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+  .content ul li span:first-child {
+    margin-right: .8rem;
+  }
+  .content-position {
+    height: 100%;
+    box-sizing: border-box;
+    padding-top: 1.52rem;
+    position: relative;
+  }
+  .content-wrap {
+    top: 50%;
+    transform: translateY(-50%);
+    margin-top: -1.52rem;
+    position: absolute;
+  }
+  .content-wrap img {
+    display: block;
+    width: 30%;
+    margin: 0 auto;
+  }
+  .content-wrap p {
+    text-align: center;
+    white-space: nowrap;
+    color: #959fa8;
+    font-size: .46rem;
+    line-height: 3;
   }
 </style>
 <!-- 样式自行设置，或者直接看源码就好 -->
