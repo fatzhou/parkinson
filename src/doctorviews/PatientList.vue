@@ -12,17 +12,13 @@
     </h1>
     <div class="content" v-if="patientList.length>0">
       <ul>
-        <li>
-          <h3 class="name">李磊</h3>
-          <p class="sex-age"><span>性别: 男</span><span>年龄: 68岁</span></p>
-          <p class="tel-home"><span>电话: 15111111111</span><span>籍贯: 北京</span></p>
-          <a href="javascript:;" class="enter"></a>
-        </li>
-        <li>
-          <h3 class="name">李磊</h3>
-          <p class="sex-age"><span>性别: 男</span><span>年龄: 68岁</span></p>
-          <p class="tel-home"><span>电话: 15111111111</span><span>籍贯: 北京</span></p>
-          <a href="javascript:;" class="enter"></a>
+        <li v-for="item in patientList">
+          <router-link :to="{name:'PatientDetail', params: {mobile: item.mobile}}">
+            <h3 class="name eps">{{item.name}}</h3>
+            <p class="sex-age"><span>性别: {{['','男','女'][item.sex]}}</span><span>年龄: {{new Date().getFullYear() - parseInt(item.birthday.split('-')[0])}}岁</span></p>
+            <p class="tel-home"><span>电话: {{item.mobile}}</span><span>籍贯: 北京</span></p>
+            <a href="javascript:;" class="enter"></a>
+          </router-link>
         </li>
       </ul>
     </div>
@@ -38,6 +34,7 @@
 
 <script>
   import util from '../../static/js/util.js'
+  import myAlert from '../../static/js/alert.js'
 
   export default {
       data() {
@@ -46,7 +43,7 @@
             searching: false,
             patientList: [],
             pageNo: 1,
-            pageNum: 200
+            pageNum: 20
           }
       },
       created() {
@@ -56,12 +53,16 @@
           pageCount: this.pageNum
         };
 
-        this.$http.headers.common.Authorization = window.info.token;
         this.$http.post(this.url, postData, {
-          headers: {'Authorization': window.info.token}
+          headers: {'Authorization': 'Bearer ' + window.info.token}
         })
         .then((res)=>{
-          console.log(res)
+          var data = res.body;
+          if(data.code == 0) {
+            this.patientList = data.data;
+          } else {
+            myAlert(data.message);
+          }
         });
       },
       methods :{
@@ -105,7 +106,7 @@
     width: .42rem;
     height: .42rem;
     display: block;
-    right: .5rem;
+    right: .7rem;
     top: .42rem;
     background: url(../../static/image/list_icon_search.png);
     background-size: 100% 100%;

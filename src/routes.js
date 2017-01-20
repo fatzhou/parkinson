@@ -2,62 +2,62 @@ const routes = [
   {
     path: '/Login',
     name: 'Login',
-    component: require('./views/Login')
+    component: require('./patientviews/Login')
   },
   {
     path: '/PatientInfo',
     name: 'patientInfo',
-    component: require('./views/PatientInfo')
+    component: require('./patientviews/PatientInfo')
   },
   {
     path: '/SickStatus',
     name: 'sickStatus',
-    component: require('./views/SickStatus')
+    component: require('./patientviews/SickStatus')
   },
   {
     path: '/DrugStatus',
     name: 'drugStatus',
-    component: require('./views/DrugStatus')
+    component: require('./patientviews/DrugStatus')
   },
   {
     path: '/FamilyMember',
     name: 'familyMember',
-    component: require('./views/FamilyMember')
+    component: require('./patientviews/FamilyMember')
   },
   {
     path: '/GeneQuestion',
     name: 'GeneQuestion',
-    component: require('./views/GeneQuestion')
+    component: require('./patientviews/GeneQuestion')
   },
   {
     path: '/GeneTested',
     name: 'GeneTested',
-    component: require('./views/GeneTested')
+    component: require('./patientviews/GeneTested')
   },
   {
     path: '/EnvironmentQuestion',
     name: 'EnvironmentQuestion',
-    component: require('./views/EnvironmentQuestion')
+    component: require('./patientviews/EnvironmentQuestion')
   },
   {
     path: '/FinishPage',
     name: 'FinishPage',
-    component: require('./views/FinishPage')
+    component: require('./patientviews/FinishPage')
   },
   {
     path: '/ResultShow',
     name: 'ResultShow',
-    component: require('./views/ResultShow')
+    component: require('./patientviews/ResultShow')
   },
   {
     path: '/Protocol',
     name: 'Protocol',
-    component: require('./views/Protocol')
+    component: require('./patientviews/Protocol')
   },
   {
     path: '/FamilyMemberAdd',
     name: 'FamilyMemberAdd',
-    component: require('./views/FamilyMemberAdd')
+    component: require('./patientviews/FamilyMemberAdd')
   },
   {
     path: '*',

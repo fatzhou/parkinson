@@ -93,7 +93,7 @@
               this.verifyCodeCount = 0;
             } else {
               //尚未超时
-              this.verifyCodeCount = Math.round(delta / 1000);
+              this.verifyCodeCount = this.totalCount - Math.round(delta / 1000);
             }
           }
         },
@@ -104,7 +104,6 @@
           FamilyMember.eventBinded = true;
         },
         clearVisibilityToggle() {
-          console.log(3)
           document.removeEventListener('visibilitychange', this.visibilityChange);
         },
         getVerifyCode() {

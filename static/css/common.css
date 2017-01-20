@@ -27,6 +27,12 @@ a {
   text-decoration: none;
 }
 
+.eps {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
 .button {
   background: #ff9c00;
   margin: 0 auto;

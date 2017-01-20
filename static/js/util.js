@@ -108,7 +108,7 @@ var api = {
     },
     "doctor": {
         host: host.doctor[mode].host + host.doctor[mode].path,
-        patientList: '/QueryPatientList'
+        patientList: '/queryPatientList'
     }
 };
 

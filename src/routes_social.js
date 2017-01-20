@@ -2,42 +2,42 @@ const routes = [
   {
     path: '/Login',
     name: 'LoginSocial',
-    component: require('./views/LoginSocial')
+    component: require('./socialviews/LoginSocial')
   },
   {
     path: '/FamilyMember',
     name: 'familyMember',
-    component: require('./views/FamilyMemberSocial')
+    component: require('./socialviews/FamilyMemberSocial')
   },
   {
     path: '/GeneTested',
     name: 'GeneTested',
-    component: require('./views/GeneTested')
+    component: require('./patientviews/GeneTested')
   },
   {
     path: '/GeneQuestion',
     name: 'GeneQuestion',
-    component: require('./views/GeneQuestion')
+    component: require('./patientviews/GeneQuestion')
   },
   {
     path: '/EnvironmentQuestion',
     name: 'EnvironmentQuestion',
-    component: require('./views/EnvironmentQuestion')
+    component: require('./patientviews/EnvironmentQuestion')
   },
   {
     path: '/FinishPage',
     name: 'FinishPage',
-    component: require('./views/FinishPage')
+    component: require('./patientviews/FinishPage')
   },
   {
     path: '/ResultShow',
     name: 'ResultShow',
-    component: require('./views/ResultShow')
+    component: require('./patientviews/ResultShow')
   },
   {
     path: '/Protocol',
     name: 'Protocol',
-    component: require('./views/ProtocolSocial')
+    component: require('./socialviews/ProtocolSocial')
   },
   {
     path: '*',

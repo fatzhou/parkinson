@@ -1,17 +1,14 @@
 <template>
   <div id="gene-test">
-    <h1><router-link class="h1link" to="PatientAdmin">&lt;</router-link>前驱期筛查</h1>
+    <h1><router-link class="h1link" to="PatientList">&lt;</router-link>患者详情</h1>
     <div class="split"></div>
     <div class="genetest-area">
       <div class="genetest-wrap">
-        <h2>您是否进行过基因检测？</h2>
         <div class="yellow common-button" @click="goNext1">
-          <p class="title">已经做过基因检测</p>
-          <p class="explain">（提交生活和环境题目，并查看结论）</p>
+          <p class="title">患者本人</p>
         </div>
-        <div class="blue common-button little-margin" @click="goNext2">
-          <p class="title">没有做过基因检测</p>
-          <p class="explain">（继续填写基因题目）</p>
+        <div class="blue common-button little-margin">
+          <p class="title">患者家属</p>
         </div>
       </div>
     </div>
@@ -19,44 +16,28 @@
 </template>
 
 <script>
-    import myAlert from '../../static/js/alert.js'
-    import util from '../../static/js/util.js'
-    export default {
-      name: 'GeneTested',
+  import util from '../../static/js/util.js'
+
+  export default {
       data() {
           return {
-            updateUrl: util.api.patient.host + util.api.patient.FamilyMember.updateUrl,
+
           }
       },
-      methods: {
+      mounted() {
+        console.log(this.$route.params)
+      },
+      methods :{
         goNext1() {
-          this.$router.push('FinishPage');
-        },
-        goNext2() {
-          window.info.geneTest = false;
-          this.updateFamilyInfo(1, ()=> {
-            this.$router.push("GeneQuestion");
+          this.$router.push({
+            name: 'PatientInfo',
+            params: {
+              mobile: this.$route.params.mobile
+            }
           })
-        },
-        updateFamilyInfo(genetest, callback) {
-            var postData = {
-              "patientMobile": window.info.familyMobile,
-              "genetest": genetest
-            };
-            console.log(postData)
-            this.$http.post(this.updateUrl, postData)
-            .then((response) => {
-              console.log(response)
-              var data = response.body;
-              if(data.code === 0) {
-                callback && callback();
-              } else {
-                myAlert(data.message);
-              }
-            })
-        },
+        }
       }
-    }
+  }
 </script>
 
 <style scoped>
@@ -95,7 +76,7 @@
   .genetest-wrap {
     /*position: absolute;*/
     text-align: center;
-    padding: 2rem 0;
+    padding: 1rem 0;
     background: #f8f8f8;
 /*    top: 50%;
     left: 0;
@@ -139,4 +120,18 @@
   .little-margin {
     margin-top: .8rem;
   }
+
+  @media all and (orientation : portrait) {
+    .genetest-wrap {
+      position: absolute;
+      text-align: center;
+      background: #f8f8f8;
+      top: 50%;
+      left: 0;
+      width: 100%;
+      transform: translateY(-50%);
+      margin-top: -1.78rem;
+    }
+  }
 </style>
+<!-- 样式自行设置，或者直接看源码就好 -->

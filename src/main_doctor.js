@@ -10,7 +10,18 @@ window.info = {
 
 Vue.use(VueResource)
 Vue.use(VueRouter)
-// Vue.http.headers.common['Authorization'] = window.info.token;
+
+Vue.mixin({
+  beforeMount: function () {
+    document.getElementById('app').scrollTop = 0;
+  },
+  mounted: function() {
+    if(!window.info.doctorMobile && location.hash.indexOf('Login') == -1) {
+      // location.reload();
+      router.push('Login');
+    }
+  }
+})
 
 const router = new VueRouter({
   routes
@@ -21,7 +32,7 @@ const app = new Vue({
 }).$mount('#app')
 
 window.onload = function() {
-  // router.push('Admin');
+  // router.push('Login');
 }
 
 
