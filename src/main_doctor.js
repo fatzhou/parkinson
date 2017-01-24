@@ -15,7 +15,7 @@ Vue.mixin({
   beforeMount: function () {
     document.getElementById('app').scrollTop = 0;
   },
-  mounted: function() {
+  beforeMount: function() {
     if(!window.info.doctorMobile && location.hash.indexOf('Login') == -1) {
       // location.reload();
       router.push('Login');

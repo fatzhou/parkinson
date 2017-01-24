@@ -7,7 +7,7 @@
         <div class="yellow common-button" @click="goNext1">
           <p class="title">患者本人</p>
         </div>
-        <div class="blue common-button little-margin">
+        <div class="blue common-button little-margin" @click="goNext2">
           <p class="title">患者家属</p>
         </div>
       </div>
@@ -25,14 +25,23 @@
           }
       },
       mounted() {
-        console.log(this.$route.params)
+        console.log(this.$route.params);
+        window.info.patientMobile = this.$route.params.mobile || window.info.patientMobile;
       },
       methods :{
         goNext1() {
           this.$router.push({
             name: 'PatientInfo',
             params: {
-              mobile: this.$route.params.mobile
+              mobile: window.info.patientMobile
+            }
+          })
+        },
+        goNext2() {
+          this.$router.push({
+            name: 'FamilyList',
+            params: {
+              mobile: window.info.patientMobile
             }
           })
         }

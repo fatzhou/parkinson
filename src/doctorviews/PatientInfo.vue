@@ -1,6 +1,6 @@
 <template>
   <div id="patient-info">
-    <h1><router-link class="h1link" to="Login">&lt;</router-link>帕金森患者问卷</h1>
+    <h1><router-link class="h1link" :to="{name:'PatientDetail'}">&lt;</router-link>帕金森患者问卷</h1>
     <div class="split"></div>
 
     <InfoType :items="items.slice(0,6)"></InfoType>
@@ -11,7 +11,8 @@
 
     <div class="split"></div>
     <div class="confirm-wrap">
-      <div class="confirm-button" @click="savePatientInfo">保存并进行下一部分</div>
+       <div class="back-button confirm-button" @click="goNext1">帕金森调查问卷</div>
+       <div class="next-button button" @click="goNext2">用药记录</div>
     </div>
 
   </div>
@@ -26,74 +27,96 @@
   export default {
       data() {
           return {
-            url: util.api.patient.host + util.api.patient.PatientInfo.url,
+            url: util.api.doctor.host + util.api.doctor.PatientInfo,
             key: 'PatientInfo',
             items: PatientInfo,
-            info: {
-              doctorMobile: '',
-              patientMobile: '',
-              familyMobile: ''
-            }
           }
       },
-      created() {
+      mounted() {
         // util.storeData.get('info', this, 'info');
         // if(!this.info || !this.info.doctorMobile) {
         //     // location.href = '/';
         //     this.$router.push("Login");
         // }
         // util.storeData.get(this.key, this.items);
+        var postData = {
+          doctorMobile: window.info.doctorMobile,
+          patientMobile: window.info.patientMobile
+        };
+
+        this.$http.post(this.url, postData, {
+          headers: {'Authorization': 'Bearer ' + window.info.token}
+        })
+        .then((res)=>{
+          var data = res.body;
+          if(data.code == 0) {
+            this.setStatus(data.data);
+          } else if(data.code == 3) {
+            this.$router.push('Login');
+          } else {
+            myAlert(data.message);
+          }
+        });
       },
       methods :{
-        saveData() {
-          window.info.patientMobile = this.items[3].status;
-          // util.storeData.set(this.key, this.items);
-          // util.storeData.set('info', this, 'info');
+        goNext1() {
+          this.$router.push({
+            name: 'SickStatus',
+            params: {
+              mobile: window.info.patientMobile
+            }
+          })
         },
-        savePatientInfo: function() {
-          var flag = util.checkForm(this.items);
-          if(flag) {
-            var items = this.items;
-            var livePlace = items[6].status.replace(/\s+/,'#').split('#') || [],
-                homePlace = items[7].status.replace(/\s+/,'#').split('#') || [];
-                // console.log(livePlace, items[4].status)
-            this.saveData();
-            var postData = {
-              "doctorMobile": window.info.doctorMobile,
-              "patient":
-              {
-                  "mobile": items[3].status,
-                  "name": util.filteremoji(items[0].status),
-                  "birthday": items[1].status,
-                  "sex": parseInt(items[2].status),
-                  "mobile1": items[4].status,
-                  "liveProvince": livePlace[0],
-                  "liveCity": livePlace[1],
-                  "homeProvince": homePlace[0],
-                  "homeCity": homePlace[1],
-                  "history": util.filteremoji(items[8].status),
-                  "familyPatient": items[9].status,
-                  "deseaseType": items[10].status,
-                  "startDate": items[11].status,
-                  "confirmDate": items[12].status,
-              }
-            };
-            items[5].status && (postData.patient.mobile2 = items[5].status);
-            // console.log(postData)
-            this.$http.post(this.url, postData)
-            .then((response) => {
-              // console.log(response)
-              var data = response.body;
-              if(data.code === 0) {
-                this.$router.push("SickStatus");
-              } else {
-                myAlert(data.message);
-              }
-            })
-            .catch(function(response) {
-              myAlert('您当前网络出现故障，请稍后再试');
-            });
+        goNext2() {
+          this.$router.push({
+            name: 'DrugStatus',
+            params: {
+              mobile: window.info.patientMobile
+            }
+          })
+        },
+        setStatus(data) {
+          var nameNick = {
+            'tel': 'patientAs',
+            'tel1': 'familyAs',
+            'tel2': 'mobile2',
+            'anamnesis': 'history',
+            'familysick': 'familyPatient',
+            'sicktype': 'deseaseType',
+            'sex': 'sex',
+            'name': 'name'
+          };
+          //命名差异
+          for(var el in nameNick) {
+            var tmpItem = this.items.filter(function(item) {
+               return item.id === el;
+            })[0];
+            tmpItem && (tmpItem.status = (data[nameNick[el]]||''));
           }
+
+          var timeNick = {
+            'birthday': 'birthday',
+            'sicktime': 'startDate',
+            'confirmtime': 'confirmDate'
+          };
+          for(var el in timeNick) {
+            var tmpItem = this.items.filter(function(item) {
+               return item.id === el;
+            })[0];
+            tmpItem && (tmpItem.status = (data[timeNick[el]]||'').replace(/-/g,'/'));
+          }
+
+          ['homeProvince','homeCity','liveProvince','liveCity'].forEach((el)=>{
+            data[el] = (data[el]||'').replace(/\d/g, '');
+          });
+          var homePlace = data.homeProvince + ' ' + data.homeCity,
+              livePlace = data.liveProvince + ' ' + data.liveCity;
+          ['home', 'native'].forEach((el, index)=>{
+            var tmpItem = this.items.filter(function(item) {
+               return item.id === el;
+            })[0];
+            tmpItem.status = [livePlace, homePlace][index];
+          });
         }
       },
       components: {InfoType}
@@ -126,7 +149,8 @@
     color: #5a7193;
   }
   .confirm-wrap {
-    padding: .6rem 0;
+    padding: .6rem .8rem;
+    overflow: hidden;
   }
 </style>
 <!-- 样式自行设置，或者直接看源码就好 -->

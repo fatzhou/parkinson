@@ -108,7 +108,11 @@ var api = {
     },
     "doctor": {
         host: host.doctor[mode].host + host.doctor[mode].path,
-        patientList: '/queryPatientList'
+        patientList: '/queryPatientList',
+        PatientInfo: '/queryPatientInfo',
+        QueryQuiz: '/queryQuiz',
+        DrugStatus: '/queryMed',
+        FamilyList: '/queryFamilyList'
     }
 };
 

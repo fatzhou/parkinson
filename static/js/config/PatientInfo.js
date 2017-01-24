@@ -35,7 +35,7 @@ module.exports = [{
     question: '子女电话1',
     type: 1,
     status: '',
-    id: 'tel',
+    id: 'tel1',
     validate: 'telephone',
     default: '填写'
 }, {
@@ -44,7 +44,7 @@ module.exports = [{
     type: 1,
     status: '',
     notneed: true,
-    id: 'tel',
+    id: 'tel2',
     validate: 'telephone',
     default: '填写'
 },{

@@ -29,10 +29,22 @@
       },
       methods :{
         goNext1() {
-          this.$router.push('PatientList');
+          window.info.patientType = "patient";
+          this.$router.push({
+            name: 'PatientList',
+            params: {
+              "type": "patient"
+            }
+          });
         },
         goNext2() {
-          this.$router.push('PatientList');
+          window.info.patientType = "social";
+          this.$router.push({
+            "name": 'PatientList',
+            params: {
+              "type": "social"
+            }
+          });
         },
       }
   }

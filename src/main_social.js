@@ -10,7 +10,6 @@ window.info = {
   doctorMobile: '',
   patientMobile: '',
   familyMobile: '',
-  geneTest: true
 };
 
 const router = new VueRouter({

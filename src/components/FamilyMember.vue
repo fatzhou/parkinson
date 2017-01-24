@@ -211,7 +211,7 @@
 
             var postData = {
               "doctorMobile": window.info.doctorMobile,
-              "patientMobile": window.info.familyMobile,
+              "patientMobile": window.info.patientMobile,
               "family": family
             };
             console.log(postData)

@@ -7,29 +7,20 @@
     </h1>
     <h1 v-else>
       <router-link class="h1link" to="PatientAdmin">&lt;</router-link>
-      <label class="input-label"><input type="text" v-model="searchValue" placeholder="搜索患者手机号或姓名"></label>
-      <label class="confirm-label" @click="startSearch">确定</label>
+      <label class="input-label"><input type="text" placeholder="搜索患者手机号或姓名"></label>
+      <label class="confirm-label">确定</label>
     </h1>
     <div class="content" v-if="patientList.length>0">
       <ul>
         <li v-for="item in patientList">
-          <router-link  :to="{name:'PatientDetail',params:{mobile:item.mobile}}" v-if="type">
+          <router-link :to="{name:'PatientDetail', params: {mobile: item.mobile}}">
             <h3 class="name eps">{{item.name}}</h3>
             <p class="sex-age"><span>性别: {{['','男','女'][item.sex]}}</span><span>年龄: {{new Date().getFullYear() - parseInt(item.birthday.split('-')[0])}}岁</span></p>
-            <p class="tel-home"><span>电话: {{item.mobile}}</span><span>籍贯: {{item.homeCity}}</span></p>
-            <a href="javascript:;" class="enter"></a>
-          </router-link>
-          <router-link  :to="{name:'FamilyMember',params:{familyMobile:item.mobile}}" v-else>
-            <h3 class="name eps">{{item.name}}</h3>
-            <p class="sex-age"><span>性别: {{['','男','女'][item.sex]}}</span><span>年龄: {{new Date().getFullYear() - parseInt(item.birthday.split('-')[0])}}岁</span></p>
-            <p class="tel-home"><span>电话: {{item.mobile}}</span><span>籍贯: {{item.homeCity}}</span></p>
+            <p class="tel-home"><span>电话: {{item.mobile}}</span><span>籍贯: 北京</span></p>
             <a href="javascript:;" class="enter"></a>
           </router-link>
         </li>
       </ul>
-      <div v-if="more" class="more" @click="getNextPage">
-        <p>点击查看更多</p>
-      </div>
     </div>
     <div class="content content-position" v-else>
       <div class="content-wrap">
@@ -50,73 +41,38 @@
           return {
             url: util.api.doctor.host + util.api.doctor.patientList,
             searching: false,
-            searchValue: '',
             patientList: [],
             pageNo: 1,
-            pageNum: 20,
-            more: false,
-            refresh: true,
-            type: window.info.patientType == 'patient'
+            pageNum: 20
           }
       },
       created() {
-        this.getPage();
+        var postData = {
+          doctorMobile: window.info.doctorMobile,
+          page: this.pageNo,
+          pageCount: this.pageNum
+        };
+
+        this.$http.post(this.url, postData, {
+          headers: {'Authorization': 'Bearer ' + window.info.token}
+        })
+        .then((res)=>{
+          var data = res.body;
+          if(data.code == 0) {
+            this.patientList = data.data;
+          } else if(data.code == 3) {
+            this.$router.push('Login');
+          } else {
+            myAlert(data.message);
+          }
+        });
       },
       methods :{
         goNext() {
           this.$router.push('PatientList');
         },
         searchPatient() {
-          this.getPage();
-          // this.searchValue = '';
           this.searching = true;
-        },
-        startSearch() {
-          this.refresh = true;
-          this.getPage();
-          // this.searchValue = '';
-          this.searching = false;
-        },
-        getPage() {
-          var postData = {
-            doctorMobile: window.info.doctorMobile,
-            page: this.pageNo,
-            pageCount: this.pageNum
-          };
-
-          if(this.searchValue) {
-            postData.keyword = this.searchValue;
-          }
-
-          if(window.info.patientType === 'patient') {
-            postData.type = 0;
-          } else {
-            postData.type = 1;
-          }
-
-          this.$http.post(this.url, postData, {
-            headers: {'Authorization': 'Bearer ' + window.info.token}
-          })
-          .then((res)=>{
-            var data = res.body;
-            if(data.code == 0) {
-              if(this.refresh) {
-                this.patientList = [].concat(data.data);
-              } else {
-                this.patientList = this.patientList.concat(data.data);
-              }
-              this.refresh = false;
-              this.more = (data.data.length == this.pageNum);
-            } else if(data.code == 3) {
-              this.$router.push('Login');
-            } else {
-              myAlert(data.message);
-            }
-          });
-        },
-        getNextPage() {
-          this.pageNo++;
-          this.getPage();
         }
       }
   }
@@ -137,8 +93,6 @@
     color: #3c485a;
     position: relative;
     background: #fff;
-    height: .68rem;
-    line-height: .68rem;
   }
   .h1link {
     position: absolute;
@@ -248,15 +202,6 @@
     color: #959fa8;
     font-size: .46rem;
     line-height: 3;
-  }
-  .more {
-    margin-top: -.8rem;
-  }
-  .more p {
-    font-size: .48rem;
-    color: #777;
-    line-height: 2.5;
-    text-align: center;
   }
 </style>
 <!-- 样式自行设置，或者直接看源码就好 -->
