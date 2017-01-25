@@ -128,15 +128,15 @@ import drugStatus from '../../static/js/config/DrugStatus.js'
               item.times = meds[index].time || '';
               item.years = meds[index].year || '';
             });
-            if(data.others.length > 0) {
-              var other = data.others[0],
-                  otherItem = this.otherItem;
 
-              otherItem.name = other.name || '';
-              otherItem.amount = other.use.dose || '';
-              otherItem.times = other.use.time || '';
-              otherItem.years = other.use.year || '';
-            }
+            var other = data.others[0] || {use:{}},
+                otherItem = this.otherItem;
+
+            otherItem.name = other.name || '';
+            otherItem.amount = other.use.dose || '';
+            otherItem.times = other.use.time || '';
+            otherItem.years = other.use.year || '';
+            console.log(this.otherItem)
           }
         }
     }
