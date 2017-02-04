@@ -77,8 +77,8 @@
         },
         setStatus(data) {
           var nameNick = {
-            'tel': 'patientAs',
-            'tel1': 'familyAs',
+            'tel': 'mobile',
+            'tel1': 'mobile1',
             'tel2': 'mobile2',
             'anamnesis': 'history',
             'familysick': 'familyPatient',
