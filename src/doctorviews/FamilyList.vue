@@ -10,7 +10,7 @@
         <li v-for="item in patientList">
           <router-link :to="{name:'FamilyMember', params: {mobile: $route.params.mobile, familyMobile: item.mobile}}">
             <h3 class="name eps">{{item.name}}</h3>
-            <p class="relation"><span>关系: {{['其他','母子','父子','母女','父女'][item.relation]}}</span></p>
+            <p class="relation"><span>关系: {{['其他','父亲/母亲','兄/弟/姐/妹','祖父母/外祖父母','其他'][item.relation]}}</span></p>
           </router-link>
         </li>
       </ul>
@@ -170,6 +170,7 @@
     transform: translateY(-50%);
     margin-top: -1.52rem;
     position: absolute;
+    width: 100%;
   }
   .content-wrap img {
     display: block;

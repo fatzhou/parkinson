@@ -26,23 +26,26 @@ module.exports = merge(baseWebpackConfig, {
     new webpack.NoErrorsPlugin(),
     // https://github.com/ampedandwired/html-webpack-plugin
     new HtmlWebpackPlugin({
+      title: '睿云',
       filename: 'index.html',
       template: 'index.html',
       chunks: ['manifest', 'vendor',"app"],
-      inject: true
+      inject: true,
     }),
     new HtmlWebpackPlugin({
       filename: 'index_social.html',
       template: 'index.html',
       chunks: ['manifest', 'vendor',"app_social"],
-      inject: true
+      inject: true,
+      title: '睿云pd'
     }),
     new HtmlWebpackPlugin({
       filename: 'index_doctor.html',
       template: 'index.html',
       title: "医生查询系统",
       chunks: ['manifest', 'vendor',"app_doctor"],
-      inject: true
+      inject: true,
+      title: '睿云医生端'
     }),
   ]
 })

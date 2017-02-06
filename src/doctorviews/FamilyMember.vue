@@ -8,7 +8,7 @@
       </h1>
       <div class="split"></div>
 
-      <InfoType :items="items"></InfoType>
+      <InfoType :items="items.slice(patientIndex)"></InfoType>
 
     </div>
     <div class="confirm-wrap">
@@ -33,6 +33,11 @@
             items: FamilyMember.items,
             type: window.info.patientType === 'patient'
           }
+      },
+      computed: {
+        patientIndex() {
+          return window.info.patientType === 'patient' ? 0 : 1
+        }
       },
       mounted() {
         window.info.familyMobile = this.$route.params.familyMobile || window.info.familyMobile;
@@ -65,7 +70,7 @@
         setStatus(data) {
           var nameNick = {
             'mobile': 'mobile',
-            'mobile2': 'mobile1',
+            'mobile2': 'mobile2',
             'history': 'history',
             'relation': 'relation',
             'email': 'email',

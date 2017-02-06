@@ -67,9 +67,11 @@
           this.$router.push('PatientList');
         },
         searchPatient() {
-          this.getPage();
+          // this.getPage();
           // this.searchValue = '';
+          this.pageNo = 1;
           this.searching = true;
+          this.refresh = true;
         },
         startSearch() {
           this.refresh = true;
@@ -115,6 +117,7 @@
           });
         },
         getNextPage() {
+          this.refresh = false;
           this.pageNo++;
           this.getPage();
         }
@@ -236,6 +239,7 @@
     transform: translateY(-50%);
     margin-top: -1.52rem;
     position: absolute;
+    width: 100%;
   }
   .content-wrap img {
     display: block;
