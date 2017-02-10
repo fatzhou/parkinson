@@ -70,7 +70,7 @@ import myAlert from '../../static/js/alert.js'
             } else if(data.code == 3) {
               this.$router.push('Login');
             } else {
-              myAlert(data.message);
+              myAlert('该部分资料患者未填写');
             }
           });
         },
